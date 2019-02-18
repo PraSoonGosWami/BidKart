@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/colorPrimary"
+    >
+
+    <TableRow>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:hapticFeedbackEnabled="true"
+            android:clickable="true"
+            android:id="@+id/action_bar_menu"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="4dp"/>
+
+
+        <ImageView
+            android:id="@+id/action_bar_appicon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/app_name"
+            android:gravity="center_horizontal"
+            android:src="@drawable/ic_cart"
+            android:padding="6dp"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:visibility="gone"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notification"
+            android:layout_marginRight="4dp"
+            android:id="@+id/action_bar_notification"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/action_bar_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="@drawable/cback"
+            android:layout_gravity="center"
+            android:paddingTop="4dp"
+            android:textColor="@android:color/white"
+            android:drawablePadding="8dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:hint="Search Products"
+            android:textColorHint="@android:color/darker_gray"
+            android:layout_weight=".6"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+            android:drawableLeft="@android:drawable/ic_menu_search">
+
+        </EditText>
+
+
+
+
+    </TableRow>
+
+
+
+
+
+</TableLayout>
