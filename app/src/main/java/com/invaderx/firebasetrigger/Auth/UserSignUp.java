@@ -1,13 +1,19 @@
 package com.invaderx.firebasetrigger.Auth;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -59,10 +65,12 @@ public class UserSignUp extends AppCompatActivity {
         signup =findViewById(R.id.signup);
         signin = findViewById(R.id.signin);
 
-        //database references
+        //database references-------------------------------
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
-        progressDialog = new ProgressDialog(this);
+
+        //progress dialog box
+        progressDialog = new ProgressDialog(this,ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done!\nRegistering User");
 
 
@@ -83,8 +91,11 @@ public class UserSignUp extends AppCompatActivity {
             }
         });
 
+        setStatusBarGradiant(this);
 
     }
+
+    //registers new user
     private void registerUser() {
         uname = name.getText().toString().trim();
         String uemail = email.getText().toString().trim().toLowerCase();
@@ -170,9 +181,7 @@ public class UserSignUp extends AppCompatActivity {
         });
     }
 
-
-
-
+    //saves user details on board
     public void userDeatails(FirebaseUser firebaseUser){
         UserProfile userProfile=new UserProfile(firebaseUser.getUid(),"+91"+uphone,0);
         databaseReference.child("UserProfile").child(firebaseUser.getUid()).setValue(userProfile)
@@ -182,5 +191,18 @@ public class UserSignUp extends AppCompatActivity {
                         Toast.makeText(UserSignUp.this, "You are registered, Now Login", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    //changes status bar color to gradient
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.background);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
     }
 }
