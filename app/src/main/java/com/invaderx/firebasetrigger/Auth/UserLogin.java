@@ -1,13 +1,20 @@
 package com.invaderx.firebasetrigger.Auth;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.invaderx.firebasetrigger.R;
 import com.invaderx.firebasetrigger.Activity.MainActivity;
 
@@ -39,8 +47,6 @@ public class UserLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -49,7 +55,7 @@ public class UserLogin extends AppCompatActivity {
         signin =findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
 
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this,ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done\nLogging you in...");
 
         signin.setOnClickListener(new View.OnClickListener(){
@@ -73,6 +79,8 @@ public class UserLogin extends AppCompatActivity {
                 sendPasswordReset();
             }
         });
+
+        setStatusBarGradiant(this);
     }
 
     private void userLogin() {
@@ -169,6 +177,20 @@ public class UserLogin extends AppCompatActivity {
                     }
                 });
     }
+
+    //changes status bar color to gradient
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.background);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
+    }
+
 
 
 
