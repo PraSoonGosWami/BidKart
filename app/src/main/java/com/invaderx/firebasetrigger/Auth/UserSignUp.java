@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Patterns;
@@ -168,10 +169,10 @@ public class UserSignUp extends AppCompatActivity {
                 } else {
 
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
+                        showSnackbar("You are already registered");
 
                     } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        showSnackbar(task.getException().getMessage());
                     }
 
                     progressDialog.dismiss();
@@ -188,7 +189,7 @@ public class UserSignUp extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(UserSignUp.this, "You are registered, Now Login", Toast.LENGTH_SHORT).show();
+                        showSnackbar("You are registered, Now Login");
                     }
                 });
     }
@@ -204,5 +205,12 @@ public class UserSignUp extends AppCompatActivity {
             window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
             window.setBackgroundDrawable(background);
         }
+    }
+
+    //snackbar
+    public void showSnackbar(String msg){
+        Snackbar snackbar = Snackbar
+                .make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }

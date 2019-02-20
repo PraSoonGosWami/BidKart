@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -117,7 +119,7 @@ public class UserLogin extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    showSnackbar(task.getException().getMessage());
                 }
                 progressDialog.dismiss();
             }
@@ -168,9 +170,9 @@ public class UserLogin extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                            showSnackbar("We have sent you instructions to reset your password!");
                         } else {
-                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            showSnackbar(task.getException().getMessage());
                         }
                         progressDialog.dismiss();
 
@@ -189,6 +191,13 @@ public class UserLogin extends AppCompatActivity {
             window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
             window.setBackgroundDrawable(background);
         }
+    }
+
+    //snackbar
+    public void showSnackbar(String msg){
+        Snackbar snackbar = Snackbar
+                .make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 

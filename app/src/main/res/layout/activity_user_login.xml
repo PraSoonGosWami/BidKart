@@ -24,10 +24,7 @@
             android:textAlignment="center"
             android:textColor="#ffff"
             android:textSize="20sp"
-            android:textStyle="bold"
-
-
-            />
+            android:textStyle="bold"/>
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
@@ -38,7 +35,7 @@
         android:layout_centerHorizontal="true">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:orientation="vertical"
@@ -58,10 +55,12 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:id="@+id/email"
+                    android:layout_marginTop="18dp"
                     android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp"
                     android:hint="EMAIL"
+
                     android:padding="20dp"
                     android:textSize="14sp"
                     android:textColorHint="#606060"
@@ -104,7 +103,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="end"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="42dp"
                     android:layout_marginRight="32dp"
                     android:id="@+id/signin"
                     android:src="@drawable/ic_arrow_forward_black_24dp"
