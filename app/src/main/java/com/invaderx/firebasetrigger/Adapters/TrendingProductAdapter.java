@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.invaderx.firebasetrigger.Models.Products;
@@ -15,28 +14,28 @@ import com.invaderx.firebasetrigger.R;
 
 import java.util.ArrayList;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    private ArrayList<Products> productAdapterList;
+public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProductAdapter.ViewHolder> {
+    private ArrayList<Products> trendingProductAdapterList;
     private Context context;
 
 
-    public ProductAdapter(ArrayList<Products> trendingProductAdapterList, Context context) {
-        this.productAdapterList = trendingProductAdapterList;
+    public TrendingProductAdapter(ArrayList<Products> trendingProductAdapterList, Context context) {
+        this.trendingProductAdapterList = trendingProductAdapterList;
         this.context = context;
     }
 
 
     @NonNull
     @Override
-    public ProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public TrendingProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.trending_model,viewGroup,false);
-        return new ProductAdapter.ViewHolder(view);
+        return new TrendingProductAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int i) {
-        Products list = productAdapterList.get(i);
+    public void onBindViewHolder(@NonNull TrendingProductAdapter.ViewHolder holder, int i) {
+        Products list = trendingProductAdapterList.get(i);
 
        // holder.trending_product_image.setRe
         holder.trending_product_title.setText(list.getpName());
@@ -47,7 +46,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return productAdapterList.size();
+        return trendingProductAdapterList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

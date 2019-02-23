@@ -1,13 +1,13 @@
 
-Vsquid:S1659%"8Declare "trendingProductProgressBar" on a separate line.(¹ÉÒ³8øªü’-
-msquid:S1192E"ODefine a constant instead of duplicating this literal "Apple iPhone 7" 4 times.(Ë¬¦¯8 ºì‘-
-{squid:S00116"WRename this field "TrendingList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®Şíşÿÿÿÿ8 ºì‘-
-¤squid:S1186k"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8şøã’-
-dsquid:S1192E"FDefine a constant instead of duplicating this literal "52000" 4 times.(Ë¬¦¯8 ºì‘-
-}squid:S1450#"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÕŞÏ’-
-…squid:S00116"aRename this field "category_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
+Wsquid:S1659"4Declare "category_recycler_view" on a separate line.(ÃçúÔşÿÿÿÿ8 ºì‘-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
 …squid:S00116"aRename this field "trending_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
 {squid:S1450!"]Remove the "productAdapter" field and declare it as a local variable in the relevant methods.(‰¥‰Õ8 ºì‘-
+msquid:S1192E"ODefine a constant instead of duplicating this literal "Apple iPhone 7" 4 times.(Ë¬¦¯8 ºì‘-
+Vsquid:S1659%"8Declare "trendingProductProgressBar" on a separate line.(¹ÉÒ³8øªü’-
 ˆsquid:S1450"eRemove the "trending_recycler_view" field and declare it as a local variable in the relevant methods.(ÃçúÔşÿÿÿÿ8 ºì‘-
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-Wsquid:S1659"4Declare "category_recycler_view" on a separate line.(ÃçúÔşÿÿÿÿ8 ºì‘-
+}squid:S1450#"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÕŞÏ’-
+…squid:S00116"aRename this field "category_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
+{squid:S00116"WRename this field "TrendingList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®Şíşÿÿÿÿ8 ºì‘-
+dsquid:S1192E"FDefine a constant instead of duplicating this literal "52000" 4 times.(Ë¬¦¯8 ºì‘-
+¤squid:S1186k"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8şøã’-

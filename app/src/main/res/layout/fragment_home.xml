@@ -25,6 +25,7 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/trending_recycler_view"
             android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
             android:layout_below="@+id/trendingtile"
             android:scrollbars="none" />
@@ -47,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/category_recycler_view"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/cattile"
             android:scrollbars="none">
 

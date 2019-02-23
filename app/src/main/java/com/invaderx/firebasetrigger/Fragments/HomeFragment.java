@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.firebasetrigger.Adapters.CategoryAdapter;
-import com.invaderx.firebasetrigger.Adapters.ProductAdapter;
+import com.invaderx.firebasetrigger.Adapters.TrendingProductAdapter;
 import com.invaderx.firebasetrigger.Models.Category;
 import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView trending_recycler_view,category_recycler_view;
     private ArrayList<Products> TrendingList = new ArrayList<>();
     private ArrayList<Category> categoryList = new ArrayList<>();
-    private ProductAdapter productAdapter;
+    private TrendingProductAdapter trendingProductAdapter;
     private CategoryAdapter categoryAdapter;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
 
         //trending product recycler ------------------------------------
         trending_recycler_view = view.findViewById(R.id.trending_recycler_view);
-        productAdapter= new ProductAdapter(TrendingList,getContext());
+        trendingProductAdapter = new TrendingProductAdapter(TrendingList, getContext());
 
         trending_recycler_view.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, true));
         //--------------------------------------------------------------
@@ -63,15 +63,6 @@ public class HomeFragment extends Fragment {
         //firebase Database references
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
-
-
-
-        TrendingList.add(new Products("p1","Apple iPhone 7","52000",47000));
-        TrendingList.add(new Products("p1","Apple iPhone 7","52000",47000));
-        TrendingList.add(new Products("p1","Apple iPhone 7","52000",47000));
-        TrendingList.add(new Products("p1","Apple iPhone 7","52000",47000));
-
-        trending_recycler_view.setAdapter(productAdapter);
 
         trendingProductProgressBar.setVisibility(View.VISIBLE);
         categoryProgressBar.setVisibility(View.VISIBLE);
@@ -90,7 +81,7 @@ public class HomeFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Category category = null;
+                        Category category;
                         if(dataSnapshot.exists()){
                             for(DataSnapshot data : dataSnapshot.getChildren()){
                                 category = data.getValue(Category.class);
@@ -115,6 +106,23 @@ public class HomeFragment extends Fragment {
     public void getTrendingProduct(){
 
         trendingProductProgressBar.setVisibility(View.GONE);
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
+                "68455", "SelerUID", "p001", 12));
+
+        trending_recycler_view.setAdapter(trendingProductAdapter);
 
     }
 }

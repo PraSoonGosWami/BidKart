@@ -2,8 +2,11 @@ package com.invaderx.firebasetrigger.Adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.invaderx.firebasetrigger.Fragments.ProductListFragment;
 import com.invaderx.firebasetrigger.Models.Category;
 import com.invaderx.firebasetrigger.R;
 
@@ -54,7 +58,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Category Id: "+list.getCategoryId(), Toast.LENGTH_SHORT).show();
+
+                swapFragments(new ProductListFragment(), list.getCategoryId());
             }
         });
 
@@ -75,5 +80,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             category_image=itemView.findViewById(R.id.category_image);
             category_title=itemView.findViewById(R.id.category_title);
         }
+    }
+
+
+    //replaces the container with fragments and sends category id
+    public void swapFragments(Fragment fragment, String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("category", id);
+        fragment.setArguments(bundle);
+        android.support.v4.app.FragmentTransaction fragmentTransaction;
+        fragmentTransaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.container_frame, fragment);
+        fragmentTransaction.addToBackStack("Home").commit();
     }
 }
