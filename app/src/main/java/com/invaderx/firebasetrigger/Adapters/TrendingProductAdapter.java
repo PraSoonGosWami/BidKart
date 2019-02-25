@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
 
@@ -29,7 +30,7 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
     @Override
     public TrendingProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.trending_model,viewGroup,false);
+                .inflate(R.layout.model_trending, viewGroup, false);
         return new TrendingProductAdapter.ViewHolder(view);
     }
 
@@ -37,7 +38,9 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
     public void onBindViewHolder(@NonNull TrendingProductAdapter.ViewHolder holder, int i) {
         Products list = trendingProductAdapterList.get(i);
 
-       // holder.trending_product_image.setRe
+        Glide.with(context).
+                load(list.getProductListImgURL())
+                .into(holder.trending_product_image);
         holder.trending_product_title.setText(list.getpName());
 
 

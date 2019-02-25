@@ -70,7 +70,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:imeOptions="actionGo"
+                android:imeOptions="actionSearch"
                 android:visibility="gone"
                 android:inputType="text"
                 android:drawableLeft="@android:drawable/ic_menu_search">

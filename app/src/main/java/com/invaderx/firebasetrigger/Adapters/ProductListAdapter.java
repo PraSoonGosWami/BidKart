@@ -2,7 +2,6 @@ package com.invaderx.firebasetrigger.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +31,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public ProductListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.product_list_model, viewGroup, false);
+                .inflate(R.layout.model_product_listl, viewGroup, false);
         return new ProductListAdapter.ViewHolder(view);
     }
 
@@ -44,9 +43,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 load(list.getProductListImgURL())
                 .into(holder.product_list_image);
         holder.product_list_title.setText(list.getpName());
-        holder.product_list_base_price.setText("Base Price : " + list.getBasePrice());
+        holder.product_list_base_price.setText("Base Price : ₹" + list.getBasePrice());
         holder.product_list_seller_name.setText("Seller : " + list.getSellerName());
-        holder.product_list_current_bid.setText("Current Bid : " + list.getpBid());
+        holder.product_list_current_bid.setText("Current Bid : ₹" + list.getpBid());
+        holder.product_list_cat.setText("in " + list.getpCategory());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView product_list_image;
-        public TextView product_list_title, product_list_base_price, product_list_seller_name, product_list_current_bid;
+        public TextView product_list_title, product_list_base_price, product_list_seller_name, product_list_current_bid, product_list_cat;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +76,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             product_list_base_price = itemView.findViewById(R.id.product_list_base_price);
             product_list_seller_name = itemView.findViewById(R.id.product_list_seller_name);
             product_list_current_bid = itemView.findViewById(R.id.product_list_current_bid);
+            product_list_cat = itemView.findViewById(R.id.product_list_cat);
 
         }
     }

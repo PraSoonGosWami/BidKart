@@ -12,9 +12,10 @@ public class Products {
     private String sellerUID;
     private String catId;
     private int noOfBids;
+    private String searchStr;
 
 
-    public Products(String pId, String pName, String pCategory, int pBid, String bidderUID, String productListImgURL, String sellerName, String basePrice, String sellerUID, String catId, int noOfBids) {
+    public Products(String pId, String pName, String pCategory, int pBid, String bidderUID, String productListImgURL, String sellerName, String basePrice, String sellerUID, String catId, int noOfBids, String searchStr) {
         this.pId = pId;
         this.pName = pName;
         this.pCategory = pCategory;
@@ -26,6 +27,7 @@ public class Products {
         this.sellerUID = sellerUID;
         this.catId = catId;
         this.noOfBids = noOfBids;
+        this.searchStr = searchStr;
     }
 
     public Products() {
@@ -74,5 +76,9 @@ public class Products {
 
     public int getNoOfBids() {
         return noOfBids;
+    }
+
+    public String getSearchStr() {
+        return searchStr;
     }
 }

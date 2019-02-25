@@ -1,10 +1,8 @@
 package com.invaderx.firebasetrigger.Adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.invaderx.firebasetrigger.Fragments.ProductListFragment;
 import com.invaderx.firebasetrigger.Models.Category;
 import com.invaderx.firebasetrigger.R;
@@ -43,7 +35,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.category_model,viewGroup,false);
+                .inflate(R.layout.model_category, viewGroup, false);
         return new CategoryAdapter.ViewHolder(view);
     }
 
@@ -91,6 +83,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         android.support.v4.app.FragmentTransaction fragmentTransaction;
         fragmentTransaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.container_frame, fragment);
-        fragmentTransaction.addToBackStack("Home").commit();
+        fragmentTransaction.addToBackStack("home").commit();
     }
 }

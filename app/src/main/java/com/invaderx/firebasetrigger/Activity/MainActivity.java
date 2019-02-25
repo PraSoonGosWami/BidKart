@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         container_frame = findViewById(R.id.container_frame);
         drawerLayout = findViewById(R.id.drawer_layout);
 

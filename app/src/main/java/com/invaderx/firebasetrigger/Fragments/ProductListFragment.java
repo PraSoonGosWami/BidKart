@@ -41,43 +41,49 @@ public class ProductListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
 
+
         //---------------Recycler View------------------------------------------
         product_list_recycler_view = view.findViewById(R.id.product_list_recycler_view);
         product_list_progress_bar = view.findViewById(R.id.product_list_progress_bar);
         productListAdapter = new ProductListAdapter(productList, getContext());
         product_list_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
+        product_list_recycler_view.setAdapter(productListAdapter);
+
         //-----------------------------------------------------------------------
 
         //firebase Database references
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
+        databaseReference.keepSynced(true);
+
         //getting bundle category id
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             catId = bundle.getString("category");
-            Toast.makeText(getContext(), "Category :" + catId, Toast.LENGTH_SHORT).show();
             getProductList(catId);
         }
-
-
+        getProductList(catId);
         return view;
     }
 
+
     //fetches product list for given category
-    public void getProductList(String catId) {
+    public void getProductList(final String catId) {
 
         databaseReference.child("product").orderByChild("catId").equalTo(catId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Products products;
+                        productList.clear();
+
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 products = data.getValue(Products.class);
                                 productList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                         products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
-                                        products.getBasePrice(), products.getSellerUID(), products.getCatId(), products.getNoOfBids()));
+                                        products.getBasePrice(), products.getSellerUID(), products.getCatId(), products.getNoOfBids(), products.getSearchStr()));
                             }
                         } else
                             showSnackbar("Something went wrong!\tTry again in a bit");

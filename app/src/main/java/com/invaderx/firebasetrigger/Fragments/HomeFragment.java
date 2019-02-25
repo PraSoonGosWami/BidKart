@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.firebasetrigger.Adapters.CategoryAdapter;
 import com.invaderx.firebasetrigger.Adapters.TrendingProductAdapter;
@@ -82,6 +83,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Category category;
+                        categoryList.clear();
                         if(dataSnapshot.exists()){
                             for(DataSnapshot data : dataSnapshot.getChildren()){
                                 category = data.getValue(Category.class);
@@ -105,24 +107,35 @@ public class HomeFragment extends Fragment {
     //gets trending product
     public void getTrendingProduct(){
 
-        trendingProductProgressBar.setVisibility(View.GONE);
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
+        Query query = databaseReference.child("product").orderByChild("noOfBids").limitToLast(4);
+        query.keepSynced(true);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                TrendingList.clear();
+                Products products;
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot trendData : dataSnapshot.getChildren()) {
 
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
-        TrendingList.add(new Products("p1", "Apple iPhone 7", "Phones & Accesories", 78000, "bidderUID", "http", "SEller XYZ",
-                "68455", "SelerUID", "p001", 12));
+                        products = trendData.getValue(Products.class);
+                        TrendingList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
+                                products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
+                                products.getBasePrice(), products.getSellerUID(), products.getCatId(), products.getNoOfBids(), products.getSearchStr()));
+                    }
 
-        trending_recycler_view.setAdapter(trendingProductAdapter);
+                }
+
+                trendingProductProgressBar.setVisibility(View.GONE);
+                trending_recycler_view.setAdapter(trendingProductAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 }
