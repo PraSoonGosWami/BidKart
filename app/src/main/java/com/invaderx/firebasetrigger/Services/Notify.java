@@ -18,7 +18,6 @@ public class Notify extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
         showNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
     }
 
@@ -31,7 +30,7 @@ public class Notify extends FirebaseMessagingService {
             notificationChannel.setDescription("Test");
             notificationChannel.setLightColor(Color.BLUE);
             notificationChannel.enableLights(true);
-            notificationChannel.setVibrationPattern(new long[]{0,1000,500,1000});
+            notificationChannel.setVibrationPattern(new long[]{0, 500, 100, 500});
             notificationManager.createNotificationChannel(notificationChannel);
         }
 

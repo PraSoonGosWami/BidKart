@@ -42,5 +42,6 @@ dependencies {
     //lottie
     implementation "com.airbnb.android:lottie:2.7.0"
 
+
 }
 apply plugin: 'com.google.gms.google-services'

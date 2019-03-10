@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,6 +60,7 @@ public class SearchFragment extends Fragment {
         search_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         search_recycler.setAdapter(searchAdapter);
         //-----------------------------------------------------------------------
+
 
         search_progressBar.setVisibility(View.INVISIBLE);
         //firebase Database references
@@ -117,7 +119,8 @@ public class SearchFragment extends Fragment {
                                     products = data.getValue(Products.class);
                                     searchList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                             products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
-                                            products.getBasePrice(), products.getSellerUID(), products.getCatId(), products.getNoOfBids(), products.getSearchStr()));
+                                            products.getBasePrice(), products.getSellerUID(),
+                                            products.getCatId(), products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription()));
                                 }
                             } else {
                                 search_error_frame.setVisibility(View.VISIBLE);
@@ -142,4 +145,5 @@ public class SearchFragment extends Fragment {
             search_error.cancelAnimation();
         }
     }
+
 }

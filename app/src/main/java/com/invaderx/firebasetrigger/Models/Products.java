@@ -13,9 +13,13 @@ public class Products {
     private String catId;
     private int noOfBids;
     private String searchStr;
+    private long expTime;
+    private String pDescription;
 
 
-    public Products(String pId, String pName, String pCategory, int pBid, String bidderUID, String productListImgURL, String sellerName, String basePrice, String sellerUID, String catId, int noOfBids, String searchStr) {
+    public Products(String pId, String pName, String pCategory, int pBid, String bidderUID, String productListImgURL,
+                    String sellerName, String basePrice, String sellerUID,
+                    String catId, int noOfBids, String searchStr, long expTime, String pDescription) {
         this.pId = pId;
         this.pName = pName;
         this.pCategory = pCategory;
@@ -28,6 +32,8 @@ public class Products {
         this.catId = catId;
         this.noOfBids = noOfBids;
         this.searchStr = searchStr;
+        this.expTime = expTime;
+        this.pDescription = pDescription;
     }
 
     public Products() {
@@ -80,5 +86,13 @@ public class Products {
 
     public String getSearchStr() {
         return searchStr;
+    }
+
+    public long getExpTime() {
+        return expTime;
+    }
+
+    public String getpDescription() {
+        return pDescription;
     }
 }

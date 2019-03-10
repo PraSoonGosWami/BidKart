@@ -1,6 +1,7 @@
 package com.invaderx.firebasetrigger.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.invaderx.firebasetrigger.Activity.MainActivity;
+import com.invaderx.firebasetrigger.Activity.ProductPageActivity;
 import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
 
@@ -36,12 +39,20 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
 
     @Override
     public void onBindViewHolder(@NonNull TrendingProductAdapter.ViewHolder holder, int i) {
-        Products list = trendingProductAdapterList.get(i);
+        final Products list = trendingProductAdapterList.get(i);
 
         Glide.with(context).
                 load(list.getProductListImgURL())
                 .into(holder.trending_product_image);
         holder.trending_product_title.setText(list.getpName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductPageActivity.class);
+                intent.putExtra("pid", list.getpId());
+                context.startActivity(intent);
+            }
+        });
 
 
     }
