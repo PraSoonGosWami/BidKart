@@ -1,6 +1,7 @@
 package com.invaderx.firebasetrigger.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.invaderx.firebasetrigger.Activity.ProductPageActivity;
 import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
 
@@ -47,8 +49,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, list.getpName(), Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(context, ProductPageActivity.class);
+                intent.putExtra("pid", list.getpId());
+                context.startActivity(intent);
             }
         });
 
