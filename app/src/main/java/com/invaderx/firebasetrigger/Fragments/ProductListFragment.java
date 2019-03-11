@@ -84,7 +84,8 @@ public class ProductListFragment extends Fragment {
                                 productList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                         products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                         products.getBasePrice(), products.getSellerUID(), products.getCatId(),
-                                        products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription()));
+                                        products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription(),
+                                        products.getpCondition(), products.getpStatus()));
                             }
                         } else
                             showSnackbar("Something went wrong!\tTry again in a bit");

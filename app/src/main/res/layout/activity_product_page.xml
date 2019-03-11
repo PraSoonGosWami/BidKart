@@ -202,6 +202,18 @@
 
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:id="@+id/pro_user_bid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Bid : No bids found"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

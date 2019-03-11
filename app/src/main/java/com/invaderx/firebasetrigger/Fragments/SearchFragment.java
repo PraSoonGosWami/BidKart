@@ -120,7 +120,8 @@ public class SearchFragment extends Fragment {
                                     searchList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                             products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                             products.getBasePrice(), products.getSellerUID(),
-                                            products.getCatId(), products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription()));
+                                            products.getCatId(), products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription(),
+                                            products.getpCondition(), products.getpStatus()));
                                 }
                             } else {
                                 search_error_frame.setVisibility(View.VISIBLE);

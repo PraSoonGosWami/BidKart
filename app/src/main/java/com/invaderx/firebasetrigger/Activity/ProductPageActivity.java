@@ -31,6 +31,8 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,7 @@ import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 public class ProductPageActivity extends AppCompatActivity {
@@ -51,7 +54,7 @@ public class ProductPageActivity extends AppCompatActivity {
     private ImageView pro_image, pro_seller_image;
     private TextView pro_title, pro_currentbid, pro_expDay,
             pro_expHrs, pro_expMin, pro_expSec, pro_category,
-            pro_condition, pro_bidsNo, pro_base_price, pro_description, pro_seller;
+            pro_condition, pro_bidsNo, pro_base_price, pro_description, pro_seller, pro_user_bid;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Button place_bid;
@@ -60,6 +63,8 @@ public class ProductPageActivity extends AppCompatActivity {
     private LinearLayout pro_error_frame;
     private PopupWindow popWindow;
     private CoordinatorLayout product_container;
+    private FirebaseUser firebaseUser;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +100,9 @@ public class ProductPageActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
+        //gets current user-----------------------------------------------
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
         //------- Getting views-------------------------
         pro_image = findViewById(R.id.pro_image);
@@ -116,6 +124,7 @@ public class ProductPageActivity extends AppCompatActivity {
         pro_error_anim = findViewById(R.id.pro_error);
         pro_loading = findViewById(R.id.pro_loading);
         product_container = findViewById(R.id.product_container);
+        pro_user_bid = findViewById(R.id.pro_user_bid);
         //-------------------------------------------------------------------
 
 
@@ -130,12 +139,9 @@ public class ProductPageActivity extends AppCompatActivity {
         getProducts();
 
         product_container.setAlpha(1f);
-        place_bid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                product_container.setAlpha(0.4f);
-                bidPopup();
-            }
+        place_bid.setOnClickListener(v -> {
+            product_container.setAlpha(0.4f);
+            bidPopup();
         });
 
     }
@@ -151,6 +157,7 @@ public class ProductPageActivity extends AppCompatActivity {
     }
 
 
+    //sets back button click on toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -170,6 +177,7 @@ public class ProductPageActivity extends AppCompatActivity {
     }
 
 
+    //gets product details
     public void getProducts() {
 
         databaseReference.child("product").orderByChild("pId").equalTo(proId)
@@ -177,6 +185,7 @@ public class ProductPageActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Products products = null;
+                        ArrayList<Integer> bids = new ArrayList<>();
                         pro_loading.setVisibility(View.INVISIBLE);
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
@@ -186,13 +195,22 @@ public class ProductPageActivity extends AppCompatActivity {
                                     load(products.getProductListImgURL())
                                     .into(pro_image);
                             pro_title.setText(products.getpName());
-                            pro_currentbid.setText("₹" + products.getpBid());
+
+                            if (products.getpBid().containsKey(firebaseUser.getUid())) {
+                                pro_user_bid.setText("Your Bid: ₹" + products.getpBid().get(firebaseUser.getUid()));
+                                place_bid.setText("Update your bid");
+                            } else {
+                                pro_user_bid.setText("Your Bid: Not Placed");
+                                place_bid.setText("Place your bid");
+                            }
+
+                            pro_currentbid.setText("₹" + Collections.max(products.getpBid().values()));
                             pro_category.setText("Category: " + products.getpCategory());
-                            pro_condition.setText("Condition: Good");
+                            pro_condition.setText("Condition: " + products.getpCondition());
                             pro_base_price.setText("Base Price: ₹" + products.getBasePrice());
                             pro_bidsNo.setText("Total Bids: " + products.getNoOfBids());
                             pro_description.setText(products.getpDescription());
-                            pro_seller.setText("BidKart");
+                            pro_seller.setText(products.getSellerName());
 
                             expiryTime(products.getExpTime());
 
@@ -220,6 +238,7 @@ public class ProductPageActivity extends AppCompatActivity {
                 });
     }
 
+    //calculates product count down time
     public void expiryTime(long milliseconds) {
         long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliseconds));
         long minutes = TimeUnit.MILLISECONDS.toMinutes(milliseconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(milliseconds));
@@ -248,6 +267,7 @@ public class ProductPageActivity extends AppCompatActivity {
 
     }
 
+    //pops up bid gateway
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void bidPopup() {
 
@@ -268,19 +288,12 @@ public class ProductPageActivity extends AppCompatActivity {
         popWindow = new PopupWindow(inflatedView, width, height - 60, true);
         popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         popWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        popWindow.setFocusable(true);
-        popWindow.setElevation(10f);
         popWindow.setAnimationStyle(R.style.PopupAnimation);
 
         // show the popup at bottom of the screen and set some margin at bottom ie,
-        popWindow.showAtLocation(inflatedView, Gravity.CENTER, 0, 100);
+        popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0, 100);
 
-        popWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                product_container.setAlpha(1f);
-            }
-        });
+        popWindow.setOnDismissListener(() -> product_container.setAlpha(1f));
     }
 
 }

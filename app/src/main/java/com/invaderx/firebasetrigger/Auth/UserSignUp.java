@@ -75,21 +75,12 @@ public class UserSignUp extends AppCompatActivity {
         progressDialog.setMessage("Almost done!\nRegistering User");
 
 
-        signup.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                registerUser();
+        signup.setOnClickListener(view -> registerUser());
 
-            }
-        });
-
-        signin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(UserSignUp.this,UserLogin.class);
-                startActivity(i);
-                finish();
-            }
+        signin.setOnClickListener(view -> {
+            Intent i = new Intent(UserSignUp.this, UserLogin.class);
+            startActivity(i);
+            finish();
         });
 
         setStatusBarGradiant(this);

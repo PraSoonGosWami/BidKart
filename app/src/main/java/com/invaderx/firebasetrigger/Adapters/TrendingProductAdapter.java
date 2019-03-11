@@ -45,13 +45,10 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
                 load(list.getProductListImgURL())
                 .into(holder.trending_product_image);
         holder.trending_product_title.setText(list.getpName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProductPageActivity.class);
-                intent.putExtra("pid", list.getpId());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductPageActivity.class);
+            intent.putExtra("pid", list.getpId());
+            context.startActivity(intent);
         });
 
 

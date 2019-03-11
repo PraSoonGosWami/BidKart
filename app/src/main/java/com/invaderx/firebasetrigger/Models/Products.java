@@ -1,10 +1,12 @@
 package com.invaderx.firebasetrigger.Models;
 
+import java.util.HashMap;
+
 public class Products {
     private String pId;
     private String pName;
     private String pCategory;
-    private int pBid;
+    private HashMap<String, Integer> pBid;
     private String bidderUID;
     private String productListImgURL;
     private String sellerName;
@@ -15,11 +17,14 @@ public class Products {
     private String searchStr;
     private long expTime;
     private String pDescription;
+    private String pCondition;
+    private String pStatus;
 
 
-    public Products(String pId, String pName, String pCategory, int pBid, String bidderUID, String productListImgURL,
+    public Products(String pId, String pName, String pCategory, HashMap<String, Integer> pBid, String bidderUID, String productListImgURL,
                     String sellerName, String basePrice, String sellerUID,
-                    String catId, int noOfBids, String searchStr, long expTime, String pDescription) {
+                    String catId, int noOfBids, String searchStr, long expTime, String pDescription,
+                    String pCondition, String pStatus) {
         this.pId = pId;
         this.pName = pName;
         this.pCategory = pCategory;
@@ -34,6 +39,8 @@ public class Products {
         this.searchStr = searchStr;
         this.expTime = expTime;
         this.pDescription = pDescription;
+        this.pCondition = pCondition;
+        this.pStatus = pStatus;
     }
 
     public Products() {
@@ -52,7 +59,7 @@ public class Products {
         return pCategory;
     }
 
-    public int getpBid() {
+    public HashMap<String, Integer> getpBid() {
         return pBid;
     }
 
@@ -94,5 +101,13 @@ public class Products {
 
     public String getpDescription() {
         return pDescription;
+    }
+
+    public String getpCondition() {
+        return pCondition;
+    }
+
+    public String getpStatus() {
+        return pStatus;
     }
 }

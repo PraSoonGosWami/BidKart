@@ -20,6 +20,7 @@ import com.invaderx.firebasetrigger.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -52,16 +53,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 load(list.getProductListImgURL())
                 .into(holder.product_list_image);
         holder.product_list_title.setText(list.getpName());
-        holder.product_list_current_bid.setText("Current Bid : ₹" + list.getpBid());
+        holder.product_list_current_bid.setText("Current Bid : ₹" + Collections.max(list.getpBid().values()));
         holder.product_list_cat.setText("in " + list.getpCategory());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProductPageActivity.class);
-                intent.putExtra("pid", list.getpId());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductPageActivity.class);
+            intent.putExtra("pid", list.getpId());
+            context.startActivity(intent);
         });
 
         time.clear();
