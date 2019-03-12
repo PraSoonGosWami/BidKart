@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
@@ -23,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -31,6 +35,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,10 +44,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.firebasetrigger.Models.Products;
+import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class ProductPageActivity extends AppCompatActivity {
@@ -64,8 +71,10 @@ public class ProductPageActivity extends AppCompatActivity {
     private PopupWindow popWindow;
     private CoordinatorLayout product_container;
     private FirebaseUser firebaseUser;
-    private String uid;
+    private Products products;
+    private int walletAmount;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,19 +91,6 @@ public class ProductPageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setElevation(0);
 
-
-        //app bar layout----------------------------------------------------------------------------
-        nestedScrollView = findViewById(R.id.scroll);
-        appBarLayout = findViewById(R.id.app_bar_layout);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-                if (i == 0)
-                    nestedScrollView.setBackgroundResource(R.drawable.plane_white);
-                else
-                    nestedScrollView.setBackgroundResource(R.drawable.slideup_background);
-            }
-        });
 
         //firebase Database references
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -125,18 +121,46 @@ public class ProductPageActivity extends AppCompatActivity {
         pro_loading = findViewById(R.id.pro_loading);
         product_container = findViewById(R.id.product_container);
         pro_user_bid = findViewById(R.id.pro_user_bid);
+        nestedScrollView = findViewById(R.id.scroll);
+        appBarLayout = findViewById(R.id.app_bar_layout);
         //-------------------------------------------------------------------
-
-
         pro_error_frame.setVisibility(View.GONE);
         pro_error_anim.cancelAnimation();
         appBarLayout.setVisibility(View.INVISIBLE);
         nestedScrollView.setVisibility(View.INVISIBLE);
         place_bid.setVisibility(View.INVISIBLE);
         pro_loading.setVisibility(View.VISIBLE);
+        //app bar layout----------------------------------------------------------------------------
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, i) -> {
+            if (i == 0) {
+                nestedScrollView.setBackgroundResource(R.drawable.plane_white);
 
+            } else {
+                nestedScrollView.setBackgroundResource(R.drawable.slideup_background);
+            }
+        });
+
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int i, int i1, int i2, int i3) {
+
+
+                if (i1 < i3) {
+                    place_bid.setVisibility(View.VISIBLE);
+                    place_bid.setAlpha(1f);
+                }
+
+                if (i1 > i3) {
+                    place_bid.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
         //getting product page
         getProducts();
+
+        //getting wallet amount
+        getWallet();
 
         product_container.setAlpha(1f);
         place_bid.setOnClickListener(v -> {
@@ -184,8 +208,6 @@ public class ProductPageActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Products products = null;
-                        ArrayList<Integer> bids = new ArrayList<>();
                         pro_loading.setVisibility(View.INVISIBLE);
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
@@ -271,9 +293,69 @@ public class ProductPageActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void bidPopup() {
 
+        //getting wallet amount
+        getWallet();
+
+        LinearLayout bid_success_frame, before_bid, wallet_layout;
+        ImageView bid_pro_image;
+        TextView bid_pro_name, bid_pro_seller, wallet_amount, bid_pro_currentBid;
+        EditText bid_edit_text;
+        Button final_payment_button, bid_done_button;
+        int maxBid = Collections.max(products.getpBid().values());
 
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View inflatedView = layoutInflater.inflate(R.layout.payment_popup, null, false);
+
+        //getting views---------------------------------------------------------------------------
+        bid_success_frame = inflatedView.findViewById(R.id.bid_success_frame);
+        before_bid = inflatedView.findViewById(R.id.before_bid);
+        wallet_layout = inflatedView.findViewById(R.id.wallet_layout);
+        bid_pro_image = inflatedView.findViewById(R.id.bid_pro_image);
+        bid_pro_name = inflatedView.findViewById(R.id.bid_pro_name);
+        bid_pro_seller = inflatedView.findViewById(R.id.bid_pro_seller);
+        wallet_amount = inflatedView.findViewById(R.id.wallet_amount);
+        bid_edit_text = inflatedView.findViewById(R.id.bid_edit_text);
+        final_payment_button = inflatedView.findViewById(R.id.final_payment_button);
+        bid_done_button = inflatedView.findViewById(R.id.bid_done_button);
+        bid_pro_currentBid = inflatedView.findViewById(R.id.bid_pro_currentBid);
+        //----------------------------------------------------------------------------------------
+
+        bid_success_frame.setVisibility(View.GONE);
+        before_bid.setVisibility(View.VISIBLE);
+        wallet_layout.setOnClickListener(v -> {
+            //open wallet layout
+        });
+
+
+        Glide.with(getApplicationContext()).
+                load(products.getProductListImgURL())
+                .into(bid_pro_image);
+        bid_pro_name.setText(products.getpName());
+        bid_pro_seller.setText("by " + products.getSellerName());
+        wallet_amount.setText("Wallet Amount \n₹" + walletAmount);
+
+        final_payment_button.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(bid_edit_text.getText()))
+                bid_edit_text.setError("Enter Amount");
+            else if (Integer.parseInt(bid_edit_text.getText().toString()) <= maxBid)
+                bid_edit_text.setError("Amount must be greater than the current bid");
+            else {
+                int x = Integer.parseInt(bid_edit_text.getText().toString());
+
+                if (walletAmount < x / 4)
+                    Toast.makeText(this, "You don't have the sufficient amount in your wallet", Toast.LENGTH_SHORT).show();
+                else
+                    placeBid(x, bid_success_frame, before_bid);
+            }
+        });
+
+        bid_pro_currentBid.setText("₹" + Collections.max(products.getpBid().values()));
+        bid_done_button.setOnClickListener(v -> {
+            finish();
+        });
+
+
+
         // get device size
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
@@ -295,5 +377,44 @@ public class ProductPageActivity extends AppCompatActivity {
 
         popWindow.setOnDismissListener(() -> product_container.setAlpha(1f));
     }
+
+    //gets user wallet amount
+    public void getWallet() {
+
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(firebaseUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        UserProfile userProfile = null;
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                userProfile = data.getValue(UserProfile.class);
+                            }
+                            walletAmount = userProfile.getWallet();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(ProductPageActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(firebaseUser.getUid()).keepSynced(true);
+
+    }
+
+    //updates / places bid
+    public void placeBid(int bidAmount, LinearLayout linearLayout, LinearLayout h) {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.putAll(products.getpBid());
+        hashMap.put(firebaseUser.getUid(), bidAmount);
+        databaseReference.child("product").child(products.getpId()).child("pBid").setValue(hashMap)
+                .addOnSuccessListener(aVoid -> {
+                    linearLayout.setVisibility(View.VISIBLE);
+                    h.setVisibility(View.GONE);
+                });
+    }
+
 
 }

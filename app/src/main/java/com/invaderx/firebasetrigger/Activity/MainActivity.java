@@ -66,21 +66,19 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.nav_view);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.nav_home:
-                        menuItem.setChecked(true);
-                        drawerLayout.closeDrawers();
-                        return true;
-                    case R.id.nav_logout:
-                        logout();
-                        return true;
+        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.nav_home:
+                    menuItem.setChecked(true);
+                    drawerLayout.closeDrawers();
+                    return true;
+                case R.id.nav_logout:
+                    logout();
+                    return true;
 
-                }
-                return false;
             }
+            return false;
         });
 
 
@@ -102,62 +100,56 @@ public class MainActivity extends AppCompatActivity {
 
         //Bottom Nav Bar----------------------------------------------
         final BottomBar bottomBar =findViewById(R.id.bottomBar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(int tabId) {
+        bottomBar.setOnTabSelectListener(tabId -> {
 
-                switch (tabId){
-                    case R.id.bottom_home:
-                        action_bar_appicon.setVisibility(View.VISIBLE);
-                        action_bar_notification.setVisibility(View.VISIBLE);
-                        action_bar_search.setVisibility(View.GONE);
-                        action_bar_title.setVisibility(View.GONE);
-                        swapFragments(new HomeFragment());
-                        break;
-                    case R.id.bottom_search:
-                        action_bar_appicon.setVisibility(View.GONE);
-                        action_bar_notification.setVisibility(View.GONE);
-                        action_bar_search.setVisibility(View.VISIBLE);
-                        action_bar_title.setVisibility(View.GONE);
-                        swapFragments(new SearchFragment());
-                        break;
+            switch (tabId) {
+                case R.id.bottom_home:
+                    action_bar_appicon.setVisibility(View.VISIBLE);
+                    action_bar_notification.setVisibility(View.VISIBLE);
+                    action_bar_search.setVisibility(View.GONE);
+                    action_bar_title.setVisibility(View.GONE);
+                    swapFragments(new HomeFragment());
+                    break;
+                case R.id.bottom_search:
+                    action_bar_appicon.setVisibility(View.GONE);
+                    action_bar_notification.setVisibility(View.GONE);
+                    action_bar_search.setVisibility(View.VISIBLE);
+                    action_bar_title.setVisibility(View.GONE);
+                    swapFragments(new SearchFragment());
+                    break;
 
-                    case R.id.bottom_notification:
-                        action_bar_appicon.setVisibility(View.GONE);
-                        action_bar_notification.setVisibility(View.GONE);
-                        action_bar_search.setVisibility(View.GONE);
-                        action_bar_title.setVisibility(View.VISIBLE);
-                        action_bar_title.setText("Notifications");
-                        swapFragments(new NotificationFragment());
-                        break;
+                case R.id.bottom_notification:
+                    action_bar_appicon.setVisibility(View.GONE);
+                    action_bar_notification.setVisibility(View.GONE);
+                    action_bar_search.setVisibility(View.GONE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    action_bar_title.setText("Notifications");
+                    swapFragments(new NotificationFragment());
+                    break;
 
-                    case R.id.bottom_profile:
-                        action_bar_appicon.setVisibility(View.GONE);
-                        action_bar_notification.setVisibility(View.GONE);
-                        action_bar_search.setVisibility(View.GONE);
-                        action_bar_title.setVisibility(View.VISIBLE);
-                        action_bar_title.setText("Profile");
-                        swapFragments(new ProfileFragment());
-                        break;
-                }
-
-
+                case R.id.bottom_profile:
+                    action_bar_appicon.setVisibility(View.GONE);
+                    action_bar_notification.setVisibility(View.GONE);
+                    action_bar_search.setVisibility(View.GONE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    action_bar_title.setText("Profile");
+                    swapFragments(new ProfileFragment());
+                    break;
             }
+
+
         });
         //---------------------------------------------------------------
 
 
         //hamburger icon for opening drawer
-        action_bar_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(drawerLayout.isDrawerOpen(Gravity.START))
-                    drawerLayout.closeDrawers();
-                else
-                    drawerLayout.openDrawer(Gravity.START);
+        action_bar_menu.setOnClickListener(v -> {
+            if (drawerLayout.isDrawerOpen(Gravity.START))
+                drawerLayout.closeDrawers();
+            else
+                drawerLayout.openDrawer(Gravity.START);
 
 
-            }
         });
     }
 
@@ -168,16 +160,8 @@ public class MainActivity extends AppCompatActivity {
         else if (getFragmentManager().getBackStackEntryCount() != 0) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
             builder.setMessage("Are you sure you want exit?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
+                    .setPositiveButton("Yes", (dialog, id) -> finish())
+                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss());
             builder.create().show();
         } else
             super.onBackPressed();
@@ -188,18 +172,12 @@ public class MainActivity extends AppCompatActivity {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
         builder.setMessage("Are you sure you want logout?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        FirebaseAuth.getInstance().signOut();
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), UserLogin.class));
-                    }
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    FirebaseAuth.getInstance().signOut();
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), UserLogin.class));
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
+                .setNegativeButton("No", (dialog, id) -> dialog.dismiss());
         builder.create().show();
 
 

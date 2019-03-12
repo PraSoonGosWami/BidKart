@@ -177,12 +177,8 @@ public class UserSignUp extends AppCompatActivity {
     public void userDeatails(FirebaseUser firebaseUser){
         UserProfile userProfile=new UserProfile(firebaseUser.getUid(),"+91"+uphone,0);
         databaseReference.child("UserProfile").child(firebaseUser.getUid()).setValue(userProfile)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        showSnackbar("You are registered, Now Login");
-                    }
-                });
+                .addOnSuccessListener(aVoid -> showSnackbar(
+                        "You are registered, Now Login"));
     }
 
     //changes status bar color to gradient

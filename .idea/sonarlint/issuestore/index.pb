@@ -109,3 +109,13 @@ Y
 0app/src/main/res/drawable/slideup_background.xml,5/7/57fc31dc6f18dcc697a2fffac38bf3fa7a87431e
 €
 Papp/src/main/java/com/invaderx/firebasetrigger/Activity/ProductPageActivity.java,4/7/470eb8c85ebd87570c77f0253f23e68639455e1f
+V
+&app/src/main/res/drawable/ic_rupee.xml,0/7/074714a8a49b4fbcf7cc67909cedc87e7b7dbac9
+a
+1app/src/main/res/layout/activity_product_page.xml,4/9/493c916680abef119f8550580b08fb627d90b2e6
+Y
+)app/src/main/res/raw/bid_placed_anim.json,a/9/a9e61cbabb566cfdf1485ddfd0fcf7d4b83d0b21
+U
+%app/src/main/res/raw/wallet_anim.json,6/a/6a40af22664e730c704e6d2bf3e4f4f30e724b55
+Y
+)app/src/main/res/layout/payment_popup.xml,7/9/79fd6175a331d964c1de36f387edc35b0164ed2b
