@@ -5,11 +5,13 @@ public class UserProfile {
     private String uid;
     private String phone;
     private int wallet;
+    private String uToken;
 
-    public UserProfile(String uid, String phone, int wallet) {
+    public UserProfile(String uid, String phone, int wallet, String uToken) {
         this.uid = uid;
         this.phone = phone;
         this.wallet = wallet;
+        this.uToken = uToken;
     }
 
     public UserProfile() {
@@ -26,5 +28,9 @@ public class UserProfile {
 
     public int getWallet() {
         return wallet;
+    }
+
+    public String getuToken() {
+        return uToken;
     }
 }

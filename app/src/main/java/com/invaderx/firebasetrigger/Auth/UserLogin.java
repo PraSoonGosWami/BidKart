@@ -34,7 +34,6 @@ import com.invaderx.firebasetrigger.Activity.MainActivity;
 
 public class UserLogin extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private EditText email,password;
     private CheckBox checkBox;
     private ImageButton signin;

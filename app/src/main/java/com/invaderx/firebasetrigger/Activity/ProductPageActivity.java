@@ -1,5 +1,6 @@
 package com.invaderx.firebasetrigger.Activity;
 
+import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -74,7 +75,6 @@ public class ProductPageActivity extends AppCompatActivity {
     private Products products;
     private int walletAmount;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,21 +140,18 @@ public class ProductPageActivity extends AppCompatActivity {
             }
         });
 
-        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int i, int i1, int i2, int i3) {
+        nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, i, i1, i2, i3) -> {
 
 
-                if (i1 < i3) {
-                    place_bid.setVisibility(View.VISIBLE);
-                    place_bid.setAlpha(1f);
-                }
-
-                if (i1 > i3) {
-                    place_bid.setVisibility(View.INVISIBLE);
-                }
-
+            if (i1 < i3) {
+                place_bid.setVisibility(View.VISIBLE);
+                place_bid.setAlpha(1f);
             }
+
+            if (i1 > i3) {
+                place_bid.setVisibility(View.INVISIBLE);
+            }
+
         });
         //getting product page
         getProducts();
@@ -290,17 +287,14 @@ public class ProductPageActivity extends AppCompatActivity {
     }
 
     //pops up bid gateway
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void bidPopup() {
-
-        //getting wallet amount
-        getWallet();
 
         LinearLayout bid_success_frame, before_bid, wallet_layout;
         ImageView bid_pro_image;
         TextView bid_pro_name, bid_pro_seller, wallet_amount, bid_pro_currentBid;
         EditText bid_edit_text;
-        Button final_payment_button, bid_done_button;
+        Button final_payment_button;
+        LottieAnimationView bid_success_anim;
         int maxBid = Collections.max(products.getpBid().values());
 
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -316,26 +310,35 @@ public class ProductPageActivity extends AppCompatActivity {
         wallet_amount = inflatedView.findViewById(R.id.wallet_amount);
         bid_edit_text = inflatedView.findViewById(R.id.bid_edit_text);
         final_payment_button = inflatedView.findViewById(R.id.final_payment_button);
-        bid_done_button = inflatedView.findViewById(R.id.bid_done_button);
         bid_pro_currentBid = inflatedView.findViewById(R.id.bid_pro_currentBid);
+        bid_success_anim = inflatedView.findViewById(R.id.bid_success_anim);
         //----------------------------------------------------------------------------------------
 
+        //hiding animations for success bid
+        bid_success_anim.cancelAnimation();
         bid_success_frame.setVisibility(View.GONE);
         before_bid.setVisibility(View.VISIBLE);
+
+        //open wallet layout to add money
         wallet_layout.setOnClickListener(v -> {
             //open wallet layout
         });
 
 
+        //inflating views with data-------------------------------------------
         Glide.with(getApplicationContext()).
                 load(products.getProductListImgURL())
                 .into(bid_pro_image);
         bid_pro_name.setText(products.getpName());
         bid_pro_seller.setText("by " + products.getSellerName());
         wallet_amount.setText("Wallet Amount \n₹" + walletAmount);
+        bid_pro_currentBid.setText("₹" + Collections.max(products.getpBid().values()));
+        //-----------------------------------------------------------------------
 
+        //click listener for final payment button
         final_payment_button.setOnClickListener(v -> {
-            if (TextUtils.isEmpty(bid_edit_text.getText()))
+            //error here
+            if (TextUtils.isEmpty(bid_edit_text.getText().toString()))
                 bid_edit_text.setError("Enter Amount");
             else if (Integer.parseInt(bid_edit_text.getText().toString()) <= maxBid)
                 bid_edit_text.setError("Amount must be greater than the current bid");
@@ -343,16 +346,12 @@ public class ProductPageActivity extends AppCompatActivity {
                 int x = Integer.parseInt(bid_edit_text.getText().toString());
 
                 if (walletAmount < x / 4)
-                    Toast.makeText(this, "You don't have the sufficient amount in your wallet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "You don't have the sufficient amount in your wallet", Toast.LENGTH_SHORT).show();
                 else
-                    placeBid(x, bid_success_frame, before_bid);
+                    placeBid(x, bid_success_frame, before_bid, bid_success_anim);
             }
         });
 
-        bid_pro_currentBid.setText("₹" + Collections.max(products.getpBid().values()));
-        bid_done_button.setOnClickListener(v -> {
-            finish();
-        });
 
 
 
@@ -375,7 +374,10 @@ public class ProductPageActivity extends AppCompatActivity {
         // show the popup at bottom of the screen and set some margin at bottom ie,
         popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0, 100);
 
+        //setting background to full view after dismiss of popup window
         popWindow.setOnDismissListener(() -> product_container.setAlpha(1f));
+
+
     }
 
     //gets user wallet amount
@@ -397,15 +399,15 @@ public class ProductPageActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(ProductPageActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
-        databaseReference.child("UserProfile").orderByChild("uid").equalTo(firebaseUser.getUid()).keepSynced(true);
+
 
     }
 
-    //updates / places bid
-    public void placeBid(int bidAmount, LinearLayout linearLayout, LinearLayout h) {
+    //updates/places bid
+    public void placeBid(int bidAmount, LinearLayout linearLayout, LinearLayout h, LottieAnimationView animationView) {
         HashMap<String, Integer> hashMap = new HashMap<>();
         hashMap.putAll(products.getpBid());
         hashMap.put(firebaseUser.getUid(), bidAmount);
@@ -413,6 +415,28 @@ public class ProductPageActivity extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     linearLayout.setVisibility(View.VISIBLE);
                     h.setVisibility(View.GONE);
+                    animationView.playAnimation();
+                    animationView.addAnimatorListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            finish();
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
                 });
     }
 

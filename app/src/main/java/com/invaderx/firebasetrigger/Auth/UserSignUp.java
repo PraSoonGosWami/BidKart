@@ -31,8 +31,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.invaderx.firebasetrigger.Activity.MainActivity;
 import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx .firebasetrigger.R;
+import com.invaderx.firebasetrigger.Services.Notify;
 
 public class UserSignUp extends AppCompatActivity {
 
@@ -41,7 +44,7 @@ public class UserSignUp extends AppCompatActivity {
     private CheckBox checkBox;
     private ImageButton signup;
     private Button signin;
-
+    private String uToken;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -57,7 +60,6 @@ public class UserSignUp extends AppCompatActivity {
         setContentView(R.layout.activity_user_sign_up);
         mAuth = FirebaseAuth.getInstance();
         toolbar =findViewById(R.id.toolbar);
-
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         name = findViewById(R.id.name);
@@ -65,6 +67,8 @@ public class UserSignUp extends AppCompatActivity {
         checkBox =findViewById(R.id.checkbox);
         signup =findViewById(R.id.signup);
         signin = findViewById(R.id.signin);
+
+        uToken = FirebaseInstanceId.getInstance().getToken();
 
         //database references-------------------------------
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -84,6 +88,7 @@ public class UserSignUp extends AppCompatActivity {
         });
 
         setStatusBarGradiant(this);
+
 
     }
 
@@ -148,14 +153,18 @@ public class UserSignUp extends AppCompatActivity {
                     user = mAuth.getCurrentUser();
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(uname).build();
-                    user.updateProfile(profileUpdates);
+                    user.updateProfile(profileUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            userDeatails(user);
+                            progressDialog.dismiss();
+                            //User Created
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        }
+                    });
 
-                    userDeatails(user);
-                    progressDialog.dismiss();
-                    //User Created
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(), UserLogin.class));
-                    finish();
+
 
                 } else {
 
@@ -175,7 +184,7 @@ public class UserSignUp extends AppCompatActivity {
 
     //saves user details on board
     public void userDeatails(FirebaseUser firebaseUser){
-        UserProfile userProfile=new UserProfile(firebaseUser.getUid(),"+91"+uphone,0);
+        UserProfile userProfile = new UserProfile(firebaseUser.getUid(), "+91" + uphone, 0, uToken);
         databaseReference.child("UserProfile").child(firebaseUser.getUid()).setValue(userProfile)
                 .addOnSuccessListener(aVoid -> showSnackbar(
                         "You are registered, Now Login"));
@@ -200,4 +209,6 @@ public class UserSignUp extends AppCompatActivity {
                 .make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
+
+
 }

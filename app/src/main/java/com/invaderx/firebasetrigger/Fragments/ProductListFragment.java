@@ -96,7 +96,7 @@ public class ProductListFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        showSnackbar(databaseError.getMessage());
+                        //showSnackbar(databaseError.getMessage());
 
                     }
                 });
