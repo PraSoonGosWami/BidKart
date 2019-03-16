@@ -43,8 +43,6 @@ U
 %app/src/main/res/drawable/ic_sell.xml,3/b/3bc659dbc6bd200e289f2bfef9826e26de9b0ae0
 V
 &app/src/main/res/drawable/ic_share.xml,6/4/6405cd19f59337317a3cf9ed52cefdf7c8e67090
-W
-'app/src/main/res/drawable-v24/cback.xml,3/b/3b1d91da36cca934d15879e54f4af0c15b2b17c3
 V
 &app/src/main/res/layout/nav_header.xml,3/d/3ddf3f675715be5e38479657d36f3428ac264317
 Y

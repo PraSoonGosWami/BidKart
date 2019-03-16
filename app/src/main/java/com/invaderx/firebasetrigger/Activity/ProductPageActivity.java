@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -130,6 +131,7 @@ public class ProductPageActivity extends AppCompatActivity {
         nestedScrollView.setVisibility(View.INVISIBLE);
         place_bid.setVisibility(View.INVISIBLE);
         pro_loading.setVisibility(View.VISIBLE);
+
         //app bar layout----------------------------------------------------------------------------
         appBarLayout.addOnOffsetChangedListener((appBarLayout, i) -> {
             if (i == 0) {
@@ -155,15 +157,10 @@ public class ProductPageActivity extends AppCompatActivity {
         });
         //getting product page
         getProducts();
-
         //getting wallet amount
         getWallet();
-
         product_container.setAlpha(1f);
-        place_bid.setOnClickListener(v -> {
-            product_container.setAlpha(0.4f);
-            bidPopup();
-        });
+
 
     }
 
@@ -243,6 +240,17 @@ public class ProductPageActivity extends AppCompatActivity {
                             appBarLayout.setVisibility(View.VISIBLE);
                             nestedScrollView.setVisibility(View.VISIBLE);
 
+                            if (products.getSellerUID().trim().equals(firebaseUser.getUid())) {
+                                place_bid.setVisibility(View.GONE);
+                                pro_user_bid.setText("Product belongs to you");
+                            } else {
+                                place_bid.setVisibility(View.VISIBLE);
+                                place_bid.setOnClickListener(v -> {
+                                    product_container.setAlpha(0.4f);
+                                    bidPopup();
+                                });
+                            }
+
                         } else {
                             pro_error_frame.setVisibility(View.VISIBLE);
                             pro_error_anim.playAnimation();
@@ -297,7 +305,7 @@ public class ProductPageActivity extends AppCompatActivity {
         LottieAnimationView bid_success_anim;
         int maxBid = Collections.max(products.getpBid().values());
 
-        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(ProductPageActivity.this.LAYOUT_INFLATER_SERVICE);
         View inflatedView = layoutInflater.inflate(R.layout.payment_popup, null, false);
 
         //getting views---------------------------------------------------------------------------
@@ -335,26 +343,6 @@ public class ProductPageActivity extends AppCompatActivity {
         bid_pro_currentBid.setText("₹" + Collections.max(products.getpBid().values()));
         //-----------------------------------------------------------------------
 
-        //click listener for final payment button
-        final_payment_button.setOnClickListener(v -> {
-            //error here
-            if (TextUtils.isEmpty(bid_edit_text.getText().toString()))
-                bid_edit_text.setError("Enter Amount");
-            else if (Integer.parseInt(bid_edit_text.getText().toString()) <= maxBid)
-                bid_edit_text.setError("Amount must be greater than the current bid");
-            else {
-                int x = Integer.parseInt(bid_edit_text.getText().toString());
-
-                if (walletAmount < x / 4)
-                    Toast.makeText(getApplicationContext(), "You don't have the sufficient amount in your wallet", Toast.LENGTH_SHORT).show();
-                else
-                    placeBid(x, bid_success_frame, before_bid, bid_success_anim);
-            }
-        });
-
-
-
-
         // get device size
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
@@ -370,12 +358,33 @@ public class ProductPageActivity extends AppCompatActivity {
         popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         popWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         popWindow.setAnimationStyle(R.style.PopupAnimation);
-
         // show the popup at bottom of the screen and set some margin at bottom ie,
         popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0, 100);
-
         //setting background to full view after dismiss of popup window
         popWindow.setOnDismissListener(() -> product_container.setAlpha(1f));
+
+        //click listener for final payment button
+        final_payment_button.setOnClickListener(v -> {
+            //error here
+            if ((bid_edit_text.getText().toString()).isEmpty()) {
+                bid_edit_text.setError("Enter Amount");
+                bid_edit_text.requestFocus();
+
+            } else if (Integer.parseInt(bid_edit_text.getText().toString()) <= maxBid) {
+                bid_edit_text.setError("Amount must be greater than the current bid");
+                bid_edit_text.requestFocus();
+
+            }
+            //Toast.makeText(getApplicationContext(), "Amount must be greater than the current bid", Toast.LENGTH_SHORT).show();
+            else {
+                int x = Integer.parseInt(bid_edit_text.getText().toString());
+
+                if (walletAmount < x / 4)
+                    Toast.makeText(getApplicationContext(), "You don't have the sufficient amount in your wallet", Toast.LENGTH_SHORT).show();
+                else
+                    placeBid(x, bid_success_frame, before_bid, bid_success_anim);
+            }
+        });
 
 
     }
@@ -411,33 +420,47 @@ public class ProductPageActivity extends AppCompatActivity {
         HashMap<String, Integer> hashMap = new HashMap<>();
         hashMap.putAll(products.getpBid());
         hashMap.put(firebaseUser.getUid(), bidAmount);
+        //sets bidder uid and amount
         databaseReference.child("product").child(products.getpId()).child("pBid").setValue(hashMap)
                 .addOnSuccessListener(aVoid -> {
-                    linearLayout.setVisibility(View.VISIBLE);
-                    h.setVisibility(View.GONE);
-                    animationView.playAnimation();
-                    animationView.addAnimatorListener(new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
+                    //sets bidder uid for notification
+                    databaseReference.child("product").child(products.getpId()).child("bidderUID").setValue(firebaseUser.getUid())
+                            .addOnSuccessListener(aoid -> {
+                                //increases no of bids
+                                databaseReference.child("product").child(products.getpId()).child("noOfBids").setValue(hashMap.size())
+                                        .addOnSuccessListener(aVoid1 -> {
+                                            linearLayout.setVisibility(View.VISIBLE);
+                                            h.setVisibility(View.GONE);
+                                            animationView.playAnimation();
+                                            animationView.addAnimatorListener(new Animator.AnimatorListener() {
+                                                @Override
+                                                public void onAnimationStart(Animator animation) {
 
-                        }
+                                                }
 
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            finish();
-                        }
+                                                @Override
+                                                public void onAnimationEnd(Animator animation) {
+                                                    finish();
+                                                }
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
+                                                @Override
+                                                public void onAnimationCancel(Animator animation) {
 
-                        }
+                                                }
 
-                        @Override
-                        public void onAnimationRepeat(Animator animation) {
+                                                @Override
+                                                public void onAnimationRepeat(Animator animation) {
 
-                        }
-                    });
-                });
+                                                }
+                                            });
+                                        });
+                            });
+
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(ProductPageActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                );
+
     }
 
 

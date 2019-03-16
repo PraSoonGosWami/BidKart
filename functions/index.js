@@ -3,27 +3,159 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 
-// Listens for new messages added to messages/:pushId
+// motifies seller for new bid
 exports.pushNotification = functions.database.ref('/product/{pId}').onWrite( event => {
 
     console.log('Push notification event triggered');
 
     //  Grab the current value of what was written to the Realtime Database.
     var valueObject = event.after.val();
-
-
-
-  // Create a notification
-    const payload = {
-        notification: {
-            title:valueObject.pName+" is on",
-            body: "Start Bidding Now",
-            sound: "default"
-        },
-    };
-
+    var sellerUID = valueObject.sellerUID;
+    var befOb = event.before.val();
+    var bBidder = befOb.bidderUID;
+    var aBidder = valueObject.bidderUID;
     
-    return admin.messaging().sendToDevice(valueObject.uToken,payload);
+    if(!(bBidder.localeCompare(aBidder))){
+        console.log('Push notification not be sent');
 
+    }
+    else{
+        return admin.database().ref('UserProfile/'+sellerUID+'/uToken').once('value').then((snap) => {
+            const other = snap.val();
+            // Create a notification
+            const payload = {
+                notification: {
+                    title:valueObject.pName,
+                    body: "Your product has a new bid",
+                    sound: "default"
+                
+                },
+            };
+
+            return admin.messaging().sendToDevice(other,payload);
+        });
+    }
+    return 0;
+   
 });
-//dQFcHCPsAD0:APA91bHVtMjm0ZEE1kD0OGpuicJA5tRllEGiXicAFu0nXKPQ-kys-JYLe6I8ZVWUeZmFt54GMEvQCAuKg0I6gEmyZk2kqk8KipoZCYyWIlU8YtL_mDfhhQRRdQBveUV9xQbT35w_1CsE
+
+//notifies seller of approval
+exports.LiveProducts = functions.database.ref('/product/{pId}').onUpdate( event => {
+
+    console.log('Product Live event triggered');
+
+    //  Grab the current value of what was written to the Realtime Database.
+    var valueObject = event.after.val();
+    var status = valueObject.pStatus;
+    var sellerUID = valueObject.sellerUID;
+    var befOb = event.before.val();
+    var bStatus= befOb.pStatus;
+    var aStatus = valueObject.pStatus;
+    
+    if(!(status.localeCompare("live"))){
+        if(!(bStatus.localeCompare(aStatus))){
+            console.log('Approval not be sent');
+    
+        }
+        else{
+            return admin.database().ref('UserProfile/'+sellerUID+'/uToken').once('value').then((snap) => {
+                const token = snap.val();
+                // Create a notification
+                const payload = {
+                    notification: {
+                        title:valueObject.pName+" is now LIVE",
+                        body: "Your product has been aproved by the admin\nHappy Bidding!!",
+                        sound: "default"
+                    
+                    },
+                };
+
+                return admin.messaging().sendToDevice(token,payload);
+            });
+        }
+        
+    }
+    return 0;
+   
+});
+
+//notifies buyer when status == sold
+exports.SoldProduct = functions.database.ref('/product/{pId}').onUpdate( event => {
+
+    console.log('Product Sold buyer notify');
+
+    //  Grab the current value of what was written to the Realtime Database.
+    var valueObject = event.after.val();
+    var status = valueObject.pStatus;
+    var bidder = valueObject.bidderUID;
+    var sellerUID = valueObject.sellerUID;
+    var befOb = event.before.val();
+    var bStatus= befOb.pStatus;
+    var aStatus = valueObject.pStatus;
+
+    if(!(status.localeCompare("sold"))){
+        if(!(bStatus.localeCompare(aStatus))){
+            console.log('Approval not be sent');
+    
+        }
+        else{
+            return admin.database().ref('UserProfile/'+bidder+'/uToken').once('value').then((snap) => {
+                const token = snap.val();
+                // Create a notification
+                const payload = {
+                    notification: {
+                        title:valueObject.pName+" is now all yours",
+                        body: "Complete the payment to get your product at your door step :-)",
+                        sound: "default"
+                    
+                    },
+                };
+
+                return admin.messaging().sendToDevice(token,payload);
+            });
+        }
+        
+    }
+    return 0;
+   
+});
+
+//notifies seller when status == sold
+exports.SoldProductNoti = functions.database.ref('/product/{pId}').onUpdate( event => {
+
+    console.log('Product sold seller notify');
+
+    //  Grab the current value of what was written to the Realtime Database.
+    var valueObject = event.after.val();
+    var status = valueObject.pStatus;
+    var sellerUID = valueObject.sellerUID;
+    var befOb = event.before.val();
+    var bStatus= befOb.pStatus;
+    var aStatus = valueObject.pStatus;
+
+    if(!(status.localeCompare("sold"))){
+        if(!(bStatus.localeCompare(aStatus))){
+            console.log('Approval not be sent');
+    
+        }
+        else{
+            return admin.database().ref('UserProfile/'+sellerUID+'/uToken').once('value').then((snap) => {
+                const token = snap.val();
+                // Create a notification
+                const payload = {
+                    notification: {
+                        title:valueObject.pName+" is sold",
+                        body: "Get the complete details here",
+                        sound: "default"
+                    
+                    },
+                };
+
+                return admin.messaging().sendToDevice(token,payload);
+            });
+        }
+        
+    }
+    return 0;
+   
+});
