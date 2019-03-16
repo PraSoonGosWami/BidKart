@@ -2,11 +2,15 @@ package com.invaderx.firebasetrigger.Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -14,16 +18,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
@@ -54,13 +63,12 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView nav_profile_name;
     private NavigationView navigationView;
+    private PopupWindow popWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         container_frame = findViewById(R.id.container_frame);
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -80,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-
 
         //sets user name to sidenav drawer
         getDisplayName();
@@ -151,7 +158,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+        showSplashScreen();
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -205,6 +216,22 @@ public class MainActivity extends AppCompatActivity {
         } else {
             nav_profile_name.setText("No user name");
         }
+    }
+
+    //shows popup splash screen
+    public void showSplashScreen() {
+
+
+        final Dialog dialog = new Dialog(MainActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.splash_screen);
+        dialog.setCancelable(true);
+        dialog.show();
+
+        final Handler handler = new Handler();
+        final Runnable runnable = () ->
+                dialog.dismiss();
+        handler.postDelayed(runnable, 3000);
     }
 
 

@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment {
     private CategoryAdapter categoryAdapter;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private ProgressBar categoryProgressBar,trendingProductProgressBar;
 
     @Nullable
     @Override
@@ -43,8 +42,6 @@ public class HomeFragment extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_home, container, false);
 
-        categoryProgressBar = view.findViewById(R.id.categoryProgressBar);
-        trendingProductProgressBar = view.findViewById(R.id.trendingProductProgressBar);
 
 
         //trending product recycler ------------------------------------
@@ -65,8 +62,6 @@ public class HomeFragment extends Fragment {
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
 
-        trendingProductProgressBar.setVisibility(View.VISIBLE);
-        categoryProgressBar.setVisibility(View.VISIBLE);
 
         //-----------------------------------------------
         getCategory();
@@ -92,7 +87,6 @@ public class HomeFragment extends Fragment {
                         }else
                             Toast.makeText(getContext(), "Something went wrong!\nTry agian in a bit", Toast.LENGTH_SHORT).show();
 
-                        categoryProgressBar.setVisibility(View.GONE);
                         category_recycler_view.setAdapter(categoryAdapter);
                     }
 
@@ -127,7 +121,6 @@ public class HomeFragment extends Fragment {
 
                 }
 
-                trendingProductProgressBar.setVisibility(View.GONE);
                 trending_recycler_view.setAdapter(trendingProductAdapter);
 
             }
