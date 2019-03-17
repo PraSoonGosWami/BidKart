@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BidKart</string>
     <string name="note">Note: Bidding will be unsuccessful if wallet amount is less than 25% of the bid amount</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -60,6 +60,9 @@ public class SellerActivity extends AppCompatActivity {
 
         //sets user name to sidenav drawer
         getDisplayName();
+
+        //TabLayout Initialization
+
     }
 
     @Override
