@@ -207,5 +207,12 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/payemnt_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
 
 </RelativeLayout>

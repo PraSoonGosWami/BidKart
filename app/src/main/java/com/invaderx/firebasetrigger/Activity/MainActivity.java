@@ -1,5 +1,6 @@
 package com.invaderx.firebasetrigger.Activity;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -36,6 +37,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -58,18 +60,15 @@ public class MainActivity extends AppCompatActivity {
     private ImageView action_bar_appicon;
     private ImageButton action_bar_notification;
     private EditText action_bar_search;
-    private FrameLayout container_frame;
     private TextView action_bar_title;
     private DrawerLayout drawerLayout;
     private TextView nav_profile_name;
     private NavigationView navigationView;
-    private PopupWindow popWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        container_frame = findViewById(R.id.container_frame);
         drawerLayout = findViewById(R.id.drawer_layout);
 
         navigationView = findViewById(R.id.nav_view);
@@ -80,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_home:
                     menuItem.setChecked(true);
                     drawerLayout.closeDrawers();
+                    return true;
+                case R.id.nav_sell:
+                    menuItem.setChecked(true);
+                    drawerLayout.closeDrawers();
+                    //startActivity(new Intent(this,SellerActivity.class));
                     return true;
                 case R.id.nav_logout:
                     logout();
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //show splash screen
         showSplashScreen();
 
     }
@@ -221,17 +226,43 @@ public class MainActivity extends AppCompatActivity {
     //shows popup splash screen
     public void showSplashScreen() {
 
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View v = factory.inflate(R.layout.splash_screen, null);
+        LottieAnimationView lottieAnimationView = v.findViewById(R.id.splash_anim);
 
         final Dialog dialog = new Dialog(MainActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.splash_screen);
         dialog.setCancelable(true);
         dialog.show();
+        lottieAnimationView.playAnimation();
 
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+       /*
         final Handler handler = new Handler();
         final Runnable runnable = () ->
                 dialog.dismiss();
-        handler.postDelayed(runnable, 3000);
+        handler.postDelayed(runnable, 4000);*/
     }
 
 

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,11 +66,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         time.clear();
         expiryTime(list.getExpTime());
 
-        Log.e("Time", time.get(0) + " " + time.get(1) + " " + time.get(2) + " " + time.get(3));
-        holder.expDays.setText(time.get(0) + " :\nDay");
-        holder.expHrs.setText(time.get(1) + " :\nHrs");
-        holder.expMin.setText(time.get(2) + " :\nMin");
-        holder.expSec.setText(time.get(3) + "\nSec");
+        if (!list.getpStatus().equals("sold")) {
+            holder.time_layout.setVisibility(View.VISIBLE);
+            holder.expDays.setText(time.get(0) + " :\nDay");
+            holder.expHrs.setText(time.get(1) + " :\nHrs");
+            holder.expMin.setText(time.get(2) + " :\nMin");
+            holder.expSec.setText(time.get(3) + "\nSec");
+        } else
+            holder.time_layout.setVisibility(View.GONE);
+
 
 
 
@@ -84,7 +89,9 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView product_list_image;
+        public LinearLayout time_layout;
         public TextView product_list_title, product_list_current_bid, product_list_cat, expDays, expHrs, expMin, expSec;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +103,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             expHrs = itemView.findViewById(R.id.expHrs);
             expMin = itemView.findViewById(R.id.expMin);
             expSec = itemView.findViewById(R.id.expSec);
+            time_layout = itemView.findViewById(R.id.time_layout);
 
         }
     }

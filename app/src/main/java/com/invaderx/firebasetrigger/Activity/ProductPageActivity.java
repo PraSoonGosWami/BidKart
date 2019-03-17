@@ -17,6 +17,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +77,7 @@ public class ProductPageActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private Products products;
     private int walletAmount;
+    private CardView timer_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +127,7 @@ public class ProductPageActivity extends AppCompatActivity {
         pro_user_bid = findViewById(R.id.pro_user_bid);
         nestedScrollView = findViewById(R.id.scroll);
         appBarLayout = findViewById(R.id.app_bar_layout);
+        timer_card = findViewById(R.id.timer_card);
         //-------------------------------------------------------------------
         pro_error_frame.setVisibility(View.GONE);
         pro_error_anim.cancelAnimation();
@@ -241,10 +245,21 @@ public class ProductPageActivity extends AppCompatActivity {
                             nestedScrollView.setVisibility(View.VISIBLE);
 
                             if (products.getSellerUID().trim().equals(firebaseUser.getUid())) {
+                                place_bid.setText("Cannot Bid");
+                                place_bid.setEnabled(false);
                                 place_bid.setVisibility(View.GONE);
+                                timer_card.setVisibility(View.VISIBLE);
                                 pro_user_bid.setText("Product belongs to you");
+                            } else if (products.getpStatus().equals("sold")) {
+                                place_bid.setText("Sold");
+                                place_bid.setEnabled(false);
+                                place_bid.setVisibility(View.GONE);
+                                pro_user_bid.setText("Product already sold");
+                                timer_card.setVisibility(View.GONE);
                             } else {
                                 place_bid.setVisibility(View.VISIBLE);
+                                place_bid.setEnabled(true);
+                                timer_card.setVisibility(View.VISIBLE);
                                 place_bid.setOnClickListener(v -> {
                                     product_container.setAlpha(0.4f);
                                     bidPopup();
@@ -303,6 +318,7 @@ public class ProductPageActivity extends AppCompatActivity {
         EditText bid_edit_text;
         Button final_payment_button;
         LottieAnimationView bid_success_anim;
+        ProgressBar payemnt_progressbar;
         int maxBid = Collections.max(products.getpBid().values());
 
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(ProductPageActivity.this.LAYOUT_INFLATER_SERVICE);
@@ -320,13 +336,14 @@ public class ProductPageActivity extends AppCompatActivity {
         final_payment_button = inflatedView.findViewById(R.id.final_payment_button);
         bid_pro_currentBid = inflatedView.findViewById(R.id.bid_pro_currentBid);
         bid_success_anim = inflatedView.findViewById(R.id.bid_success_anim);
+        payemnt_progressbar = inflatedView.findViewById(R.id.payemnt_progressbar);
         //----------------------------------------------------------------------------------------
 
         //hiding animations for success bid
         bid_success_anim.cancelAnimation();
         bid_success_frame.setVisibility(View.GONE);
         before_bid.setVisibility(View.VISIBLE);
-
+        payemnt_progressbar.setVisibility(View.GONE);
         //open wallet layout to add money
         wallet_layout.setOnClickListener(v -> {
             //open wallet layout
@@ -363,6 +380,7 @@ public class ProductPageActivity extends AppCompatActivity {
         //setting background to full view after dismiss of popup window
         popWindow.setOnDismissListener(() -> product_container.setAlpha(1f));
 
+        final_payment_button.setEnabled(true);
         //click listener for final payment button
         final_payment_button.setOnClickListener(v -> {
             //error here
@@ -381,8 +399,11 @@ public class ProductPageActivity extends AppCompatActivity {
 
                 if (walletAmount < x / 4)
                     Toast.makeText(getApplicationContext(), "You don't have the sufficient amount in your wallet", Toast.LENGTH_SHORT).show();
-                else
-                    placeBid(x, bid_success_frame, before_bid, bid_success_anim);
+                else {
+                    placeBid(x, bid_success_frame, before_bid, bid_success_anim, payemnt_progressbar);
+                    final_payment_button.setEnabled(false);
+                    payemnt_progressbar.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -416,7 +437,7 @@ public class ProductPageActivity extends AppCompatActivity {
     }
 
     //updates/places bid
-    public void placeBid(int bidAmount, LinearLayout linearLayout, LinearLayout h, LottieAnimationView animationView) {
+    public void placeBid(int bidAmount, LinearLayout linearLayout, LinearLayout h, LottieAnimationView animationView, ProgressBar payemnt_progressbar) {
         HashMap<String, Integer> hashMap = new HashMap<>();
         hashMap.putAll(products.getpBid());
         hashMap.put(firebaseUser.getUid(), bidAmount);
@@ -429,6 +450,7 @@ public class ProductPageActivity extends AppCompatActivity {
                                 //increases no of bids
                                 databaseReference.child("product").child(products.getpId()).child("noOfBids").setValue(hashMap.size())
                                         .addOnSuccessListener(aVoid1 -> {
+                                            payemnt_progressbar.setVisibility(View.GONE);
                                             linearLayout.setVisibility(View.VISIBLE);
                                             h.setVisibility(View.GONE);
                                             animationView.playAnimation();

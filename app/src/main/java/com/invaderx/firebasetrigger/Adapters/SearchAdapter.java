@@ -46,13 +46,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.search_title.setText(list.getpName());
         holder.search_category.setText("in " + list.getpCategory());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProductPageActivity.class);
-                intent.putExtra("pid", list.getpId());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductPageActivity.class);
+            intent.putExtra("pid", list.getpId());
+            context.startActivity(intent);
         });
 
 

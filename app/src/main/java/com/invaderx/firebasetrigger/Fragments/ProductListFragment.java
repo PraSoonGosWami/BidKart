@@ -10,9 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +35,8 @@ public class ProductListFragment extends Fragment {
     private String catId;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private LinearLayout no_product_frame;
+    private LottieAnimationView product_error;
 
 
     @Nullable
@@ -41,6 +45,11 @@ public class ProductListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
 
+        no_product_frame = view.findViewById(R.id.no_product_frame);
+        product_error = view.findViewById(R.id.product_error);
+        no_product_frame.setVisibility(View.GONE);
+        product_error.cancelAnimation();
+
 
         //---------------Recycler View------------------------------------------
         product_list_recycler_view = view.findViewById(R.id.product_list_recycler_view);
@@ -48,7 +57,6 @@ public class ProductListFragment extends Fragment {
         productListAdapter = new ProductListAdapter(productList, getContext());
         product_list_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
         product_list_recycler_view.setAdapter(productListAdapter);
-
         //-----------------------------------------------------------------------
 
         //firebase Database references
@@ -64,6 +72,7 @@ public class ProductListFragment extends Fragment {
             getProductList(catId);
         }
         getProductList(catId);
+
         return view;
     }
 
@@ -81,6 +90,8 @@ public class ProductListFragment extends Fragment {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 products = data.getValue(Products.class);
+                                if (products.getpStatus().equals("pending"))
+                                    continue;
                                 productList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                         products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                         products.getBasePrice(), products.getSellerUID(), products.getCatId(),
@@ -92,6 +103,10 @@ public class ProductListFragment extends Fragment {
 
                         product_list_progress_bar.setVisibility(View.GONE);
                         product_list_recycler_view.setAdapter(productListAdapter);
+                        if (productList.size() == 0) {
+                            no_product_frame.setVisibility(View.VISIBLE);
+                            product_error.playAnimation();
+                        }
                     }
 
                     @Override
@@ -110,5 +125,6 @@ public class ProductListFragment extends Fragment {
                 .make(getActivity().findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
+
 
 }

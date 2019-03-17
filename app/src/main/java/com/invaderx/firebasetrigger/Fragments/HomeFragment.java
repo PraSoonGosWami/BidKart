@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment {
     //gets trending product
     public void getTrendingProduct(){
 
-        Query query = databaseReference.child("product").orderByChild("noOfBids").limitToLast(4);
+        Query query = databaseReference.child("product").orderByChild("noOfBids").limitToLast(8);
         query.keepSynced(true);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,8 +110,9 @@ public class HomeFragment extends Fragment {
                 Products products;
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot trendData : dataSnapshot.getChildren()) {
-
                         products = trendData.getValue(Products.class);
+                        if (products.getpStatus().equals("pending"))
+                            continue;
                         TrendingList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                 products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                 products.getBasePrice(), products.getSellerUID(), products.getCatId(),
