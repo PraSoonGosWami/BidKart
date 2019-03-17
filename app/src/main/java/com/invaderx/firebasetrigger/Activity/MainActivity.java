@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                     return true;
                 case R.id.nav_sell:
-                    menuItem.setChecked(true);
                     drawerLayout.closeDrawers();
-                    //startActivity(new Intent(this,SellerActivity.class));
+                    startActivity(new Intent(this, SellerActivity.class));
+                    finish();
                     return true;
                 case R.id.nav_logout:
                     logout();
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         //------------------------------------------------------------
 
         //Bottom Nav Bar----------------------------------------------
-        final BottomBar bottomBar =findViewById(R.id.bottomBar);
+        BottomBar bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(tabId -> {
 
             switch (tabId) {
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(Gravity.START))
             drawerLayout.closeDrawers();
-        else if (getFragmentManager().getBackStackEntryCount() != 0) {
+        else if (getSupportFragmentManager().getBackStackEntryCount() <= 0) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
             builder.setMessage("Are you sure you want exit?")
                     .setPositiveButton("Yes", (dialog, id) -> finish())
@@ -193,7 +193,10 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     startActivity(new Intent(getApplicationContext(), UserLogin.class));
                 })
-                .setNegativeButton("No", (dialog, id) -> dialog.dismiss());
+                .setNegativeButton("No", (dialog, id) -> {
+                    dialog.dismiss();
+                    navigationView.setCheckedItem(R.id.nav_sell);
+                });
         builder.create().show();
 
 

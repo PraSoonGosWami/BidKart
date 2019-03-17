@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.invaderx.firebasetrigger.R;
 
 import java.util.Random;
 
@@ -24,6 +25,8 @@ public class Notify extends FirebaseMessagingService {
     private void showNotification(String title, String body) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "Prasoon Goswami";
+
+
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
 
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,"Notification",NotificationManager.IMPORTANCE_DEFAULT);
@@ -38,7 +41,7 @@ public class Notify extends FirebaseMessagingService {
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(android.R.drawable.stat_notify_chat)
+                .setSmallIcon(R.drawable.ic_verify)
                 .setContentTitle(title)
                 .setContentInfo("Info")
                 .setContentText(body);

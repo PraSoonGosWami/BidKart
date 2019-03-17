@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="23dp"
+            android:elevation="6dp"
+            android:layout_margin="12dp">
+
+            <ImageView
+                android:id="@+id/nav_profile_pic_white"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:src="@drawable/pras" />
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/nav_profile_name_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PraSoon GosWami"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="12dp" />
+
+
+</LinearLayout>

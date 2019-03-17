@@ -15,11 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
+            android:name=".Activity.SellerActivity"
+            android:theme="@style/White"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".Activity.ProductPageActivity"
-            android:theme="@style/White" />
+            android:theme="@style/White.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Auth.UserLogin"
-            android:theme="@style/AppTheme.NoActionbar">
+            android:theme="@style/AppTheme.NoActionbar"
+            android:screenOrientation="portrait">
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +37,13 @@
         </activity>
         <activity
             android:name=".Auth.UserSignUp"
-            android:theme="@style/AppTheme.NoActionbar" />
+            android:theme="@style/AppTheme.NoActionbar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/CustomTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
 
         <service android:name=".Services.Notify">
             <intent-filter>
