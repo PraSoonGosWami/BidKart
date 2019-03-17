@@ -385,12 +385,20 @@ public class ProductPageActivity extends AppCompatActivity {
         final_payment_button.setOnClickListener(v -> {
             //error here
             if ((bid_edit_text.getText().toString()).isEmpty()) {
-                bid_edit_text.setError("Enter Amount");
-                bid_edit_text.requestFocus();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    bid_edit_text.setError("Enter Amount");
+                    bid_edit_text.requestFocus();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Enter Amount", Toast.LENGTH_SHORT).show();
+                }
 
             } else if (Integer.parseInt(bid_edit_text.getText().toString()) <= maxBid) {
-                bid_edit_text.setError("Amount must be greater than the current bid");
-                bid_edit_text.requestFocus();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    bid_edit_text.setError("Amount must be greater than the current bid");
+                    bid_edit_text.requestFocus();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Amount must be greater than the current bid", Toast.LENGTH_SHORT).show();
+                }
 
             }
             //Toast.makeText(getApplicationContext(), "Amount must be greater than the current bid", Toast.LENGTH_SHORT).show();
