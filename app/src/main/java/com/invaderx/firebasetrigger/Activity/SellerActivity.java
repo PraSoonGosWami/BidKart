@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,13 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.invaderx.firebasetrigger.Auth.UserLogin;
+import com.invaderx.firebasetrigger.Fragments.OnSaleFragment;
+import com.invaderx.firebasetrigger.Fragments.PendingFragment;
+import com.invaderx.firebasetrigger.Fragments.SoldFragment;
 import com.invaderx.firebasetrigger.R;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 public class SellerActivity extends AppCompatActivity {
 
@@ -62,7 +69,18 @@ public class SellerActivity extends AppCompatActivity {
         getDisplayName();
 
         //TabLayout Initialization
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(), FragmentPagerItems.with(this)
+                .add("On-Sale", OnSaleFragment.class)
+                .add("Pending", PendingFragment.class)
+                .add("Sold", SoldFragment.class)
+                .create());
 
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
+
+        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertab);
+        viewPagerTab.setViewPager(viewPager);
     }
 
     @Override

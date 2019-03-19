@@ -117,3 +117,7 @@ U
 %app/src/main/res/raw/wallet_anim.json,6/a/6a40af22664e730c704e6d2bf3e4f4f30e724b55
 Y
 )app/src/main/res/layout/payment_popup.xml,7/9/79fd6175a331d964c1de36f387edc35b0164ed2b
+‡
+Wapp/src/main/java/com/invaderx/firebasetrigger/Adapters/SellerFragmentPagerAdapter.java,7/a/7a9c7048bb730df4160a14aa2140e03c222ccaf0
+{
+Kapp/src/main/java/com/invaderx/firebasetrigger/Activity/SellerActivity.java,c/2/c26dc2e4f27f3657a0392d7119a4c9807fa3753b
