@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //show splash screen
-        showSplashScreen();
+        //showSplashScreen();
 
     }
 

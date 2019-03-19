@@ -1,7 +1,9 @@
 package com.invaderx.firebasetrigger.Auth;
 
+import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -24,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,6 +52,7 @@ public class UserLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
+
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -55,33 +60,17 @@ public class UserLogin extends AppCompatActivity {
         passReset = findViewById(R.id.passReset);
         signin =findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
-
         progressDialog = new ProgressDialog(this,ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done\nLogging you in...");
-
-        signin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                userLogin();
-
-            }
+        signin.setOnClickListener(view -> userLogin());
+        signup.setOnClickListener(view -> {
+            Intent i = new Intent(UserLogin.this, UserSignUp.class);
+            startActivity(i);
+            finish();
         });
-        signup.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(UserLogin.this,UserSignUp.class);
-                startActivity(i);
-                finish();
-            }
-        });
-        passReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendPasswordReset();
-            }
-        });
-
+        passReset.setOnClickListener(v -> sendPasswordReset());
         setStatusBarGradiant(this);
+
     }
 
     private void userLogin() {
@@ -128,19 +117,15 @@ public class UserLogin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (mAuth.getCurrentUser() != null) {
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
-        }
+        showSplashScreen();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mAuth.getCurrentUser() != null) {
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
-        }
+        showSplashScreen();
+
     }
 
 
@@ -197,6 +182,53 @@ public class UserLogin extends AppCompatActivity {
         Snackbar snackbar = Snackbar
                 .make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
         snackbar.show();
+    }
+
+    //shows popup splash screen
+    public void showSplashScreen() {
+
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View v = factory.inflate(R.layout.splash_screen, null);
+        LottieAnimationView lottieAnimationView = v.findViewById(R.id.splash_anim);
+
+        final Dialog dialog = new Dialog(UserLogin.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.splash_screen);
+        dialog.setCancelable(true);
+        dialog.show();
+        lottieAnimationView.playAnimation();
+
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                dialog.dismiss();
+                if (mAuth.getCurrentUser() != null) {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+       /*
+        final Handler handler = new Handler();
+        final Runnable runnable = () ->
+                dialog.dismiss();
+        handler.postDelayed(runnable, 4000);*/
     }
 
 
