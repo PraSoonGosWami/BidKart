@@ -1,10 +1,10 @@
 
- squid:S1186ˆ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Ş‰8®”•¯’-
-…squid:S00116"aRename this field "category_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
-Wsquid:S1659"4Declare "category_recycler_view" on a separate line.(ÃçúÔşÿÿÿÿ8 ºì‘-
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-Vsquid:S1659&"8Declare "trendingProductProgressBar" on a separate line.(¹ÉÒ³8øªü’-
 …squid:S00116"aRename this field "trending_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
+ squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Ş‰8®”•¯’-
+Wsquid:S1659"4Declare "category_recycler_view" on a separate line.(ÃçúÔşÿÿÿÿ8 ºì‘-
+¤squid:S1186^"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8şøã’-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
 {squid:S00116 "WRename this field "TrendingList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®Şíşÿÿÿÿ8 ºì‘-
-}squid:S1450$"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÕŞÏ’-
-¤squid:S1186d"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8şøã’-
+gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8†û¸¾˜-
+}squid:S1450$"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÄºÕ¾˜-
+…squid:S00116"aRename this field "category_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
