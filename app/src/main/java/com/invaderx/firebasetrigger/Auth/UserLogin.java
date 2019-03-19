@@ -119,6 +119,7 @@ public class UserLogin extends AppCompatActivity {
         super.onStart();
         showSplashScreen();
 
+
     }
 
     @Override

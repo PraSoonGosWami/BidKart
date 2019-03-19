@@ -1,10 +1,13 @@
 
-P"squid:SwitchLastCaseIsDefaultCheck.""Add a default case to this switch.(¿›Ý”
-U"squid:SwitchLastCaseIsDefaultCheckS""Add a default case to this switch.(øå´¡ÿÿÿÿÿ
-vsquid:S1450"_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ÐŽÈ±
-bsquid:S1301."KReplace this "switch" statement by "if" statements to increase readability.(¿›Ý”
-gsquid:S1301S"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ
-gsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(á£ª„ýÿÿÿÿ
-ssquid:S00116"[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÐŽÈ±
+bsquid:S13017"KReplace this "switch" statement by "if" statements to increase readability.(¿›Ý”
+ssquid:S00116#"[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÐŽÈ±
+P"squid:SwitchLastCaseIsDefaultCheck7""Add a default case to this switch.(¿›Ý”
+U"squid:SwitchLastCaseIsDefaultCheckj""Add a default case to this switch.(øå´¡ÿÿÿÿÿ
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
-fsquid:UselessImportCheck"BRemove this unused import 'android.support.v4.view.GravityCompat'.(§‘¿Ú
+gsquid:S1301j"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ
+hsquid:CommentedOutCodeLine‘"<This block of commented-out lines of code should be removed.(á£ª„ýÿÿÿÿ
+asquid:UselessImportCheck"7Remove this unused import 'android.animation.Animator'.(ÝŸéN8éœ¶½™-
+xsquid:S1450%"ZRemove the "add_pro_fab" field and declare it as a local variable in the relevant methods.(¢½ö8ð¿Õ¼™-
+usquid:S00116%"VRename this field "add_pro_fab" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢½ö8ªÈÔ¼™-
+vsquid:S1450#"_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ÐŽÈ±
+Msquid:S1068%"/Remove this unused "add_pro_fab" private field.(¢½ö8ßÍ†¾™-

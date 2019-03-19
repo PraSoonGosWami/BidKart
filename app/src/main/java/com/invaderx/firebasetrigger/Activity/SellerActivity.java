@@ -2,8 +2,9 @@ package com.invaderx.firebasetrigger.Activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,17 +16,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.fabtransitionactivity.SheetLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.invaderx.firebasetrigger.Auth.UserLogin;
+import com.invaderx.firebasetrigger.Fragments.OnSaleFragment;
+import com.invaderx.firebasetrigger.Fragments.PendingFragment;
+import com.invaderx.firebasetrigger.Fragments.SoldFragment;
 import com.invaderx.firebasetrigger.R;
 
-public class SellerActivity extends AppCompatActivity {
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
+public class SellerActivity extends AppCompatActivity implements SheetLayout.OnFabAnimationEndListener {
+
+    private static int REQUEST_CODE = 101;
     private DrawerLayout drawerLayout;
     private TextView nav_profile_name;
     private NavigationView navigationView;
-
+    private FloatingActionButton add_pro_fab;
+    private SheetLayout sheetLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +49,15 @@ public class SellerActivity extends AppCompatActivity {
         actionbar.setElevation(0);
         actionbar.setTitle("Seller");
 
+        //binding views-------------------------------------------
         drawerLayout = findViewById(R.id.drawer_layout_white);
         navigationView = findViewById(R.id.nav_view_white);
+        add_pro_fab=findViewById(R.id.add_pro_fab);
+        SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        sheetLayout = findViewById(R.id.bottom_sheet);
+        //-------------------------------------------------------------------
+
 
         navigationView.setCheckedItem(R.id.nav_sell);
         navigationView.setNavigationItemSelectedListener(menuItem -> {
@@ -57,12 +75,26 @@ public class SellerActivity extends AppCompatActivity {
             }
             return false;
         });
+        sheetLayout.setFab(add_pro_fab);
+        sheetLayout.setFabAnimationEndListener(this);
+        add_pro_fab.setOnClickListener(v -> sheetLayout.expandFab());
 
-        //sets user name to sidenav drawer
+
+
+        //sets user name to side nav drawer
         getDisplayName();
 
         //TabLayout Initialization
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(), FragmentPagerItems.with(this)
+                .add("On-Sale", OnSaleFragment.class)
+                .add("Pending", PendingFragment.class)
+                .add("Sold", SoldFragment.class)
+                .create());
 
+        //setting view pager adapter
+        viewPager.setAdapter(adapter);
+        viewPagerTab.setViewPager(viewPager);
     }
 
     @Override
@@ -128,4 +160,18 @@ public class SellerActivity extends AppCompatActivity {
     }
 
 
+    //animates fab for reveal layout
+    @Override
+    public void onFabAnimationEnd() {
+        startActivityForResult(new Intent(this,AddProductsActivity.class),REQUEST_CODE);
+    }
+
+    //ontracts fab if closed
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE){
+            sheetLayout.contractFab();
+        }
+    }
 }
