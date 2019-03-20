@@ -97,11 +97,11 @@ public class UserLogin extends AppCompatActivity {
             return;
         }
 
-//        if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
-//            email.setError("Please enter a valid email");
-//            email.requestFocus();
-//            return;
-//        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
+            email.setError("Please enter a valid email");
+            email.requestFocus();
+            return;
+        }
 
         if (upassword.isEmpty()) {
             password.setError("Password is required");
@@ -138,12 +138,6 @@ public class UserLogin extends AppCompatActivity {
 
     public void checkEmailValidity() {
         String uemail = email_edit_text.getText().toString().trim();
-
-        if (uemail.isEmpty()) {
-            email.setError("Email is required");
-            email.requestFocus();
-            return;
-        }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
             email.setError("Please enter a valid email");
