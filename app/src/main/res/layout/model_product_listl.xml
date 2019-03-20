@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/category_card"
         app:cardElevation="16dp"
-        app:cardBackgroundColor="#EEEEEE"
+        app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
@@ -46,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:paddingTop="4dp"
+                    android:layout_marginRight="12dp"
                     android:text="HP Specter"
                     android:textStyle="bold"
                     android:textColor="@android:color/holo_blue_dark"

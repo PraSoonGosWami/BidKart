@@ -19,20 +19,22 @@
         <activity
             android:name=".Activity.AddProductsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/White">
+            android:parentActivityName=".Activity.SellerActivity"
+            android:label="Add Product"
+            android:theme="@style/White.ActionBar">
 
         </activity>
 
         <activity
             android:name=".Activity.SellerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/White">
+            android:theme="@style/White.NoActionBar">
         </activity>
 
         <activity
             android:name=".Activity.ProductPageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/White.NoActionBar" />
+            android:theme="@style/Light.NoActionBar" />
         <activity
             android:name=".Auth.UserLogin"
             android:screenOrientation="portrait"
@@ -51,7 +53,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"
+            android:theme="@style/AppTheme.ActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <service android:name=".Services.Notify">

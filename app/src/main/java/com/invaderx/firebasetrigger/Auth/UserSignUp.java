@@ -77,6 +77,8 @@ public class UserSignUp extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+
+        //checks edit text formatting---------------------------------------------
         sName_edit_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -153,7 +155,7 @@ public class UserSignUp extends AppCompatActivity {
                 checkPasswordValidity();
             }
         });
-
+        //-------------------------------------------------------------------------
 
     }
 
@@ -261,6 +263,7 @@ public class UserSignUp extends AppCompatActivity {
         snackbar.show();
     }
 
+    //checks email format
     public void checkEmailValidity() {
         uemail = sEmail_edit_text.getText().toString().trim().toLowerCase();
         if (uemail.isEmpty()) {
@@ -274,6 +277,7 @@ public class UserSignUp extends AppCompatActivity {
         }
     }
 
+    //checks name format
     public void checkNameValidity() {
         uname = sName_edit_text.getText().toString().trim();
         if (uname.isEmpty()) {
@@ -282,6 +286,7 @@ public class UserSignUp extends AppCompatActivity {
         }
     }
 
+    //checks phone format
     public void checkPhoneValidity() {
         uphone = sPhone_edit_text.getText().toString().trim();
         if (uphone.isEmpty()) {
@@ -296,6 +301,7 @@ public class UserSignUp extends AppCompatActivity {
         }
     }
 
+    //checks password format
     public void checkPasswordValidity() {
         upassword = sPassword_edit_Text.getText().toString().trim();
         if (upassword.isEmpty()) {

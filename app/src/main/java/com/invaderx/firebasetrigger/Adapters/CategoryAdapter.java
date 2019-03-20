@@ -47,13 +47,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 .into(holder.category_image);
         holder.category_title.setText(list.getCategoryName());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                swapFragments(new ProductListFragment(), list.getCategoryId());
-            }
-        });
+        holder.itemView.setOnClickListener(v -> swapFragments(new ProductListFragment(), list.getCategoryId()));
 
 
     }

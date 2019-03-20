@@ -5,8 +5,268 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.AddProductsActivity"
-    android:background="@color/green">
+    android:background="@drawable/add_product_background">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Image"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/green"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/sell_pImgUrl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Product image URL"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_p_name"
+                        android:drawablePadding="12dp"
+                        android:padding="4dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="4dp"
+                        android:textSize="16sp"
+                        android:inputType="textUri"
+                        android:textColor="@color/green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="---------------OR-----------------"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:paddingLeft="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/upload_pImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upload Image"
+                        android:padding="12dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/green_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Image will be shown below on successful upload"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:paddingLeft="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="14sp" />
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/pImageCard"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="12dp"
+                        app:cardElevation="12dp"
+                        app:cardCornerRadius="50dp"
+                        android:padding="2dp">
+
+                        <ImageView
+                            android:id="@+id/sell_pImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/pras"
+                            android:scaleType="centerCrop" />
+
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Basic Details"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/green"
+                        android:textStyle="bold" />
+
+                    <EditText
+
+                        android:id="@+id/sell_pName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Product name goes here"
+                        android:drawableLeft="@drawable/ic_p_name"
+                        android:drawablePadding="12dp"
+                        android:background="@android:color/transparent"
+                        android:padding="4dp"
+                        android:inputType="text"
+                        android:layout_margin="4dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/green" />
+
+                    <EditText
+                        android:id="@+id/sell_pPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Product base price goes here"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_rupee"
+                        android:drawablePadding="12dp"
+                        android:padding="4dp"
+                        android:layout_margin="4dp"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:textColor="@color/green" />
+
+                    <EditText
+                        android:id="@+id/sell_pDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Product description goes here"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_p_description"
+                        android:drawablePadding="12dp"
+                        android:padding="4dp"
+                        android:layout_margin="4dp"
+                        android:textSize="16sp"
+                        android:inputType="text"
+                        android:maxLength="250"
+                        android:textColor="@color/green" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product in Depth Details"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/green"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/cat_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:layout_margin="4dp">
+
+                    </Spinner>
+
+                    <Spinner
+                        android:id="@+id/condition_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:layout_margin="4dp">
+
+                    </Spinner>
+
+                    <EditText
+                        android:id="@+id/sell_pExpTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Product expiry time (in days)"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_clock"
+                        android:drawablePadding="12dp"
+                        android:padding="4dp"
+                        android:layout_margin="4dp"
+                        android:textSize="16sp"
+                        android:inputType="number"
+                        android:textColor="@color/green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Note: Number of days can't be more than 4"
+                        android:layout_marginLeft="4dp"
+                        android:paddingLeft="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/done_pro_fab"
         android:layout_width="wrap_content"
@@ -15,8 +275,8 @@
         android:layout_alignParentRight="true"
         android:layout_margin="22dp"
         app:backgroundTint="@android:color/white"
-        android:elevation="8dp"
+        android:elevation="12dp"
         app:fabSize="normal"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_done" />
 
 </RelativeLayout>

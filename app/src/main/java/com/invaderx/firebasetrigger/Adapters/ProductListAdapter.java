@@ -66,14 +66,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         time.clear();
         expiryTime(list.getExpTime());
 
-        if (!list.getpStatus().equals("sold")) {
+        if (list.getpStatus().equals("sold") || list.getpStatus().equals("pending")) {
+            holder.time_layout.setVisibility(View.GONE);
+        } else {
             holder.time_layout.setVisibility(View.VISIBLE);
             holder.expDays.setText(time.get(0) + " :\nDay");
             holder.expHrs.setText(time.get(1) + " :\nHrs");
             holder.expMin.setText(time.get(2) + " :\nMin");
             holder.expSec.setText(time.get(3) + "\nSec");
-        } else
-            holder.time_layout.setVisibility(View.GONE);
+        }
+
 
 
 

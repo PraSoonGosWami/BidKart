@@ -81,6 +81,8 @@ public class UserLogin extends AppCompatActivity {
             finish();
         });
         passReset.setOnClickListener(v -> sendPasswordReset());
+
+        //checks edit text formatting-------------------------
         email_edit_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -100,7 +102,6 @@ public class UserLogin extends AppCompatActivity {
                 checkEmailValidity();
             }
         });
-
         password_edit_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,9 +121,11 @@ public class UserLogin extends AppCompatActivity {
                 checkPasswordValidity();
             }
         });
+        //---------------------------------------------------
 
     }
 
+    //performs user login
     private void userLogin() {
         String uemail = email_edit_text.getText().toString().trim();
         String upassword = password_edit_text.getText().toString().trim();
@@ -174,6 +177,7 @@ public class UserLogin extends AppCompatActivity {
         });
     }
 
+    //checks email format
     public void checkEmailValidity() {
         String uemail = email_edit_text.getText().toString().trim();
 
@@ -184,6 +188,7 @@ public class UserLogin extends AppCompatActivity {
 
     }
 
+    //checks password verification
     public void checkPasswordValidity() {
         String upassword = password_edit_text.getText().toString().trim();
         if (upassword.isEmpty()) {
