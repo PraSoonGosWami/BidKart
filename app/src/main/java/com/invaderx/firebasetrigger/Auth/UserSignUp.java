@@ -61,6 +61,7 @@ public class UserSignUp extends AppCompatActivity {
         sSignup = findViewById(R.id.sSignup);
         sSignin = findViewById(R.id.sSignin);
 
+        //gets device token for fcm
         uToken = FirebaseInstanceId.getInstance().getToken();
 
         //database references-------------------------------

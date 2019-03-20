@@ -139,6 +139,7 @@ public class UserLogin extends AppCompatActivity {
                     progressDialog.dismiss();
                     Intent intent = new Intent(UserLogin.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    setUtoken(user);
                     startActivity(intent);
                     finish();
                 } else {
@@ -266,8 +267,8 @@ public class UserLogin extends AppCompatActivity {
         handler.postDelayed(runnable, 4000);*/
     }
 
-    //saves user details on board
-    public void userDeatails(FirebaseUser firebaseUser) {
+    //sets uToken when logged in
+    public void setUtoken(FirebaseUser firebaseUser) {
         databaseReference.child("UserProfile").child(firebaseUser.getUid()).child("uToken").setValue(uToken)
                 .addOnFailureListener(v -> {
                     Toast.makeText(this, "Please login again\nSomething went wrong", Toast.LENGTH_SHORT).show();
