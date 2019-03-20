@@ -10,6 +10,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +65,25 @@ public class UserLogin extends AppCompatActivity {
             finish();
         });
         passReset.setOnClickListener(v -> sendPasswordReset());
+        email_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                email.setErrorEnabled(false);
+                checkEmailValidity();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                email.setErrorEnabled(false);
+                checkEmailValidity();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                email.setErrorEnabled(false);
+                checkEmailValidity();
+            }
+        });
 
     }
 
@@ -76,11 +97,11 @@ public class UserLogin extends AppCompatActivity {
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
-            email.setError("Please enter a valid email");
-            email.requestFocus();
-            return;
-        }
+//        if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
+//            email.setError("Please enter a valid email");
+//            email.requestFocus();
+//            return;
+//        }
 
         if (upassword.isEmpty()) {
             password.setError("Password is required");
@@ -113,6 +134,22 @@ public class UserLogin extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
+    }
+
+    public void checkEmailValidity() {
+        String uemail = email_edit_text.getText().toString().trim();
+
+        if (uemail.isEmpty()) {
+            email.setError("Email is required");
+            email.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
+            email.setError("Please enter a valid email");
+            email.requestFocus();
+        }
+
     }
 
     @Override

@@ -1,19 +1,15 @@
 
-ssquid:S1450*"WRemove the "checkBox" field and declare it as a local variable in the relevant methods.(ÿÎıÿÿÿÿ
-qsquid:S1450,"URemove the "signup" field and declare it as a local variable in the relevant methods.(Á²ıùÿÿÿÿ
-{squid:S1450."XRemove the "passReset" field and declare it as a local variable in the relevant methods.(ˆ·Øøÿÿÿÿ8ó×‚½-
-Ksquid:S1604d"(Make this anonymous inner class a lambda(¤×ìÓÿÿÿÿÿ8ğº“µ—-
-Lsquid:S1604š"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8ğº“µ—-
-Hsquid:S1068*",Remove this unused "checkBox" private field.(ÿÎıÿÿÿÿ
+squid:S00116!"]Rename this field "password_edit_text" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àÚ‹’ıÿÿÿÿ8¿€¼Ú™-
+Ssquid:S1659!"0Declare "password_edit_text" on a separate line.(àÚ‹’ıÿÿÿÿ8¿€¼Ú™-
+¥squid:S1186·"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(À˜Ğ¡şÿÿÿÿ8†¯ĞÚ™-
+Dsquid:S1659""&Declare "password" on a separate line.(¶˜…8¿€¼Ú™-
+osquid:CommentedOutCodeLineÓ"<This block of commented-out lines of code should be removed.(§çµüÿÿÿÿ8†¯ĞÚ™-
+Ksquid:S1604]"(Make this anonymous inner class a lambda(¤×ìÓÿÿÿÿÿ8ğº“µ—-
+xsquid:S1450$"URemove the "signup" field and declare it as a local variable in the relevant methods.(õ‘Ÿ±úÿÿÿÿ8¿€¼Ú™-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Øß¥­
-lsquid:S1450+"URemove the "signin" field and declare it as a local variable in the relevant methods.(åÿç¿
-¥squid:S1186Ì"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(À˜Ğ¡şÿÿÿÿ8©ğÂ¶™-
-=squid:S1659)"&Declare "password" on a separate line.(…é¶ê
-¥squid:S1186Û"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(áá„üÿÿÿÿ8©ğÂ¶™-
-¥squid:S1186à"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğŒÂ´şÿÿÿÿ8©ğÂ¶™-
-rsquid:UselessImportCheck#"BRemove this unused import 'com.google.firebase.auth.FirebaseUser'.(’àíĞùÿÿÿÿ8¬ÃÕ±-
-hsquid:UselessImportCheck">Remove this unused import 'android.support.v7.widget.Toolbar'.(à½£8öÒ¬µ—-
-osquid:CommentedOutCodeLineå"<This block of commented-out lines of code should be removed.(§çµüÿÿÿÿ8©ğÂ¶™-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8½…ÏÎ-
-jsquid:UselessImportCheck":Remove this unused import 'android.widget.RelativeLayout'.(ü¯ğõşÿÿÿÿ8›ù¶Î-
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8¬ÃÕ±-
+¥squid:S1186É"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(áá„üÿÿÿÿ8†¯ĞÚ™-
+xsquid:S1450#"URemove the "signin" field and declare it as a local variable in the relevant methods.(ß¸àÜşÿÿÿÿ8¿€¼Ú™-
+Lsquid:S1604’"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8†¯ĞÚ™-
+{squid:S1450&"XRemove the "passReset" field and declare it as a local variable in the relevant methods.(ˆ·Øøÿÿÿÿ8ó×‚½-
+~squid:S00116!"ZRename this field "email_edit_text" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àÚ‹’ıÿÿÿÿ8¿€¼Ú™-
+¥squid:S1186Î"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğŒÂ´şÿÿÿÿ8†¯ĞÚ™-
