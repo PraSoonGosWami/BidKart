@@ -1,26 +1,15 @@
 package com.invaderx.firebasetrigger.Auth;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Patterns;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +24,8 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.invaderx.firebasetrigger.Activity.MainActivity;
 import com.invaderx.firebasetrigger.Models.UserProfile;
-import com.invaderx .firebasetrigger.R;
-import com.invaderx.firebasetrigger.Services.Notify;
+import com.invaderx.firebasetrigger.R;
 
 public class UserSignUp extends AppCompatActivity {
 
@@ -102,7 +89,7 @@ public class UserSignUp extends AppCompatActivity {
         uname = sName_edit_text.getText().toString().trim();
         String uemail = sEmail_edit_text.getText().toString().trim().toLowerCase();
         String upassword = sPassword_edit_Text.getText().toString().trim();
-        uphone = sPassword_edit_Text.getText().toString().trim();
+        uphone = sPhone_edit_text.getText().toString().trim();
 
         if (uname.isEmpty()) {
             name_layout.setError("Name is required");
@@ -156,15 +143,25 @@ public class UserSignUp extends AppCompatActivity {
 
                     //Adding user name
                     user = mAuth.getCurrentUser();
+
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(uname).build();
+                    user.sendEmailVerification()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Verification Email Sent", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                     user.updateProfile(profileUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             userDeatails(user);
                             progressDialog.dismiss();
                             //User Created
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), UserLogin.class));
                             finish();
                         }
                     });

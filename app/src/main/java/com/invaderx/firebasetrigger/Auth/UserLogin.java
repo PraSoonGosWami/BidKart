@@ -1,33 +1,21 @@
 package com.invaderx.firebasetrigger.Auth;
 
 import android.animation.Animator;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,8 +23,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.invaderx.firebasetrigger.R;
 import com.invaderx.firebasetrigger.Activity.MainActivity;
+import com.invaderx.firebasetrigger.R;
+
+import java.util.Objects;
 
 public class UserLogin extends AppCompatActivity {
 
@@ -47,7 +37,7 @@ public class UserLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView passReset;
     private ProgressDialog progressDialog;
-
+    private FirebaseUser user;
 
 
     @Override
@@ -62,9 +52,9 @@ public class UserLogin extends AppCompatActivity {
         password = findViewById(R.id.password);
 
         passReset = findViewById(R.id.passReset);
-        signin =findViewById(R.id.signin);
+        signin = findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
-        progressDialog = new ProgressDialog(this,ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+        progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done\nLogging you in...");
         signin.setOnClickListener(view -> userLogin());
         signup.setOnClickListener(view -> {
@@ -104,13 +94,21 @@ public class UserLogin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    progressDialog.dismiss();
-                    Intent intent = new Intent(UserLogin.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
+                    user = mAuth.getCurrentUser();
+                    assert user != null;
+                    if (user.isEmailVerified()) {
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    } else {
+
+                        showSnackbar("Email is not verified verify email first.");
+                        FirebaseAuth.getInstance().signOut();
+                    }
                 } else {
-                    showSnackbar(task.getException().getMessage());
+                    showSnackbar(Objects.requireNonNull(task.getException()).getMessage());
                 }
                 progressDialog.dismiss();
             }
@@ -160,7 +158,7 @@ public class UserLogin extends AppCompatActivity {
     }
 
     //snackbar
-    public void showSnackbar(String msg){
+    public void showSnackbar(String msg) {
         Snackbar snackbar = Snackbar
                 .make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
         snackbar.show();
@@ -212,8 +210,6 @@ public class UserLogin extends AppCompatActivity {
                 dialog.dismiss();
         handler.postDelayed(runnable, 4000);*/
     }
-
-
 
 
 }
