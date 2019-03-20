@@ -136,51 +136,41 @@ public class UserSignUp extends AppCompatActivity {
 
         progressDialog.show();
 
-        mAuth.createUserWithEmailAndPassword(uemail, upassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+        mAuth.createUserWithEmailAndPassword(uemail, upassword).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
 
-                    //Adding user name
-                    user = mAuth.getCurrentUser();
+                //Adding user name
+                user = mAuth.getCurrentUser();
 
-                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(uname).build();
-                    user.sendEmailVerification()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), "Verification Email Sent", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                    user.updateProfile(profileUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            userDeatails(user);
-                            progressDialog.dismiss();
-                            //User Created
-                            startActivity(new Intent(getApplicationContext(), UserLogin.class));
-                            finish();
-                        }
-                    });
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(uname).build();
+                user.sendEmailVerification()
+                        .addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Verification Email Sent", Toast.LENGTH_SHORT).show();
+                                user.updateProfile(profileUpdates).addOnSuccessListener(aVoid -> {
+                                    userDeatails(user);
+                                    progressDialog.dismiss();
+                                    //User Created
+                                    startActivity(new Intent(getApplicationContext(), UserLogin.class));
+                                    finish();
+                                });
+                            } else
+                                showSnackbar("Registration failed\nTry again");
+                        });
 
+            } else {
 
+                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                    showSnackbar("You are already registered");
 
                 } else {
-
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        showSnackbar("You are already registered");
-
-                    } else {
-                        showSnackbar(task.getException().getMessage());
-                    }
-
-                    progressDialog.dismiss();
+                    showSnackbar(task.getException().getMessage());
                 }
 
+                progressDialog.dismiss();
             }
+
         });
     }
 
