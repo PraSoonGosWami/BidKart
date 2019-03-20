@@ -34,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -53,6 +54,8 @@ import com.invaderx.firebasetrigger.Fragments.SearchFragment;
 import com.invaderx.firebasetrigger.R;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -146,6 +149,14 @@ public class MainActivity extends AppCompatActivity {
                     action_bar_title.setText("Profile");
                     swapFragments(new ProfileFragment());
                     break;
+
+                default:
+                    action_bar_appicon.setVisibility(View.VISIBLE);
+                    action_bar_notification.setVisibility(View.VISIBLE);
+                    action_bar_search.setVisibility(View.GONE);
+                    action_bar_title.setVisibility(View.GONE);
+                    swapFragments(new HomeFragment());
+                    break;
             }
 
 
@@ -163,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        //show splash screen
-        //showSplashScreen();
 
     }
 
@@ -226,47 +235,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //shows popup splash screen
-    public void showSplashScreen() {
-
-        LayoutInflater factory = LayoutInflater.from(this);
-        final View v = factory.inflate(R.layout.splash_screen, null);
-        LottieAnimationView lottieAnimationView = v.findViewById(R.id.splash_anim);
-
-        final Dialog dialog = new Dialog(MainActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.splash_screen);
-        dialog.setCancelable(true);
-        dialog.show();
-        lottieAnimationView.playAnimation();
-
-        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                dialog.dismiss();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-       /*
-        final Handler handler = new Handler();
-        final Runnable runnable = () ->
-                dialog.dismiss();
-        handler.postDelayed(runnable, 4000);*/
-    }
 
 
 }

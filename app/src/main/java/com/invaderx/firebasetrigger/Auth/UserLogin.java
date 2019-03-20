@@ -10,7 +10,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,10 +40,10 @@ import com.invaderx.firebasetrigger.Activity.MainActivity;
 
 public class UserLogin extends AppCompatActivity {
 
-    private EditText email,password;
-    private CheckBox checkBox;
-    private ImageButton signin;
-    private Button signup;
+    private EditText email_edit_text, password_edit_text;
+    private TextInputLayout email, password;
+    private FloatingActionButton signin;
+    private TextView signup;
     private FirebaseAuth mAuth;
     private TextView passReset;
     private ProgressDialog progressDialog;
@@ -54,9 +56,11 @@ public class UserLogin extends AppCompatActivity {
         setContentView(R.layout.activity_user_login);
 
         mAuth = FirebaseAuth.getInstance();
+        email_edit_text = findViewById(R.id.email_edit_text);
+        password_edit_text = findViewById(R.id.password_edit_Text);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        checkBox = findViewById(R.id.checkbox);
+
         passReset = findViewById(R.id.passReset);
         signin =findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
@@ -69,13 +73,12 @@ public class UserLogin extends AppCompatActivity {
             finish();
         });
         passReset.setOnClickListener(v -> sendPasswordReset());
-        setStatusBarGradiant(this);
 
     }
 
     private void userLogin() {
-        String uemail = email.getText().toString().trim();
-        String upassword = password.getText().toString().trim();
+        String uemail = email_edit_text.getText().toString().trim();
+        String upassword = password_edit_text.getText().toString().trim();
 
         if (uemail.isEmpty()) {
             email.setError("Email is required");
@@ -115,25 +118,16 @@ public class UserLogin extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        showSplashScreen();
-
-
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         showSplashScreen();
 
     }
 
-
     // Password Reset Method
     public void sendPasswordReset() {
         // [START send_password_reset]
-        String uemail = email.getText().toString().trim();
+        String uemail = email_edit_text.getText().toString().trim();
 
         if (uemail.isEmpty()) {
             email.setError("Email is required");
@@ -163,19 +157,6 @@ public class UserLogin extends AppCompatActivity {
 
                     }
                 });
-    }
-
-    //changes status bar color to gradient
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void setStatusBarGradiant(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = activity.getWindow();
-            Drawable background = activity.getResources().getDrawable(R.drawable.background);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
-            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
-            window.setBackgroundDrawable(background);
-        }
     }
 
     //snackbar

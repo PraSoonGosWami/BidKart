@@ -10,6 +10,7 @@ import com.invaderx.firebasetrigger.R;
 public class AddProductsActivity extends AppCompatActivity {
 
     private FloatingActionButton done_pro_fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

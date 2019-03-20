@@ -50,5 +50,8 @@ dependencies {
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
     //fab reveal
     implementation 'com.github.coyarzun89:fabtransitionactivity:0.2.0'
+    //facebook simmer view
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
 }
 apply plugin: 'com.google.gms.google-services'

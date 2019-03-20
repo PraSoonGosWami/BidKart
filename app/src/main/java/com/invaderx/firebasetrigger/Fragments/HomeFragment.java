@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,8 @@ public class HomeFragment extends Fragment {
     private CategoryAdapter categoryAdapter;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private ShimmerFrameLayout shimmer_view_category, shimmer_view_trending;
+    private TextView cattitle;
 
     @Nullable
     @Override
@@ -42,6 +46,11 @@ public class HomeFragment extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_home, container, false);
 
+
+        //binding shimmer views
+        shimmer_view_trending = view.findViewById(R.id.shimmer_view_trending);
+        shimmer_view_category = view.findViewById(R.id.shimmer_view_category);
+        cattitle = view.findViewById(R.id.cattile);
 
 
         //trending product recycler ------------------------------------
@@ -62,6 +71,13 @@ public class HomeFragment extends Fragment {
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
 
+        cattitle.setVisibility(View.GONE);
+        category_recycler_view.setVisibility(View.GONE);
+        trending_recycler_view.setVisibility(View.GONE);
+        shimmer_view_category.setVisibility(View.VISIBLE);
+        shimmer_view_trending.setVisibility(View.VISIBLE);
+        shimmer_view_trending.startShimmerAnimation();
+        shimmer_view_category.startShimmerAnimation();
 
         //-----------------------------------------------
         getCategory();
@@ -87,7 +103,11 @@ public class HomeFragment extends Fragment {
                         }else
                             Toast.makeText(getContext(), "Something went wrong!\nTry agian in a bit", Toast.LENGTH_SHORT).show();
 
+                        cattitle.setVisibility(View.VISIBLE);
                         category_recycler_view.setAdapter(categoryAdapter);
+                        category_recycler_view.setVisibility(View.VISIBLE);
+                        shimmer_view_category.startShimmerAnimation();
+                        shimmer_view_category.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -123,6 +143,9 @@ public class HomeFragment extends Fragment {
                 }
 
                 trending_recycler_view.setAdapter(trendingProductAdapter);
+                trending_recycler_view.setVisibility(View.VISIBLE);
+                shimmer_view_trending.stopShimmerAnimation();
+                shimmer_view_trending.setVisibility(View.GONE);
 
             }
 

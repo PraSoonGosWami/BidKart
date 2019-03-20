@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     tools:context=".Activity.MainActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,9 +32,9 @@
             app:stl_underlineColor="@android:color/transparent"
             app:stl_underlineThickness="0dp"
             app:stl_defaultTabTextSize="16sp"
-            app:stl_indicatorColor="#26A69A"
+            app:stl_indicatorColor="@color/green"
             app:stl_titleOffset="auto_center"
-            app:stl_defaultTabTextColor="@color/black"/>
+            app:stl_defaultTabTextColor="@color/black" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
@@ -48,24 +49,22 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="22dp"
-            app:backgroundTint="#26A69A"
+            app:backgroundTint="@color/green"
             android:elevation="8dp"
             app:fabSize="normal"
-            android:src="@drawable/ic_add"
-            />
+            android:src="@drawable/ic_add" />
 
         <com.github.fabtransitionactivity.SheetLayout
             android:id="@+id/bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
-            app:ft_container_gravity="center"
-            app:ft_color="#26A69A"
-            android:elevation="2dp"/>
+            app:ft_container_gravity="start"
+            app:ft_color="@color/green"
+            android:elevation="2dp" />
 
 
     </RelativeLayout>
-
 
 
     <FrameLayout
@@ -78,7 +77,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Light" />
-
 
 
     </FrameLayout>

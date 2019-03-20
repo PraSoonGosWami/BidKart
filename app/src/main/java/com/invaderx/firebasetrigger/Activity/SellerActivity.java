@@ -37,6 +37,7 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
     private NavigationView navigationView;
     private FloatingActionButton add_pro_fab;
     private SheetLayout sheetLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
         //binding views-------------------------------------------
         drawerLayout = findViewById(R.id.drawer_layout_white);
         navigationView = findViewById(R.id.nav_view_white);
-        add_pro_fab=findViewById(R.id.add_pro_fab);
+        add_pro_fab = findViewById(R.id.add_pro_fab);
         SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
         ViewPager viewPager = findViewById(R.id.viewpager);
         sheetLayout = findViewById(R.id.bottom_sheet);
@@ -78,7 +79,6 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
         sheetLayout.setFab(add_pro_fab);
         sheetLayout.setFabAnimationEndListener(this);
         add_pro_fab.setOnClickListener(v -> sheetLayout.expandFab());
-
 
 
         //sets user name to side nav drawer
@@ -163,14 +163,14 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
     //animates fab for reveal layout
     @Override
     public void onFabAnimationEnd() {
-        startActivityForResult(new Intent(this,AddProductsActivity.class),REQUEST_CODE);
+        startActivityForResult(new Intent(this, AddProductsActivity.class), REQUEST_CODE);
     }
 
     //ontracts fab if closed
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE){
+        if (requestCode == REQUEST_CODE) {
             sheetLayout.contractFab();
         }
     }
