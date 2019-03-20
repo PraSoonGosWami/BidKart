@@ -188,8 +188,11 @@ public class UserLogin extends AppCompatActivity {
             public void onAnimationEnd(Animator animation) {
                 dialog.dismiss();
                 if (mAuth.getCurrentUser() != null) {
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    user = mAuth.getCurrentUser();
+                    if (user.isEmailVerified()) {
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
                 }
 
             }
