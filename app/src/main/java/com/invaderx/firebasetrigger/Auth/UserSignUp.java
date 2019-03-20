@@ -307,7 +307,6 @@ public class UserSignUp extends AppCompatActivity {
         if (upassword.length() < 6) {
             password_layout.setError("Minimum lenght of password should be 6");
             password_layout.requestFocus();
-            return;
         }
     }
 

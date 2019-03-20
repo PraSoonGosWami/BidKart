@@ -22,16 +22,13 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.invaderx.firebasetrigger.Activity.MainActivity;
-import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
 import java.util.Objects;
@@ -192,7 +189,6 @@ public class UserLogin extends AppCompatActivity {
         if (upassword.isEmpty()) {
             password.setError("Password is required");
             password.requestFocus();
-            return;
         }
     }
 
