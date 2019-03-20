@@ -103,7 +103,8 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_phone"
                         android:drawablePadding="8dp"
-                        android:inputType="phone" />
+                        android:inputType="number"
+                        android:maxLength="10" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout

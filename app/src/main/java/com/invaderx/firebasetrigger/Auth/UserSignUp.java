@@ -3,20 +3,17 @@ package com.invaderx.firebasetrigger.Auth;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +35,7 @@ public class UserSignUp extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private FirebaseUser user;
-    private String uname,uphone;
+    private String uname, uphone, uemail, upassword;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
 
@@ -64,11 +61,11 @@ public class UserSignUp extends AppCompatActivity {
         uToken = FirebaseInstanceId.getInstance().getToken();
 
         //database references-------------------------------
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
         //progress dialog box
-        progressDialog = new ProgressDialog(this,ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+        progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done!\nRegistering User");
 
 
@@ -79,7 +76,82 @@ public class UserSignUp extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+        sName_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                name_layout.setErrorEnabled(false);
+                checkNameValidity();
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                name_layout.setErrorEnabled(false);
+                checkNameValidity();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                name_layout.setErrorEnabled(false);
+                checkNameValidity();
+            }
+        });
+        sEmail_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                email_layout.setErrorEnabled(false);
+                checkEmailValidity();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                email_layout.setErrorEnabled(false);
+                checkEmailValidity();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                email_layout.setErrorEnabled(false);
+                checkEmailValidity();
+            }
+        });
+        sPhone_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                phone_layout.setErrorEnabled(false);
+                checkPhoneValidity();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                phone_layout.setErrorEnabled(false);
+                checkPhoneValidity();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                phone_layout.setErrorEnabled(false);
+                checkPhoneValidity();
+            }
+        });
+        sPassword_edit_Text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                password_layout.setErrorEnabled(false);
+                checkPasswordValidity();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                password_layout.setErrorEnabled(false);
+                checkPasswordValidity();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                password_layout.setErrorEnabled(false);
+                checkPasswordValidity();
+            }
+        });
 
 
     }
@@ -87,25 +159,35 @@ public class UserSignUp extends AppCompatActivity {
     //registers new user
     private void registerUser() {
         uname = sName_edit_text.getText().toString().trim();
-        String uemail = sEmail_edit_text.getText().toString().trim().toLowerCase();
-        String upassword = sPassword_edit_Text.getText().toString().trim();
+        uemail = sEmail_edit_text.getText().toString().trim().toLowerCase();
+        upassword = sPassword_edit_Text.getText().toString().trim();
         uphone = sPhone_edit_text.getText().toString().trim();
-
-        if (uname.isEmpty()) {
-            name_layout.setError("Name is required");
-            name_layout.requestFocus();
-            return;
-        }
 
         if (uemail.isEmpty()) {
             email_layout.setError("Email is required");
             email_layout.requestFocus();
             return;
         }
-
         if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
             email_layout.setError("Please enter a valid email");
             email_layout.requestFocus();
+            return;
+        }
+
+        if (uname.isEmpty()) {
+            name_layout.setError("Name is required");
+            name_layout.requestFocus();
+            return;
+        }
+        if (uphone.isEmpty()) {
+            phone_layout.setError("Phone no is required");
+            phone_layout.requestFocus();
+            return;
+        }
+
+        if (uphone.length() != 10) {
+            phone_layout.setError("Phone no is invalid");
+            phone_layout.requestFocus();
             return;
         }
 
@@ -121,18 +203,6 @@ public class UserSignUp extends AppCompatActivity {
             return;
         }
 
-
-        if (uphone.isEmpty()) {
-            phone_layout.setError("Phone no is required");
-            phone_layout.requestFocus();
-            return;
-        }
-
-        if (uphone.length()!=10) {
-            phone_layout.setError("Phone no is invalid");
-            phone_layout.requestFocus();
-            return;
-        }
 
         progressDialog.show();
 
@@ -175,7 +245,7 @@ public class UserSignUp extends AppCompatActivity {
     }
 
     //saves user details on board
-    public void userDeatails(FirebaseUser firebaseUser){
+    public void userDeatails(FirebaseUser firebaseUser) {
         UserProfile userProfile = new UserProfile(firebaseUser.getUid(), "+91" + uphone, 0, uToken);
         databaseReference.child("UserProfile").child(firebaseUser.getUid()).setValue(userProfile)
                 .addOnSuccessListener(aVoid -> showSnackbar(
@@ -184,10 +254,60 @@ public class UserSignUp extends AppCompatActivity {
 
 
     //snackbar
-    public void showSnackbar(String msg){
+    public void showSnackbar(String msg) {
         Snackbar snackbar = Snackbar
                 .make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
         snackbar.show();
+    }
+
+    public void checkEmailValidity() {
+        uemail = sEmail_edit_text.getText().toString().trim().toLowerCase();
+        if (uemail.isEmpty()) {
+            email_layout.setError("Email is required");
+            email_layout.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches()) {
+            email_layout.setError("Please enter a valid email");
+            email_layout.requestFocus();
+        }
+    }
+
+    public void checkNameValidity() {
+        uname = sName_edit_text.getText().toString().trim();
+        if (uname.isEmpty()) {
+            name_layout.setError("Name is required");
+            name_layout.requestFocus();
+        }
+    }
+
+    public void checkPhoneValidity() {
+        uphone = sPhone_edit_text.getText().toString().trim();
+        if (uphone.isEmpty()) {
+            phone_layout.setError("Phone no is required");
+            phone_layout.requestFocus();
+            return;
+        }
+
+        if (uphone.length() != 10) {
+            phone_layout.setError("Phone no is less than 10 digits");
+            phone_layout.requestFocus();
+        }
+    }
+
+    public void checkPasswordValidity() {
+        upassword = sPassword_edit_Text.getText().toString().trim();
+        if (upassword.isEmpty()) {
+            password_layout.setError("Password is required");
+            password_layout.requestFocus();
+            return;
+        }
+
+        if (upassword.length() < 6) {
+            password_layout.setError("Minimum lenght of password should be 6");
+            password_layout.requestFocus();
+            return;
+        }
     }
 
 

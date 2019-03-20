@@ -85,6 +85,26 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
+        password_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                password.setErrorEnabled(false);
+                checkPasswordValidity();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                password.setErrorEnabled(false);
+                checkPasswordValidity();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                password.setErrorEnabled(false);
+                checkPasswordValidity();
+            }
+        });
+
     }
 
     private void userLogin() {
@@ -144,6 +164,15 @@ public class UserLogin extends AppCompatActivity {
             email.requestFocus();
         }
 
+    }
+
+    public void checkPasswordValidity() {
+        String upassword = password_edit_text.getText().toString().trim();
+        if (upassword.isEmpty()) {
+            password.setError("Password is required");
+            password.requestFocus();
+            return;
+        }
     }
 
     @Override
