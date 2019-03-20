@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -67,14 +68,22 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView nav_profile_name;
     private NavigationView navigationView;
+    private String uToken = "logged out";
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
-
         navigationView = findViewById(R.id.nav_view);
+
+
+        //database references-------------------------------
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
 
         navigationView.setCheckedItem(R.id.nav_home);
         navigationView.setNavigationItemSelectedListener(menuItem -> {
@@ -198,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
         builder.setMessage("Are you sure you want logout?")
                 .setPositiveButton("Yes", (dialog, id) -> {
-                    FirebaseAuth.getInstance().signOut();
+                    removesUtoken();
                     finish();
                     startActivity(new Intent(getApplicationContext(), UserLogin.class));
                 })
@@ -233,6 +242,15 @@ public class MainActivity extends AppCompatActivity {
         } else {
             nav_profile_name.setText("No user name");
         }
+    }
+
+    //removes uToken when logout
+    public void removesUtoken() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference.child("UserProfile").child(firebaseUser.getUid()).child("uToken").setValue(uToken)
+                .addOnSuccessListener(v -> {
+                    FirebaseAuth.getInstance().signOut();
+                });
     }
 
 

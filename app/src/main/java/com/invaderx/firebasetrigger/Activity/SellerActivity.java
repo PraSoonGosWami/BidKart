@@ -15,10 +15,14 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.fabtransitionactivity.SheetLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.invaderx.firebasetrigger.Auth.UserLogin;
 import com.invaderx.firebasetrigger.Fragments.OnSaleFragment;
 import com.invaderx.firebasetrigger.Fragments.PendingFragment;
@@ -37,6 +41,10 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
     private NavigationView navigationView;
     private FloatingActionButton add_pro_fab;
     private SheetLayout sheetLayout;
+    private String uToken = "logged out";
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,11 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
         ViewPager viewPager = findViewById(R.id.viewpager);
         sheetLayout = findViewById(R.id.bottom_sheet);
         //-------------------------------------------------------------------
+
+
+        //database references-------------------------------
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
 
         navigationView.setCheckedItem(R.id.nav_sell);
@@ -129,7 +142,7 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
         final AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
         builder.setMessage("Are you sure you want logout?")
                 .setPositiveButton("Yes", (dialog, id) -> {
-                    FirebaseAuth.getInstance().signOut();
+                    removesUtoken();
                     finish();
                     startActivity(new Intent(getApplicationContext(), UserLogin.class));
                 })
@@ -173,5 +186,14 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
         if (requestCode == REQUEST_CODE) {
             sheetLayout.contractFab();
         }
+    }
+
+    //removes uToken when logout
+    public void removesUtoken() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference.child("UserProfile").child(firebaseUser.getUid()).child("uToken").setValue(uToken)
+                .addOnSuccessListener(v -> {
+                    FirebaseAuth.getInstance().signOut();
+                });
     }
 }
