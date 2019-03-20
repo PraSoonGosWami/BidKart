@@ -10,20 +10,28 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.invaderx.firebasetrigger.Activity.MainActivity;
+import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
 import java.util.Objects;
@@ -38,6 +46,9 @@ public class UserLogin extends AppCompatActivity {
     private TextView passReset;
     private ProgressDialog progressDialog;
     private FirebaseUser user;
+    private String uToken;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -46,14 +57,24 @@ public class UserLogin extends AppCompatActivity {
         setContentView(R.layout.activity_user_login);
 
         mAuth = FirebaseAuth.getInstance();
+        //binding views----------------------------------------
         email_edit_text = findViewById(R.id.email_edit_text);
         password_edit_text = findViewById(R.id.password_edit_Text);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-
         passReset = findViewById(R.id.passReset);
         signin = findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
+        //-------------------------------------------
+
+        //gets device token for fcm
+        uToken = FirebaseInstanceId.getInstance().getToken();
+
+        //database references-------------------------------
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+
         progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done\nLogging you in...");
         signin.setOnClickListener(view -> userLogin());
@@ -87,31 +108,32 @@ public class UserLogin extends AppCompatActivity {
             password.requestFocus();
             return;
         }
+
         progressDialog.show();
 
 
-        mAuth.signInWithEmailAndPassword(uemail, upassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    user = mAuth.getCurrentUser();
-                    assert user != null;
-                    if (user.isEmailVerified()) {
-                        progressDialog.dismiss();
-                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
-                    } else {
-
-                        showSnackbar("Email is not verified verify email first.");
-                        FirebaseAuth.getInstance().signOut();
-                    }
+        mAuth.signInWithEmailAndPassword(uemail, upassword).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                user = mAuth.getCurrentUser();
+                assert user != null;
+                if (user.isEmailVerified()) {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(UserLogin.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    showSnackbar(Objects.requireNonNull(task.getException()).getMessage());
+
+                    user.sendEmailVerification().addOnSuccessListener(aVoid -> {
+                        showSnackbar("Email is not verified verify email first");
+                        FirebaseAuth.getInstance().signOut();
+                    });
+
                 }
-                progressDialog.dismiss();
+            } else {
+                showSnackbar(Objects.requireNonNull(task.getException()).getMessage());
             }
+            progressDialog.dismiss();
         });
     }
 
@@ -119,6 +141,7 @@ public class UserLogin extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         showSplashScreen();
+
 
     }
 
@@ -212,6 +235,14 @@ public class UserLogin extends AppCompatActivity {
         final Runnable runnable = () ->
                 dialog.dismiss();
         handler.postDelayed(runnable, 4000);*/
+    }
+
+    //saves user details on board
+    public void userDeatails(FirebaseUser firebaseUser) {
+        databaseReference.child("UserProfile").child(firebaseUser.getUid()).child("uToken").setValue(uToken)
+                .addOnFailureListener(v -> {
+                    Toast.makeText(this, "Please login again\nSomething went wrong", Toast.LENGTH_SHORT).show();
+                });
     }
 
 
