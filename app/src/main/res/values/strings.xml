@@ -4,4 +4,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_note">Image will be shown below on successful upload\nIt is strictly recommended to upload image in landscape orientation</string>
 </resources>

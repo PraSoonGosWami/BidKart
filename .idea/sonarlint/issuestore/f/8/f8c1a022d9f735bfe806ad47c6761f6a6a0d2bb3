@@ -1,3 +1,9 @@
 
-¤squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ü†¿¸øÿÿÿÿ8×›¼·™-
+\squid:S1155_">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8Œ•ñâ™-
+}squid:S1450!"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õð»8Øàóâ™-
+wsquid:S00116#"XRename this field "pending_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­¿Ý¦8ÚåÝã™-
+nsquid:CommentedOutCodeLineg"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8Œ•ñâ™-
+wsquid:S00116"XRename this field "pending_rView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢Éç8ÉëËâ™-
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªÞÿÿÿÿÿ
+usquid:S1450$"RRemove the "uid" field and declare it as a local variable in the relevant methods.(ŽžŠüÿÿÿÿ8ÂñÄã™-
+squid:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ü†¿¸øÿÿÿÿ

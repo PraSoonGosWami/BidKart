@@ -86,12 +86,13 @@ public class OnSaleFragment extends Fragment {
                                 }
                             }
                         } else
-                            showSnackbar("Something went wrong!\tTry again in a bit");
+                            showSnackbar("It's lonely here!!");
 
                         on_sale_rView.setAdapter(productListAdapter);
                         if (productList.size() == 0) {
                             sale_error.setVisibility(View.VISIBLE);
-                        }
+                        } else
+                            sale_error.setVisibility(View.GONE);
                     }
 
                     @Override

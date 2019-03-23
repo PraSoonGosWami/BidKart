@@ -89,13 +89,14 @@ public class PendingFragment extends Fragment {
                                 }
                             }
                         } else
-                            showSnackbar("Something went wrong!\tTry again in a bit");
+                            showSnackbar("It's loenly here!!");
 
                         pending_rView.setAdapter(productListAdapter);
                         if (productList.size() == 0) {
 
                             pending_error.setVisibility(View.VISIBLE);
-                        }
+                        } else
+                            pending_error.setVisibility(View.GONE);
                     }
 
                     @Override

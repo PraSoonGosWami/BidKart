@@ -24,12 +24,16 @@ exports.pushNotification = functions.database.ref('/product/{pId}').onWrite( eve
             const other = snap.val();
             // Create a notification
             const payload = {
-                notification: {
+                
+                data: {
+                    pid:valueObject.pId,
+                    url:valueObject.productListImgURL,
                     title:valueObject.pName,
                     body: "Your product has a new bid",
-                    sound: "default"
-                
-                },
+                    sound: "default",
+                    click_action: "OPEN_PRODUCT_ACTIVITY",
+                    tag: valueObject.pId
+                }
             };
 
             return admin.messaging().sendToDevice(other,payload);
@@ -62,12 +66,16 @@ exports.LiveProducts = functions.database.ref('/product/{pId}').onUpdate( event 
                 const token = snap.val();
                 // Create a notification
                 const payload = {
-                    notification: {
+                
+                    data: {
+                        pid:valueObject.pId,
+                        url:valueObject.productListImgURL,
                         title:valueObject.pName+" is now LIVE",
                         body: "Your product has been aproved by the admin\nHappy Bidding!!",
-                        sound: "default"
-                    
-                    },
+                        sound: "default",
+                        click_action: "OPEN_PRODUCT_ACTIVITY",
+                        tag: valueObject.pId
+                    }
                 };
 
                 return admin.messaging().sendToDevice(token,payload);
@@ -103,12 +111,16 @@ exports.SoldProduct = functions.database.ref('/product/{pId}').onUpdate( event =
                 const token = snap.val();
                 // Create a notification
                 const payload = {
-                    notification: {
+            
+                    data: {
+                        pid:valueObject.pId,
+                        url:valueObject.productListImgURL,
                         title:valueObject.pName+" is now all yours",
                         body: "Complete the payment to get your product at your door step :-)",
-                        sound: "default"
-                    
-                    },
+                        sound: "default",
+                        click_action: "OPEN_PRODUCT_ACTIVITY",
+                        tag: valueObject.pId
+                    }
                 };
 
                 return admin.messaging().sendToDevice(token,payload);
@@ -143,12 +155,16 @@ exports.SoldProductNoti = functions.database.ref('/product/{pId}').onUpdate( eve
                 const token = snap.val();
                 // Create a notification
                 const payload = {
-                    notification: {
+                    
+                    data: {
+                        pid:valueObject.pId,
+                        url:valueObject.productListImgURL,
                         title:valueObject.pName+" is sold",
                         body: "Get the complete details here",
-                        sound: "default"
-                    
-                    },
+                        sound: "default",
+                        click_action: "OPEN_PRODUCT_ACTIVITY",
+                        tag: valueObject.pId
+                    }
                 };
 
                 return admin.messaging().sendToDevice(token,payload);

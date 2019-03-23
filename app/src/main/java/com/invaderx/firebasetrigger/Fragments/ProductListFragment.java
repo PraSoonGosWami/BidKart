@@ -99,7 +99,7 @@ public class ProductListFragment extends Fragment {
                                         products.getpCondition(), products.getpStatus()));
                             }
                         } else
-                            showSnackbar("Something went wrong!\tTry again in a bit");
+                            showSnackbar("It's lonely here!!");
 
                         product_list_progress_bar.setVisibility(View.GONE);
                         product_list_recycler_view.setAdapter(productListAdapter);

@@ -43,35 +43,11 @@
                         android:textColor="@color/green"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/sell_pImgUrl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Product image URL"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_p_name"
-                        android:drawablePadding="12dp"
-                        android:padding="4dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="4dp"
-                        android:textSize="16sp"
-                        android:inputType="textUri"
-                        android:textColor="@color/green" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="---------------OR-----------------"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
-                        android:paddingLeft="4dp"
-                        android:layout_marginBottom="8dp"
-                        android:textSize="14sp" />
-
                     <Button
                         android:id="@+id/upload_pImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:text="Upload Image"
                         android:padding="12dp"
                         android:layout_gravity="center"
@@ -80,7 +56,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Image will be shown below on successful upload"
+                        android:text="@string/image_note"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:textAlignment="center"
@@ -91,20 +67,23 @@
                         android:textSize="14sp" />
 
                     <android.support.v7.widget.CardView
+                        android:visibility="gone"
                         android:id="@+id/pImageCard"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
                         android:layout_gravity="center"
-                        android:layout_margin="12dp"
-                        app:cardElevation="12dp"
-                        app:cardCornerRadius="50dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginLeft="32dp"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="8dp"
                         android:padding="2dp">
 
                         <ImageView
                             android:id="@+id/sell_pImage"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/pras"
                             android:scaleType="centerCrop" />
 
                     </android.support.v7.widget.CardView>
