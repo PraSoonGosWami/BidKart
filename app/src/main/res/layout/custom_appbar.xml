@@ -19,37 +19,46 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_menu"
                 android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
+                android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:id="@+id/action_bar_menu"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="4dp"/>
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:id="@+id/action_bar_menu" />
 
 
             <ImageView
                 android:id="@+id/action_bar_appicon"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginLeft="18dp"
                 android:text="@string/app_name"
                 android:gravity="center_horizontal"
-                android:src="@drawable/ic_cart"
                 android:layout_marginBottom="4dp"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:visibility="visible"
                 />
 
 
-            <ImageButton
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_notification"
-                android:layout_marginRight="4dp"
+                android:text="4000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorAccent"
+                android:drawableRight="@drawable/ic_wallet"
+                android:drawablePadding="4dp"
+                android:clickable="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textAlignment="center"
+                android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/action_bar_notification"
-                android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 android:visibility="visible"/>
 
             <EditText
@@ -73,7 +82,7 @@
                 android:imeOptions="actionSearch"
                 android:visibility="gone"
                 android:inputType="text"
-                android:drawableLeft="@android:drawable/ic_menu_search">
+                android:drawableLeft="@drawable/ic_search">
 
             </EditText>
 
