@@ -1,5 +1,5 @@
 
-‹squid:S1319>"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¸ì˜8¦·Şò–-
-squid:S1319"lThe type of the "pBid" object should be an interface such as "Map" rather than the implementation "HashMap".(ØĞ¥Œøÿÿÿÿ8¦·Şò–-
-fsquid:S00107"BConstructor has 16 parameters, which is greater than 7 authorized.(ØĞ¥Œøÿÿÿÿ8¦·Şò–-
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ë‘Ôşÿÿÿÿ
+squid:S1319"lThe type of the "pBid" object should be an interface such as "Map" rather than the implementation "HashMap".(ØĞ¥Œøÿÿÿÿ8¦·Şò–-
+‹squid:S1319>"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¸ì˜8¦·Şò–-
+fsquid:S00107"BConstructor has 16 parameters, which is greater than 7 authorized.(ØĞ¥Œøÿÿÿÿ8¦·Şò–-

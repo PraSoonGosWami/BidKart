@@ -1,45 +1,24 @@
 package com.invaderx.firebasetrigger.Activity;
 
-import android.animation.Animator;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -52,17 +31,15 @@ import com.invaderx.firebasetrigger.Fragments.HomeFragment;
 import com.invaderx.firebasetrigger.Fragments.NotificationFragment;
 import com.invaderx.firebasetrigger.Fragments.ProfileFragment;
 import com.invaderx.firebasetrigger.Fragments.SearchFragment;
+import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton action_bar_menu;
     private ImageView action_bar_appicon;
-    private ImageButton action_bar_notification;
+    private TextView action_bar_wallet;
     private EditText action_bar_search;
     private TextView action_bar_title;
     private DrawerLayout drawerLayout;
@@ -116,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
         View view= getSupportActionBar().getCustomView();
         action_bar_menu = view.findViewById(R.id.action_bar_menu);
         action_bar_appicon = view.findViewById(R.id.action_bar_appicon);
-        action_bar_notification = view.findViewById(R.id.action_bar_notification);
+        action_bar_wallet = view.findViewById(R.id.action_bar_notification);
         action_bar_search = view.findViewById(R.id.action_bar_search);
         action_bar_title = view.findViewById(R.id.action_bar_title);
+
+
         //------------------------------------------------------------
 
         //Bottom Nav Bar----------------------------------------------
@@ -128,14 +107,14 @@ public class MainActivity extends AppCompatActivity {
             switch (tabId) {
                 case R.id.bottom_home:
                     action_bar_appicon.setVisibility(View.VISIBLE);
-                    action_bar_notification.setVisibility(View.VISIBLE);
+                    action_bar_wallet.setVisibility(View.VISIBLE);
                     action_bar_search.setVisibility(View.GONE);
                     action_bar_title.setVisibility(View.GONE);
                     swapFragments(new HomeFragment());
                     break;
                 case R.id.bottom_search:
                     action_bar_appicon.setVisibility(View.GONE);
-                    action_bar_notification.setVisibility(View.GONE);
+                    action_bar_wallet.setVisibility(View.GONE);
                     action_bar_search.setVisibility(View.VISIBLE);
                     action_bar_title.setVisibility(View.GONE);
                     swapFragments(new SearchFragment());
@@ -143,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.bottom_notification:
                     action_bar_appicon.setVisibility(View.GONE);
-                    action_bar_notification.setVisibility(View.GONE);
+                    action_bar_wallet.setVisibility(View.GONE);
                     action_bar_search.setVisibility(View.GONE);
                     action_bar_title.setVisibility(View.VISIBLE);
                     action_bar_title.setText("Notifications");
@@ -152,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.bottom_profile:
                     action_bar_appicon.setVisibility(View.GONE);
-                    action_bar_notification.setVisibility(View.GONE);
+                    action_bar_wallet.setVisibility(View.GONE);
                     action_bar_search.setVisibility(View.GONE);
                     action_bar_title.setVisibility(View.VISIBLE);
                     action_bar_title.setText("Profile");
@@ -161,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
                 default:
                     action_bar_appicon.setVisibility(View.VISIBLE);
-                    action_bar_notification.setVisibility(View.VISIBLE);
+                    action_bar_wallet.setVisibility(View.VISIBLE);
                     action_bar_search.setVisibility(View.GONE);
                     action_bar_title.setVisibility(View.GONE);
                     swapFragments(new HomeFragment());
@@ -182,6 +161,27 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //setting wallet amount
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(user.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        UserProfile userProfile = null;
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                userProfile = data.getValue(UserProfile.class);
+                            }
+                            action_bar_wallet.setText("₹" + userProfile.getWallet());
+                        } else
+                            action_bar_wallet.setText("₹0");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
 
     }

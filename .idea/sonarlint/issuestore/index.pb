@@ -165,3 +165,5 @@ Y
 )app/src/main/res/layout/fragment_sold.xml,6/5/65be808988071762cc12db06e86f1314184f8c9b
 €
 Papp/src/main/java/com/invaderx/firebasetrigger/Activity/AddProductsActivity.java,2/4/24d1186085c2141f792e72435b491909531b329e
+S
+#app/src/main/res/xml/file_paths.xml,e/7/e7f007fbc01059fd98da2893455aa52c5c160c9b

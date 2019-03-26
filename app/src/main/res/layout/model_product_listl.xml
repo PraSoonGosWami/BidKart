@@ -28,8 +28,7 @@
                 android:id="@+id/product_list_image"
                 android:layout_width="148dp"
                 android:layout_height="148dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/elec" />
+                android:scaleType="centerCrop" />
 
 
             <LinearLayout

@@ -11,8 +11,8 @@
             android:title="Sell" />
         <item
             android:id="@+id/nav_myProducts"
-            android:icon="@drawable/ic_mypro"
-            android:title="My Products" />
+            android:icon="@drawable/ic_transaction"
+            android:title="My Transactions" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_share"

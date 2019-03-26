@@ -1,47 +1,20 @@
 
-csquid:UselessImportCheck"8Remove this unused import 'android.view.LayoutInflater'.(À¯ÑÇ8Ô™ê×™-
-rsquid:UselessImportCheck*"BRemove this unused import 'com.airbnb.lottie.LottieAnimationView'.(éøñ˜úÿÿÿÿ8«ô’À™-
-\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8Šñ×û-
-gsquid:UselessImportCheck!"7Remove this unused import 'android.widget.FrameLayout'.(ºÍ‹Ùúÿÿÿÿ8ä‡¼¶™-
-~squid:S1450B"`Remove the "action_bar_search" field and declare it as a local variable in the relevant methods.(±Å¯—8“Í¯ —-
-}squid:S1450E"_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ĞÈ±8ĞîœÀ™-
-gsquid:UselessImportCheck%"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8òÓìÀ™-
-zsquid:S00116E"[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈ±8’ùÓ±-
-„squid:S1450A"fRemove the "action_bar_notification" field and declare it as a local variable in the relevant methods.(¹Îßñ8“Í¯ —-
-asquid:UselessImportCheck"7Remove this unused import 'android.animation.Animator'.(İŸéN8ó»”À™-
-~squid:S00116?"ZRename this field "action_bar_menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
-asquid:UselessImportCheck'"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8´Æêà™-
-`squid:UselessImportCheck"0Remove this unused import 'android.view.Window'.(¿è™÷úÿÿÿÿ8Ô™ê×™-
-^squid:UselessImportCheck	"3Remove this unused import 'android.graphics.Point'.(Õ ô²8ã–×¿˜-
-osquid:UselessImportCheck
-"?Remove this unused import 'android.graphics.drawable.Drawable'.(Á‰º„ùÿÿÿÿ8Šñ×û-
-asquid:UselessImportCheck$"7Remove this unused import 'android.widget.PopupWindow'.(ªş¨x8ä‡¼¶™-
-rsquid:UselessImportCheck9"GRemove this unused import 'com.roughike.bottombar.OnTabSelectListener'.(Œû™8“Í¯ —-
-lsquid:UselessImportCheck"<Remove this unused import 'android.content.DialogInterface'.(Š­›¨şÿÿÿÿ8Õ¶² —-
-bsquid:UselessImportCheck"7Remove this unused import 'android.view.WindowManager'.(Ü³‹Å8ã–×¿˜-
-]squid:UselessImportCheck;"-Remove this unused import 'org.w3c.dom.Text'.(¶Äè‹şÿÿÿÿ8Õ¥™À™-
-squid:S1450?"^Remove the "action_bar_menu" field and declare it as a local variable in the relevant methods.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
-msquid:S1871¢"IThis case's code block is the same as the block for the case on line 129.(İ–Ò˜ÿÿÿÿÿ8—»àà™-
+Ksquid:S1602ü",Remove useless curly braces around statement(Ì‡‘´8´Æêà™-
+{squid:S00116+"\Rename this field "action_bar_search" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Å¯—8Šñ×û-
+~squid:S1450+"`Remove the "action_bar_search" field and declare it as a local variable in the relevant methods.(±Å¯—8“Í¯ —-
+}squid:S14501"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8—»àà™-
+{squid:S00116*"\Rename this field "action_bar_wallet" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê‘’¾8§»Íáš-
+zsquid:S00116."[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈ±8’ùÓ±-
 ysquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ8ÛÇØû-
-{squid:S00116B"\Rename this field "action_bar_search" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Å¯—8Šñ×û-
-}squid:S1450H"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8—»àà™-
-Zsquid:UselessImportCheck"/Remove this unused import 'android.os.Handler'.(ûÛ’¡8Ô™ê×™-
-_squid:UselessImportCheck"/Remove this unused import 'android.app.Dialog'.(·‚Àúÿÿÿÿ8Ô™ê×™-
-squid:S1450@"aRemove the "action_bar_appicon" field and declare it as a local variable in the relevant methods.(íúäû8“Í¯ —-
-asquid:UselessImportCheck"1Remove this unused import 'android.view.Display'.(ä¾Öøøÿÿÿÿ8ëÂºÑ™-
-|squid:S00116@"]Rename this field "action_bar_appicon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íúäû8Šñ×û-
-squid:S00116A"bRename this field "action_bar_notification" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Îßñ8Šñ×û-
-squid:S00116C"[Rename this field "action_bar_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öµƒÎøÿÿÿÿ8šÆ’-
-‚squid:S1450C"_Remove the "action_bar_title" field and declare it as a local variable in the relevant methods.(öµƒÎøÿÿÿÿ8“Í¯ —-
-isquid:UselessImportCheck"?Remove this unused import 'android.support.annotation.NonNull'.(¼Åß8‘â³ —-
-osquid:CommentedOutCodeLineï"<This block of commented-out lines of code should be removed.(á£ª„ıÿÿÿÿ8—»àà™-
-|squid:UselessImportCheck1"LRemove this unused import 'com.google.firebase.database.ValueEventListener'.(‹ŞÜ‹ıÿÿÿÿ8Šñ×û-
-]squid:UselessImportCheck"-Remove this unused import 'android.os.Build'.(ãÇ¤Úıÿÿÿÿ8Šñ×û-
-hsquid:UselessImportCheck"8Remove this unused import 'android.util.DisplayMetrics'.(Æ…Ú×ùÿÿÿÿ8ã–×¿˜-
-W"squid:SwitchLastCaseIsDefaultCheckZ""Add a default case to this switch.(¿›İ”8—»àà™-
-]squid:UselessImportCheck"2Remove this unused import 'android.view.MenuItem'.(Ğ¬Ó‘8‘â³ —-
-Ksquid:S1602û",Remove useless curly braces around statement(Ì‡‘´8´Æêà™-
-qsquid:UselessImportCheck-"FRemove this unused import 'com.google.firebase.database.DataSnapshot'.(şÇŒ„8Šñ×û-
-wsquid:UselessImportCheck."GRemove this unused import 'com.google.firebase.database.DatabaseError'.(ˆÔµıÿÿÿÿ8Šñ×û-
-msquid:UselessImportCheck"BRemove this unused import 'android.support.v4.view.GravityCompat'.(§‘¿Ú8Õîú£-
-psquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ8óÚşÀ˜-
+hsquid:S2259¯"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(°ºò8±œİáš-
+¥squid:S1186¶"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8·‰Çáš-
+}squid:S1450."_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ĞÈ±8ĞîœÀ™-
+~squid:S00116("ZRename this field "action_bar_menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
+W"squid:SwitchLastCaseIsDefaultCheckC""Add a default case to this switch.(¿›İ”8—»àà™-
+‚squid:S1450,"_Remove the "action_bar_title" field and declare it as a local variable in the relevant methods.(öµƒÎøÿÿÿÿ8“Í¯ —-
+osquid:CommentedOutCodeLineğ"<This block of commented-out lines of code should be removed.(á£ª„ıÿÿÿÿ8—»àà™-
+squid:S1450("^Remove the "action_bar_menu" field and declare it as a local variable in the relevant methods.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
+msquid:S1871"IThis case's code block is the same as the block for the case on line 108.(İ–Ò˜ÿÿÿÿÿ8—»àà™-
+squid:S00116,"[Rename this field "action_bar_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öµƒÎøÿÿÿÿ8šÆ’-
+squid:S1450)"aRemove the "action_bar_appicon" field and declare it as a local variable in the relevant methods.(íúäû8”Ä¿âš-
+|squid:S00116)"]Rename this field "action_bar_appicon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íúäû8”Ä¿âš-

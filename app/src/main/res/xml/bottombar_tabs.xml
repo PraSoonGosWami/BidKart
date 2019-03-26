@@ -10,8 +10,8 @@
         title="Search" />
     <tab
         id="@+id/bottom_notification"
-        icon="@drawable/ic_notification"
-        title="Notification" />
+        icon="@drawable/ic_mypro"
+        title="My Bids" />
 
     <tab
         id="@+id/bottom_profile"

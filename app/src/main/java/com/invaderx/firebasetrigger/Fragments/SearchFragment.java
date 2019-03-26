@@ -118,7 +118,7 @@ public class SearchFragment extends Fragment {
                                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                                     products = data.getValue(Products.class);
                                     if (products.getpStatus().equals("pending")) {
-                                        Toast.makeText(getContext(), "Product not available", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getContext(), "Product not available", Toast.LENGTH_SHORT).show();
                                         continue;
                                     }
                                     searchList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),

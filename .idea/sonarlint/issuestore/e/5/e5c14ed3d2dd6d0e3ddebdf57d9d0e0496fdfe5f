@@ -1,19 +1,19 @@
 
-…squid:UselessImportCheck"URemove this unused import 'com.invaderx.firebasetrigger.Adapters.ProductListAdapter'.(‘µñÿÿÿÿÿ8Ëñı±’-
-dsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8ğ¬ç´’-
 Ÿsquid:S1186S"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±8ğ¬ç´’-
+¥squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8¦õÉ´’-
+}squid:S1450,"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8´¡²’-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
+{squid:S00116."\Rename this field "action_bar_search" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Å¯—8Ã•²’-
+psquid:UselessImportCheck"@Remove this unused import 'android.view.inputmethod.EditorInfo'.(êÔùíıÿÿÿÿ8ğ¬ç´’-
+ssquid:UselessImportCheck"CRemove this unused import 'android.support.v4.app.FragmentManager'.(úäçÇüÿÿÿÿ8Ö›åñ•-
+vsquid:S001160"WRename this field "search_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øùËğ8åğ³µ’-
+Gsquid:S1068+")Remove this unused "catId" private field.(›ƒû¿8±ñö±’-
+bsquid:UselessImportCheck"2Remove this unused import 'android.view.KeyEvent'.(ôÊÃ–úÿÿÿÿ8ğ¬ç´’-
 |squid:S00116("]Rename this field "search_progressBar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á÷Ò8×šù±’-
-¥squid:S1186Š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8¦õÉ´’-
+dsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8ğ¬ç´’-
+~squid:S00116'"ZRename this field "search_recycler" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªşƒÿÿÿÿÿ8ßÏø±’-
 Ÿsquid:S1186`"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±¾ê8ğ¬ç´’-
 |squid:S00116/"]Rename this field "search_error_frame" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëñÀ¸8Ğ¢õµ’-
-ssquid:UselessImportCheck"CRemove this unused import 'android.support.v4.app.FragmentManager'.(úäçÇüÿÿÿÿ8Ö›åñ•-
-psquid:UselessImportCheck"@Remove this unused import 'android.view.inputmethod.EditorInfo'.(êÔùíıÿÿÿÿ8ğ¬ç´’-
-{squid:S00116."\Rename this field "action_bar_search" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Å¯—8Ã•²’-
-bsquid:UselessImportCheck"2Remove this unused import 'android.view.KeyEvent'.(ôÊÃ–úÿÿÿÿ8ğ¬ç´’-
-Gsquid:S1068+")Remove this unused "catId" private field.(›ƒû¿8±ñö±’-
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-vsquid:S001160"WRename this field "search_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øùËğ8åğ³µ’-
-}squid:S1450,"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8´¡²’-
 nsquid:CommentedOutCodeLineP"<This block of commented-out lines of code should be removed.(âÌİ¿ûÿÿÿÿ8Óì˜´’-
-~squid:S00116'"ZRename this field "search_recycler" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªşƒÿÿÿÿÿ8ßÏø±’-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ğ¬ç´’-
+…squid:UselessImportCheck"URemove this unused import 'com.invaderx.firebasetrigger.Adapters.ProductListAdapter'.(‘µñÿÿÿÿÿ8Ëñı±’-
+nsquid:CommentedOutCodeLiney"<This block of commented-out lines of code should be removed.(Ä£ûıÿÿÿÿ8úÿõâš-
