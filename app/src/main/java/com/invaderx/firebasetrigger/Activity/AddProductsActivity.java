@@ -38,7 +38,10 @@ import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
 
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -147,8 +150,8 @@ public class AddProductsActivity extends AppCompatActivity implements BSImagePic
 
 
         HashMap<String, Integer> map = new HashMap<>();
-        map.put(user.getUid(), Integer.parseInt(sell_pPrice.getText().toString()));
-        long dayout = TimeUnit.DAYS.toMillis(Integer.parseInt(sell_pExpTime.getText().toString()));
+        map.put("no bids", Integer.parseInt(sell_pPrice.getText().toString()));
+        int noOfDays = Integer.parseInt(sell_pExpTime.getText().toString());
         Products uProducts = new Products(
                 pid,
                 sell_pName.getText().toString(),
@@ -162,10 +165,10 @@ public class AddProductsActivity extends AppCompatActivity implements BSImagePic
                 getSell_pCategoryId,
                 0,
                 sell_pName.getText().toString().toLowerCase(),
-                dayout,
+                noOfDays,
                 sell_pDetails.getText().toString(),
                 sell_pCondition,
-                "pending");
+                "pending", getDate(noOfDays));
 
 
         databaseReference.child("product").child(pid).setValue(uProducts)
@@ -417,5 +420,15 @@ public class AddProductsActivity extends AppCompatActivity implements BSImagePic
     }
 
 
+    //p
+    public String getDate(int days) {
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, days);
+        dt = c.getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+        return formatter.format(dt);
+    }
 
 }

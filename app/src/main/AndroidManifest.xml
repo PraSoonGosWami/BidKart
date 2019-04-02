@@ -74,7 +74,10 @@
             android:theme="@style/AppTheme.ActionBar"
             android:windowSoftInputMode="adjustPan" />
 
-        <service android:name=".Services.Notify">
+        <service
+            android:name=".Services.Notify"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

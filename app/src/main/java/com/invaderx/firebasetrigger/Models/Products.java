@@ -15,16 +15,17 @@ public class Products {
     private String catId;
     private int noOfBids;
     private String searchStr;
-    private long expTime;
+    private int expTime;
     private String pDescription;
     private String pCondition;
     private String pStatus;
+    private String expDate;
 
 
     public Products(String pId, String pName, String pCategory, HashMap<String, Integer> pBid, String bidderUID, String productListImgURL,
                     String sellerName, String basePrice, String sellerUID,
-                    String catId, int noOfBids, String searchStr, long expTime, String pDescription,
-                    String pCondition, String pStatus) {
+                    String catId, int noOfBids, String searchStr, int expTime, String pDescription,
+                    String pCondition, String pStatus, String expDate) {
         this.pId = pId;
         this.pName = pName;
         this.pCategory = pCategory;
@@ -41,6 +42,7 @@ public class Products {
         this.pDescription = pDescription;
         this.pCondition = pCondition;
         this.pStatus = pStatus;
+        this.expDate = expDate;
     }
 
     public Products() {
@@ -95,12 +97,16 @@ public class Products {
         return searchStr;
     }
 
-    public long getExpTime() {
+    public int getExpTime() {
         return expTime;
     }
 
     public String getpDescription() {
         return pDescription;
+    }
+
+    public String getExpDate() {
+        return expDate;
     }
 
     public String getpCondition() {

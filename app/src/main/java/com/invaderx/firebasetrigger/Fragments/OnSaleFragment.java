@@ -82,11 +82,11 @@ public class OnSaleFragment extends Fragment {
                                             products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                             products.getBasePrice(), products.getSellerUID(), products.getCatId(),
                                             products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription(),
-                                            products.getpCondition(), products.getpStatus()));
+                                            products.getpCondition(), products.getpStatus(), products.getExpDate()));
                                 }
                             }
                         } else
-                            showSnackbar("It's lonely here!!");
+                            showSnackbar("No products found");
 
                         on_sale_rView.setAdapter(productListAdapter);
                         if (productList.size() == 0) {
@@ -111,4 +111,6 @@ public class OnSaleFragment extends Fragment {
                 .make(getActivity().findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
+
+
 }

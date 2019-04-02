@@ -81,7 +81,7 @@ public class SoldFragment extends Fragment {
                                             products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                             products.getBasePrice(), products.getSellerUID(), products.getCatId(),
                                             products.getNoOfBids(), products.getSearchStr(), products.getExpTime(), products.getpDescription(),
-                                            products.getpCondition(), products.getpStatus()));
+                                            products.getpCondition(), products.getpStatus(), products.getExpDate()));
                                 }
                             }
                         } else

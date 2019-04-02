@@ -65,7 +65,7 @@ public class ProductPageActivity extends AppCompatActivity {
     private ImageView pro_image, pro_seller_image;
     private TextView pro_title, pro_currentbid, pro_expDay,
             pro_expHrs, pro_expMin, pro_expSec, pro_category,
-            pro_condition, pro_bidsNo, pro_base_price, pro_description, pro_seller, pro_user_bid;
+            pro_condition, pro_bidsNo, pro_base_price, pro_description, pro_seller, pro_user_bid, pro_status;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Button place_bid;
@@ -78,6 +78,7 @@ public class ProductPageActivity extends AppCompatActivity {
     private Products products;
     private int walletAmount;
     private CardView timer_card;
+    private long timer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,7 @@ public class ProductPageActivity extends AppCompatActivity {
         nestedScrollView = findViewById(R.id.scroll);
         appBarLayout = findViewById(R.id.app_bar_layout);
         timer_card = findViewById(R.id.timer_card);
+        pro_status = findViewById(R.id.pro_status);
         //-------------------------------------------------------------------
         pro_error_frame.setVisibility(View.GONE);
         pro_error_anim.cancelAnimation();
@@ -159,8 +161,9 @@ public class ProductPageActivity extends AppCompatActivity {
             }
 
         });
+
         //getting product page
-        getProducts();
+        getExpTime(proId);
         //getting wallet amount
         getWallet();
         product_container.setAlpha(1f);
@@ -229,10 +232,11 @@ public class ProductPageActivity extends AppCompatActivity {
                             pro_condition.setText("Condition: " + products.getpCondition());
                             pro_base_price.setText("Base Price: ₹" + products.getBasePrice());
                             pro_bidsNo.setText("Total Bids: " + products.getNoOfBids());
+                            pro_status.setText("Status: " + products.getpStatus().toUpperCase());
                             pro_description.setText(products.getpDescription());
                             pro_seller.setText(products.getSellerName());
 
-                            expiryTime(products.getExpTime());
+                            expiryTime(timer);
 
                             pro_expDay.setText(time.get(0) + " Days :");
                             pro_expHrs.setText(time.get(1) + " Hrs :");
@@ -256,6 +260,12 @@ public class ProductPageActivity extends AppCompatActivity {
                                 place_bid.setVisibility(View.GONE);
                                 pro_user_bid.setText("Product already sold");
                                 timer_card.setVisibility(View.GONE);
+                            } else if (products.getpStatus().equals("pending")) {
+                                place_bid.setText("Pending");
+                                place_bid.setEnabled(false);
+                                place_bid.setVisibility(View.GONE);
+                                pro_user_bid.setText("Wait for admin's approval");
+                                timer_card.setVisibility(View.GONE);
                             } else {
                                 place_bid.setVisibility(View.VISIBLE);
                                 place_bid.setEnabled(true);
@@ -275,6 +285,25 @@ public class ProductPageActivity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Toast.makeText(ProductPageActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+    }
+
+    public void getExpTime(String pid) {
+        databaseReference.child("timer").child(pid)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            timer = dataSnapshot.getValue(long.class);
+
+                        }
+                        getProducts();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });

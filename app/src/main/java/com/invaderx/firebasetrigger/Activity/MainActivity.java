@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     action_bar_wallet.setVisibility(View.GONE);
                     action_bar_search.setVisibility(View.GONE);
                     action_bar_title.setVisibility(View.VISIBLE);
-                    action_bar_title.setText("Notifications");
+                    action_bar_title.setText("My Bids");
                     swapFragments(new NotificationFragment());
                     break;
 

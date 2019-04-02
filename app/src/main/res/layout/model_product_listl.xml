@@ -91,48 +91,19 @@
                     android:gravity="center"
                     android:layout_marginTop="2dp"
                     android:layout_below="@+id/category_card"
-                    android:text="Expires in:"
+                    android:text="Expires on:"
                     android:layout_centerHorizontal="true"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/expDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/time_layout">
-
-                    <TextView
-                        android:id="@+id/expDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12 :\nDays"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:paddingRight="4dp" />
-
-                    <TextView
-                        android:id="@+id/expHrs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="22 :\nHrs"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:id="@+id/expMin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="18 :\nMins"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:id="@+id/expSec"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="37\nSec"
-                        android:padding="4dp" />
-
-                </LinearLayout>
+                    android:text="12 :\nDays"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingRight="4dp" />
 
                 <TextView
                     android:id="@+id/product_list_current_bid"

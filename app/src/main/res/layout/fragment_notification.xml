@@ -4,10 +4,21 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mybid_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    </android.support.v7.widget.RecyclerView>
+
     <TextView
+        android:id="@+id/mybid_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Notification"
-        android:textColor="#ffffff"/>
+        android:textColor="@color/colorAccent"
+        android:text="Nothing found here"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </RelativeLayout>

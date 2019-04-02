@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.invaderx.firebasetrigger.Activity.ProductPageActivity;
 import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.R;
@@ -29,7 +32,6 @@ import java.util.concurrent.TimeUnit;
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
     private ArrayList<Products> productListAdapterList;
     private Context context;
-    private ArrayList<String> time = new ArrayList<>();
 
 
     public ProductListAdapter(ArrayList<Products> productListAdapterList, Context context) {
@@ -63,17 +65,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             context.startActivity(intent);
         });
 
-        time.clear();
-        expiryTime(list.getExpTime());
+
 
         if (list.getpStatus().equals("sold") || list.getpStatus().equals("pending")) {
-            holder.time_layout.setVisibility(View.GONE);
+            holder.expDays.setVisibility(View.GONE);
         } else {
-            holder.time_layout.setVisibility(View.VISIBLE);
-            holder.expDays.setText(time.get(0) + " :\nDay");
-            holder.expHrs.setText(time.get(1) + " :\nHrs");
-            holder.expMin.setText(time.get(2) + " :\nMin");
-            holder.expSec.setText(time.get(3) + "\nSec");
+            holder.expDays.setVisibility(View.VISIBLE);
+            holder.expDays.setText(list.getExpDate());
+
         }
 
 
@@ -91,8 +90,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView product_list_image;
-        public LinearLayout time_layout;
-        public TextView product_list_title, product_list_current_bid, product_list_cat, expDays, expHrs, expMin, expSec;
+        public TextView product_list_title, product_list_current_bid, product_list_cat, expDays;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -102,41 +100,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             product_list_current_bid = itemView.findViewById(R.id.product_list_current_bid);
             product_list_cat = itemView.findViewById(R.id.product_list_cat);
             expDays = itemView.findViewById(R.id.expDay);
-            expHrs = itemView.findViewById(R.id.expHrs);
-            expMin = itemView.findViewById(R.id.expMin);
-            expSec = itemView.findViewById(R.id.expSec);
-            time_layout = itemView.findViewById(R.id.time_layout);
+
 
         }
     }
 
 
-    public void expiryTime(long milliseconds) {
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliseconds));
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(milliseconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(milliseconds));
-        long hours = TimeUnit.MILLISECONDS.toHours(milliseconds) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(milliseconds));
-        long days = TimeUnit.MILLISECONDS.toDays(milliseconds);
 
-        String d = String.valueOf(days);
-        String h = String.valueOf(hours);
-        String m = String.valueOf(minutes);
-        String s = String.valueOf(seconds);
-
-        if (d.length() == 1)
-            d = "0" + d;
-        if (h.length() == 1)
-            h = "0" + h;
-        if (m.length() == 1)
-            m = "0" + m;
-        if (s.length() == 1)
-            s = "0" + s;
-
-        time.add(d);
-        time.add(h);
-        time.add(m);
-        time.add(s);
-
-    }
 
 
 }
