@@ -101,11 +101,11 @@ public class AdminLogin extends AppCompatActivity {
         }
     }
 
-    /*@Override
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mAuth.signOut();
-    }*/
+    }
 
     @Override
     protected void onResume() {
