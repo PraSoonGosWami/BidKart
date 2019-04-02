@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.firebasetrigger.Auth.UserLogin;
 import com.invaderx.firebasetrigger.Fragments.HomeFragment;
-import com.invaderx.firebasetrigger.Fragments.NotificationFragment;
+import com.invaderx.firebasetrigger.Fragments.MyBidsFragment;
 import com.invaderx.firebasetrigger.Fragments.ProfileFragment;
 import com.invaderx.firebasetrigger.Fragments.SearchFragment;
 import com.invaderx.firebasetrigger.Models.UserProfile;
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     action_bar_search.setVisibility(View.GONE);
                     action_bar_title.setVisibility(View.VISIBLE);
                     action_bar_title.setText("My Bids");
-                    swapFragments(new NotificationFragment());
+                    swapFragments(new MyBidsFragment());
                     break;
 
                 case R.id.bottom_profile:

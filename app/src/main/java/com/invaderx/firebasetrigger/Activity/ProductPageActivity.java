@@ -2,6 +2,8 @@ package com.invaderx.firebasetrigger.Activity;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -38,8 +40,10 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,12 +51,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.invaderx.firebasetrigger.Auth.UserLogin;
 import com.invaderx.firebasetrigger.Models.Products;
 import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -79,6 +87,7 @@ public class ProductPageActivity extends AppCompatActivity {
     private int walletAmount;
     private CardView timer_card;
     private long timer = 0;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,6 +175,7 @@ public class ProductPageActivity extends AppCompatActivity {
         getExpTime(proId);
         //getting wallet amount
         getWallet();
+
         product_container.setAlpha(1f);
 
 
@@ -218,15 +228,6 @@ public class ProductPageActivity extends AppCompatActivity {
                                     load(products.getProductListImgURL())
                                     .into(pro_image);
                             pro_title.setText(products.getpName());
-
-                            if (products.getpBid().containsKey(firebaseUser.getUid())) {
-                                pro_user_bid.setText("Your Bid: ₹" + products.getpBid().get(firebaseUser.getUid()));
-                                place_bid.setText("Update your bid");
-                            } else {
-                                pro_user_bid.setText("Your Bid: Not Placed");
-                                place_bid.setText("Place your bid");
-                            }
-
                             pro_currentbid.setText("₹" + Collections.max(products.getpBid().values()));
                             pro_category.setText("Category: " + products.getpCategory());
                             pro_condition.setText("Condition: " + products.getpCondition());
@@ -248,33 +249,119 @@ public class ProductPageActivity extends AppCompatActivity {
                             appBarLayout.setVisibility(View.VISIBLE);
                             nestedScrollView.setVisibility(View.VISIBLE);
 
-                            if (products.getSellerUID().trim().equals(firebaseUser.getUid())) {
+
+                            //check if user has a bid on product
+                            if (products.getpBid().containsKey(firebaseUser.getUid())) {
+
+                                //checks if product is already sold
+                                if (products.getpStatus().equals("sold")) {
+                                    place_bid.setText("Sold");
+                                    place_bid.setEnabled(false);
+                                    place_bid.setVisibility(View.GONE);
+                                    pro_user_bid.setText("Product already sold");
+                                    timer_card.setVisibility(View.GONE);
+                                }
+                                //checks if product is live
+                                if (products.getpStatus().equals("live")) {
+                                    place_bid.setVisibility(View.VISIBLE);
+                                    place_bid.setEnabled(true);
+                                    timer_card.setVisibility(View.VISIBLE);
+                                    pro_user_bid.setText("Your Bid: ₹" + products.getpBid().get(firebaseUser.getUid()));
+                                    place_bid.setText("Update your bid");
+                                    place_bid.setOnClickListener(v -> {
+                                        product_container.setAlpha(0.4f);
+                                        bidPopup();
+                                    });
+                                }
+
+                            }
+
+                            //checks if the user is seller of product
+                            else if (products.getSellerUID().trim().equals(firebaseUser.getUid())) {
                                 place_bid.setText("Cannot Bid");
                                 place_bid.setEnabled(false);
                                 place_bid.setVisibility(View.GONE);
-                                timer_card.setVisibility(View.VISIBLE);
-                                pro_user_bid.setText("Product belongs to you");
-                            } else if (products.getpStatus().equals("sold")) {
-                                place_bid.setText("Sold");
-                                place_bid.setEnabled(false);
-                                place_bid.setVisibility(View.GONE);
-                                pro_user_bid.setText("Product already sold");
-                                timer_card.setVisibility(View.GONE);
-                            } else if (products.getpStatus().equals("pending")) {
-                                place_bid.setText("Pending");
-                                place_bid.setEnabled(false);
-                                place_bid.setVisibility(View.GONE);
-                                pro_user_bid.setText("Wait for admin's approval");
-                                timer_card.setVisibility(View.GONE);
-                            } else {
-                                place_bid.setVisibility(View.VISIBLE);
-                                place_bid.setEnabled(true);
-                                timer_card.setVisibility(View.VISIBLE);
-                                place_bid.setOnClickListener(v -> {
-                                    product_container.setAlpha(0.4f);
-                                    bidPopup();
-                                });
+                                pro_user_bid.setText("You are the seller");
+
+
+                                //checks if product is already sold
+                                if (products.getpStatus().equals("sold")) {
+                                    pro_user_bid.setText("You are the seller\nProduct already sold");
+                                    timer_card.setVisibility(View.GONE);
+                                }
+
+                                //checks if product is pending
+                                if (products.getpStatus().equals("pending")) {
+                                    pro_user_bid.setText("You are the seller\nWait for admin's approval");
+                                    timer_card.setVisibility(View.GONE);
+                                }
+
+                                //checks if product is live
+                                if (products.getpStatus().equals("live")) {
+                                    timer_card.setVisibility(View.VISIBLE);
+                                }
+
                             }
+                            //for admin
+                            else if (firebaseUser.getEmail().equals("admin@bidkart.com")) {
+
+                                pro_user_bid.setText(" ");
+
+                                //checks if product is already sold
+                                if (products.getpStatus().equals("sold")) {
+                                    place_bid.setText("Disabled");
+                                    place_bid.setEnabled(false);
+                                    place_bid.setVisibility(View.GONE);
+                                    timer_card.setVisibility(View.GONE);
+                                }
+
+                                //checks if product is pending
+                                if (products.getpStatus().equals("pending")) {
+                                    place_bid.setText("Approve Product");
+                                    place_bid.setEnabled(true);
+                                    place_bid.setVisibility(View.VISIBLE);
+                                    timer_card.setVisibility(View.GONE);
+
+                                    place_bid.setOnClickListener(v -> {
+
+                                        approveVerify(products.getpId(), products.getExpTime());
+                                    });
+                                }
+
+                                //checks if product is live
+                                if (products.getpStatus().equals("live")) {
+                                    place_bid.setText("Disabled");
+                                    place_bid.setEnabled(false);
+                                    place_bid.setVisibility(View.GONE);
+                                    timer_card.setVisibility(View.VISIBLE);
+                                }
+
+                            }
+                            //a normal user
+                            else {
+                                //checks if product is already sold
+                                if (products.getpStatus().equals("sold")) {
+                                    place_bid.setText("Sold");
+                                    place_bid.setEnabled(false);
+                                    place_bid.setVisibility(View.GONE);
+                                    pro_user_bid.setText("Product already sold");
+                                    timer_card.setVisibility(View.GONE);
+                                }
+
+                                //checks if product is live
+                                if (products.getpStatus().equals("live")) {
+                                    place_bid.setVisibility(View.VISIBLE);
+                                    place_bid.setEnabled(true);
+                                    timer_card.setVisibility(View.VISIBLE);
+                                    pro_user_bid.setText("Your Bid: Not Placed");
+                                    place_bid.setText("Place your bid");
+                                    place_bid.setOnClickListener(v -> {
+                                        product_container.setAlpha(0.4f);
+                                        bidPopup();
+                                    });
+                                }
+                            }
+
 
                         } else {
                             pro_error_frame.setVisibility(View.VISIBLE);
@@ -523,4 +610,56 @@ public class ProductPageActivity extends AppCompatActivity {
     }
 
 
+    public void approveVerify(String uid, int expTime) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        builder.setMessage("Are you sure you want to approve this product?")
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+                    progressDialog.setMessage("Almost done ....");
+                    progressDialog.show();
+                    approveProduct(uid, expTime);
+                })
+                .setNegativeButton("No", (dialog, id) -> dialog.dismiss());
+        builder.create().show();
+    }
+
+    public void approveProduct(String uid, int expTime) {
+
+        String eDate = getDate(expTime);
+        long eTimer = TimeUnit.DAYS.toMillis(expTime);
+        databaseReference.child("product").child(uid).child("expDate").setValue(eDate)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        databaseReference.child("timer").child(uid).setValue(eTimer)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        databaseReference.child("product").child(uid).child("pStatus").setValue("live")
+                                                .addOnCompleteListener(task2 -> {
+                                                    if (task2.isSuccessful())
+                                                        Toast.makeText(ProductPageActivity.this, "Product successfully approved", Toast.LENGTH_SHORT).show();
+                                                    else
+                                                        Toast.makeText(ProductPageActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                                                });
+                                    } else
+                                        Toast.makeText(ProductPageActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                                });
+                    } else
+                        Toast.makeText(ProductPageActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+
+                    progressDialog.dismiss();
+                });
+
+
+    }
+
+    //returns date from current date
+    public String getDate(int days) {
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, days);
+        dt = c.getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+        return formatter.format(dt);
+    }
 }

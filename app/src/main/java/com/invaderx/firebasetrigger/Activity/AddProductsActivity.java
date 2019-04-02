@@ -420,7 +420,7 @@ public class AddProductsActivity extends AppCompatActivity implements BSImagePic
     }
 
 
-    //p
+    //
     public String getDate(int days) {
         Date dt = new Date();
         Calendar c = Calendar.getInstance();

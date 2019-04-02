@@ -18,6 +18,14 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+        <activity
+            android:name=".Activity.AdminActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/White.ActionBar"></activity>
+        <activity
+            android:name=".Auth.AdminLogin"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionbar" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -31,25 +39,21 @@
 
         <activity
             android:name=".Activity.AddProductsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".Activity.SellerActivity"
             android:label="Add Product"
-            android:theme="@style/White.ActionBar">
-
-        </activity>
-
+            android:parentActivityName=".Activity.SellerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/White.ActionBar" />
         <activity
             android:name=".Activity.SellerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/White.NoActionBar">
-        </activity>
-
+            android:theme="@style/White.NoActionBar" />
         <activity
             android:name=".Activity.ProductPageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Light.NoActionBar">
             <intent-filter>
                 <action android:name="OPEN_PRODUCT_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -63,7 +67,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Auth.UserSignUp"
             android:screenOrientation="portrait"

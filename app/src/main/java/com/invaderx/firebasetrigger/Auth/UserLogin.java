@@ -41,6 +41,7 @@ public class UserLogin extends AppCompatActivity {
     private TextView signup;
     private FirebaseAuth mAuth;
     private TextView passReset;
+    private TextView admin_text;
     private ProgressDialog progressDialog;
     private FirebaseUser user;
     private String uToken;
@@ -62,6 +63,7 @@ public class UserLogin extends AppCompatActivity {
         passReset = findViewById(R.id.passReset);
         signin = findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
+        admin_text = findViewById(R.id.admin_text);
         //-------------------------------------------
 
         //gets device token for fcm
@@ -71,6 +73,10 @@ public class UserLogin extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
+        admin_text.setOnClickListener(v -> {
+            startActivity(new Intent(this, AdminLogin.class));
+            finish();
+        });
 
         progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
         progressDialog.setMessage("Almost done\nLogging you in...");

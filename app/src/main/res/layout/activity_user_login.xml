@@ -15,6 +15,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,8 +121,8 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-
     <LinearLayout
+        android:id="@+id/t"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -133,8 +134,9 @@
             android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up       |"
+            android:text="Sign up   |"
             android:textColor="@color/colorAccent"
+            android:background="?android:attr/selectableItemBackground"
             android:textSize="18sp"
             android:layout_margin="12dp"
             android:textStyle="bold" />
@@ -145,11 +147,29 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password"
             android:textColor="@color/colorAccent"
+            android:background="?android:attr/selectableItemBackground"
             android:textSize="18sp"
             android:layout_margin="12dp"
             android:textStyle="bold" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/admin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Admin"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_marginBottom="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/trendingtile"
+        android:layout_marginRight="16dp"
+
+        />
 
 
 </RelativeLayout>
