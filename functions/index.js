@@ -114,7 +114,6 @@ exports.pushNotification = functions.database.ref('/product/{pId}').onUpdate( ev
         
     }
 
-
+return 0;
    
 });
-

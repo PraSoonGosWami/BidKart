@@ -14,6 +14,7 @@
         app:lottie_rawRes="@raw/splash_anim"
         app:lottie_autoPlay="true" />
 
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

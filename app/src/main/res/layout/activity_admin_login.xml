@@ -6,10 +6,11 @@
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_cart"
+        android:src="@drawable/tagline_white"
+        android:scaleX="1.4"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="32dp" />
 
@@ -47,7 +48,6 @@
                 android:hint="Admin Email"
                 android:inputType="textEmailAddress"
                 android:drawableLeft="@drawable/ic_email"
-                android:background="@android:color/transparent"
                 android:drawablePadding="16dp" />
 
             <EditText
@@ -59,7 +59,6 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_lock"
-                android:background="@android:color/transparent"
                 android:drawablePadding="16dp" />
 
 

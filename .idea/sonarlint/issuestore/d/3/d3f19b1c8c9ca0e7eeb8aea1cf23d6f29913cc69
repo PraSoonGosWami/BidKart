@@ -1,0 +1,9 @@
+
+\squid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8â§“ù-
+}squid:S1450 "_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ô´ù-
+~squid:S00116""ZRename this field "admin_all_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°¡üÀùÿÿÿÿ8Ñ´¡ù-
+nsquid:CommentedOutCodeLine`"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8ˆ†­ù-
+\squid:S1155X">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8ˆ†­ù-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
+…squid:S00116"aRename this field "admin_all_produc_rView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú×®üÿÿÿÿ8°øù-
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8â§“ù-

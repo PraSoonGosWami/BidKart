@@ -1,80 +1,88 @@
 
-Fsquid:S1659I")Declare "pro_loading" on a separate line.(©©“c8Ïì¯è˜-
-lsquid:S1192Í"HDefine a constant instead of duplicating this literal "product" 4 times.(ÉÍ€úÿÿÿÿ8Ïì¯è˜-
-vsquid:S00117½"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8Ğì¯è˜-
-Osquid:S1659½"+Declare "wallet_amount" on a separate line.(ë’™Ëşÿÿÿÿ8Ïì¯è˜-
-Ksquid:S1602É",Remove useless curly braces around statement(ˆÙÜŸ8Ğì¯è˜-
-Psquid:S1659½",Declare "bid_pro_seller" on a separate line.(ë’™Ëşÿÿÿÿ8Ïì¯è˜-
-vsquid:S00117½"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8Ğì¯è˜-
-vsquid:UselessImportCheck*"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡8Ğì¯è˜-
-?squid:S1659C"(Declare "pro_expHrs" on a separate line.(ô‘Ğ’
-{squid:S00116D"WRename this field "pro_user_bid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¨Íúÿÿÿÿ8Ğì¯è˜-
-vsquid:S00116B"YRename this field "pro_currentbid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öæêûÿÿÿÿ
-Nsquid:S1659D"+Declare "pro_condition" on a separate line.(İ¨Íúÿÿÿÿ8Ïì¯è˜-
-Osquid:S1659»"+Declare "wallet_layout" on a separate line.(†è—çøÿÿÿÿ8Ïì¯è˜-
-osquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(¬ÆÔûÿÿÿÿ8Õüè˜-
-Ksquid:S1659D"(Declare "pro_seller" on a separate line.(İ¨Íúÿÿÿÿ8Ïì¯è˜-
-vsquid:S00117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†è—çøÿÿÿÿ8Ğì¯è˜-
-Osquid:S1659D",Declare "pro_base_price" on a separate line.(İ¨Íúÿÿÿÿ8Ïì¯è˜-
-Psquid:S1659D"-Declare "pro_description" on a separate line.(İ¨Íúÿÿÿÿ8Ïì¯è˜-
-Tsquid:S1659½"0Declare "bid_pro_currentBid" on a separate line.(ë’™Ëşÿÿÿÿ8Ïì¯è˜-
-tsquid:S00116P"URename this field "timer_card" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ëÙ8Ğì¯è˜-
-qsquid:S00117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±ÉÂ8Ğì¯è˜-
-tsquid:S1450="VRemove the "toolbar" field and declare it as a local variable in the relevant methods.(ş®º—8Ïì¯è˜-
-Asquid:S1659C"*Declare "pro_category" on a separate line.(ô‘Ğ’
-ysquid:S00116D"URename this field "pro_seller" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¨Íúÿÿÿÿ8Ğì¯è˜-
-Lsquid:S1659»"(Declare "before_bid" on a separate line.(†è—çøÿÿÿÿ8Ïì¯è˜-
-}squid:S00116D"YRename this field "pro_base_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¨Íúÿÿÿÿ8Ğì¯è˜-
-vsquid:S00117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†è—çøÿÿÿÿ8Ğì¯è˜-
-rsquid:S00116B"URename this field "pro_expDay" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öæêûÿÿÿÿ
-{squid:S1450K"XRemove the "popWindow" field and declare it as a local variable in the relevant methods.(»ãÌ¦ıÿÿÿÿ8Ïì¯è˜-
-Dsquid:S1659B"(Declare "pro_expDay" on a separate line.(Öæêûÿÿÿÿ
-lsquid:S00116A"TRename this field "pro_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸©Ş
-tsquid:UselessImportCheck)"KRemove this unused import 'com.google.android.gms.tasks.OnFailureListener'.(ï¿ŞŞúÿÿÿÿ
-osquid:S00117¾"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úàØ…şÿÿÿÿ
-msquid:S00116C"URename this field "pro_expSec" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
-}squid:S1450A"_Remove the "pro_seller_image" field and declare it as a local variable in the relevant methods.(¸©Ş8Ïì¯è˜-
-tsquid:S00116I"VRename this field "pro_loading" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©“c8Ğì¯è˜-
-osquid:CommentedOutCodeLineğ"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8Ğì¯è˜-
-{squid:S00116L"\Rename this field "product_container" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´÷8Ğì¯è˜-
-?squid:S1659C"(Declare "pro_expSec" on a separate line.(ô‘Ğ’
-}squid:S1450E"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8Ïì¯è˜-
-jsquid:S00117¼"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úç´Ï
-qsquid:S3776¹"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¡ş’İ8­¿ßé˜-
-?squid:S1659C"(Declare "pro_expMin" on a separate line.(ô‘Ğ’
-lsquid:UselessImportCheck
-"CRemove this unused import 'android.support.annotation.RequiresApi'.(ÄÂòøÿÿÿÿ
-ssquid:S00116A"[Rename this field "pro_seller_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸©Ş
-ysquid:S00116D"URename this field "pro_bidsNo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¨Íúÿÿÿÿ8Ğì¯è˜-
-Hsquid:S1659B",Declare "pro_currentbid" on a separate line.(Öæêûÿÿÿÿ
-osquid:S1301¹"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8Ğì¯è˜-
-xsquid:S00116G"TRename this field "place_bid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚¬şõÿÿÿÿÿ8Ğì¯è˜-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
-jsquid:HiddenFieldCheckŒ"@Rename "appBarLayout" which hides the field declared at line 63.(ÅŞ…ß8Ğì¯è˜-
-msquid:S2259±"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(…²¼üÿÿÿÿ8Ğì¯è˜-
-¥squid:S1186İ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(áá„üÿÿÿÿ8Ğì¯è˜-
-qsquid:S00116B"TRename this field "pro_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öæêûÿÿÿÿ
-jsquid:S00117¿"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÌÄ£
-Ksquid:S1659D"(Declare "pro_bidsNo" on a separate line.(İ¨Íúÿÿÿÿ8Ïì¯è˜-
-psquid:S00116I"YRename this field "pro_error_anim" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©“c
-msquid:S00116C"URename this field "pro_expMin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
-~squid:S00116D"ZRename this field "pro_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¨Íúÿÿÿÿ8Ğì¯è˜-
-Ksquid:S1602Æ",Remove useless curly braces around statement(§ÀÇ8Ğì¯è˜-
-msquid:S00116C"URename this field "pro_expHrs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
-jsquid:S00117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÙİÏé
-|squid:S00116D"XRename this field "pro_condition" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¨Íúÿÿÿÿ8Ğì¯è˜-
-Rsquid:S1068A"4Remove this unused "pro_seller_image" private field.(¸©Ş8Ïì¯è˜-
-qsquid:S00117Á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È®©ø8Ğì¯è˜-
-fsquid:UselessImportCheck"CRemove this unused import 'android.support.design.widget.Snackbar'.( À®p
-Msquid:S1659D"*Declare "pro_user_bid" on a separate line.(İ¨Íúÿÿÿÿ8Ïì¯è˜-
-osquid:S00117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†è—çøÿÿÿÿ
-vsquid:S00117½"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8Ğì¯è˜-
-¥squid:S1186Ó"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(À˜Ğ¡şÿÿÿÿ8Ğì¯è˜-
-osquid:S00117½"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ
-Esquid:S1659A".Declare "pro_seller_image" on a separate line.(¸©Ş
-]"squid:SwitchLastCaseIsDefaultCheck¹""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8Ïì¯è˜-
-~squid:S00116J"ZRename this field "pro_error_frame" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûöÄĞûÿÿÿÿ8Ğì¯è˜-
-csquid:UselessImportCheck"3Remove this unused import 'android.text.TextUtils'.(û˜½Õøÿÿÿÿ8Ğì¯è˜-
-osquid:S00116C"WRename this field "pro_category" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
-¥squid:S1186â"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğŒÂ´şÿÿÿÿ8Ğì¯è˜-
+Hsquid:S1659J",Declare "pro_currentbid" on a separate line.(Öæêûÿÿÿÿ
+qsquid:S00117µ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È®©ø8©ö°û-
+}squid:S00116L"YRename this field "pro_base_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8Ğì¯è˜-
+Dsquid:S1659J"(Declare "pro_expDay" on a separate line.(Öæêûÿÿÿÿ
+msquid:S00116K"URename this field "pro_expMin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
+jsquid:S00117´"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÙİÏé
+Asquid:S1659K"*Declare "pro_category" on a separate line.(ô‘Ğ’
+{squid:S1450S"XRemove the "popWindow" field and declare it as a local variable in the relevant methods.(»ãÌ¦ıÿÿÿÿ8Ïì¯è˜-
+Esquid:S1659I".Declare "pro_seller_image" on a separate line.(¸©Ş
+{squid:S00116L"WRename this field "pro_user_bid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8Ğì¯è˜-
+vsquid:UselessImportCheck-"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡8Üãü-
+qsquid:S00117´"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±ÉÂ8©ö°û-
+vsquid:S00117¯"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†è—çøÿÿÿÿ8©ö°û-
+Ksquid:S1602º",Remove useless curly braces around statement(§ÀÇ8©ö°û-
+Tsquid:S1659±"0Declare "bid_pro_currentBid" on a separate line.(ë’™Ëşÿÿÿÿ8©ö°û-
+ssquid:S00116I"[Rename this field "pro_seller_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸©Ş
+Nsquid:S1659L"+Declare "pro_condition" on a separate line.(ªïşÿÿÿÿ8Ïì¯è˜-
+ssquid:UselessImportCheck6"HRemove this unused import 'com.invaderx.firebasetrigger.Auth.UserLogin'.(£Ù¶‰8ßÊû-
+¥squid:S1186Ö"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğŒÂ´şÿÿÿÿ8©ö°û-
+vsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8™Åâú-
+Ksquid:S1602½",Remove useless curly braces around statement(ˆÙÜŸ8©ö°û-
+]"squid:SwitchLastCaseIsDefaultCheckÆ""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8Ïì¯è˜-
+osquid:S00116K"WRename this field "pro_category" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
+~squid:S00116L"ZRename this field "pro_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8Ğì¯è˜-
+vsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8©ö°û-
+Ksquid:S1659L"(Declare "pro_seller" on a separate line.(ªïşÿÿÿÿ8Ïì¯è˜-
+¥squid:S1186Ç"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(À˜Ğ¡şÿÿÿÿ8©ö°û-
+?squid:S1659K"(Declare "pro_expHrs" on a separate line.(ô‘Ğ’
+¥squid:S1186‰"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8©ö°û-
+lsquid:S1192Ú"HDefine a constant instead of duplicating this literal "product" 6 times.(ÉÍ€úÿÿÿÿ8Ïì¯è˜-
+|squid:UselessImportCheck+"LRemove this unused import 'com.google.android.gms.tasks.OnCompleteListener'.(Çğ¸Òÿÿÿÿÿ8¬†–ü-
+rsquid:S00116J"URename this field "pro_expDay" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öæêûÿÿÿÿ
+}squid:S1450I"_Remove the "pro_seller_image" field and declare it as a local variable in the relevant methods.(¸©Ş8Ïì¯è˜-
+tsquid:S00116Q"VRename this field "pro_loading" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©“c8Ğì¯è˜-
+ysquid:S00116L"URename this field "pro_bidsNo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8Ğì¯è˜-
+vsquid:S00117¯"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†è—çøÿÿÿÿ8©ö°û-
+Ksquid:S1659L"(Declare "pro_status" on a separate line.(ªïşÿÿÿÿ8¬ Ğ©-
+tsquid:S00116X"URename this field "timer_card" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ëÙ8Ğì¯è˜-
+Osquid:S1659±"+Declare "wallet_amount" on a separate line.(ë’™Ëşÿÿÿÿ8©ö°û-
+qsquid:S00116J"TRename this field "pro_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öæêûÿÿÿÿ
+~squid:S00116R"ZRename this field "pro_error_frame" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûöÄĞûÿÿÿÿ8Ğì¯è˜-
+qsquid:S00117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úç´Ï8Ñ×ğ©-
+}squid:S1450M"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8Ïì¯è˜-
+msquid:S00116K"URename this field "pro_expSec" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
+Fsquid:S1659Q")Declare "pro_loading" on a separate line.(©©“c8Ïì¯è˜-
+ysquid:S00116L"URename this field "pro_seller" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8Ğì¯è˜-
+|squid:S00116L"XRename this field "pro_condition" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8Ğì¯è˜-
+Rsquid:S1068I"4Remove this unused "pro_seller_image" private field.(¸©Ş8Ïì¯è˜-
+psquid:S00116Q"YRename this field "pro_error_anim" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©©“c
+csquid:UselessImportCheck"3Remove this unused import 'android.text.TextUtils'.(û˜½Õøÿÿÿÿ8Ğì¯è˜-
+?squid:S1659K"(Declare "pro_expSec" on a separate line.(ô‘Ğ’
+Msquid:S1659L"*Declare "pro_user_bid" on a separate line.(ªïşÿÿÿÿ8Ïì¯è˜-
+xsquid:S00116O"TRename this field "place_bid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚¬şõÿÿÿÿÿ8Ğì¯è˜-
+lsquid:S00116I"TRename this field "pro_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸©Ş
+isquid:UselessImportCheck.">Remove this unused import 'com.google.android.gms.tasks.Task'.(¦âÏô8¬†–ü-
+vsquid:S3776Ø"RRefactor this method to reduce its Cognitive Complexity from 52 to the 15 allowed.(¨û·ıÿÿÿÿ8àÏÚú-
+jsquid:HiddenFieldCheck—"@Rename "appBarLayout" which hides the field declared at line 71.(ÅŞ…ß8Ğì¯è˜-
+zsquid:S1192"VDefine a constant instead of duplicating this literal "Something went wrong!" 3 times.(Ã’–îşÿÿÿÿ8ïš¼ü-
+vsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8©ö°û-
 ]squid:UselessImportCheck"9Remove this unused import 'android.annotation.TargetApi'.(¥Îì‘
+vsquid:S00117¯"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†è—çøÿÿÿÿ8ïŞÌú-
+qsquid:S3776­"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¡ş’İ8©ö°û-
+Osquid:S1659¯"+Declare "wallet_layout" on a separate line.(†è—çøÿÿÿÿ8©ö°û-
+vsquid:S00116J"YRename this field "pro_currentbid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öæêûÿÿÿÿ
+Lsquid:S1659¯"(Declare "before_bid" on a separate line.(†è—çøÿÿÿÿ8©ö°û-
+¥squid:S1186Ñ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(áá„üÿÿÿÿ8©ö°û-
+ysquid:S00116L"URename this field "pro_status" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªïşÿÿÿÿ8¬ Ğ©-
+tsquid:S1450E"VRemove the "toolbar" field and declare it as a local variable in the relevant methods.(ş®º—8Ïì¯è˜-
+msquid:S00116K"URename this field "pro_expHrs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô‘Ğ’
+vsquid:S00117²"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úàØ…şÿÿÿÿ8Ñ×ğ©-
+vsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’™Ëşÿÿÿÿ8©ö°û-
+fsquid:UselessImportCheck"CRemove this unused import 'android.support.design.widget.Snackbar'.( À®p
+tsquid:UselessImportCheck,"KRemove this unused import 'com.google.android.gms.tasks.OnFailureListener'.(ï¿ŞŞúÿÿÿÿ
+lsquid:UselessImportCheck"CRemove this unused import 'android.support.annotation.RequiresApi'.(ÄÂòøÿÿÿÿ
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
+Osquid:S1659L",Declare "pro_base_price" on a separate line.(ªïşÿÿÿÿ8Ïì¯è˜-
+Psquid:S1602Å",Remove useless curly braces around statement(Ñ­ãéøÿÿÿÿ8†úËû-
+Ksquid:S1659L"(Declare "pro_bidsNo" on a separate line.(ªïşÿÿÿÿ8Ïì¯è˜-
+Psquid:S1659L"-Declare "pro_description" on a separate line.(ªïşÿÿÿÿ8Ïì¯è˜-
+osquid:S1301Æ"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8Ğì¯è˜-
+osquid:CommentedOutCodeLineˆ"<This block of commented-out lines of code should be removed.(¬ÆÔûÿÿÿÿ8©ö°û-
+msquid:S2259¥"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(…²¼üÿÿÿÿ8©ö°û-
+Psquid:S1659±",Declare "bid_pro_seller" on a separate line.(ë’™Ëşÿÿÿÿ8©ö°û-
+{squid:S00116T"\Rename this field "product_container" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´÷8Ğì¯è˜-
+?squid:S1659K"(Declare "pro_expMin" on a separate line.(ô‘Ğ’
+osquid:CommentedOutCodeLineä"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8©ö°û-
+jsquid:S00117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÌÄ£

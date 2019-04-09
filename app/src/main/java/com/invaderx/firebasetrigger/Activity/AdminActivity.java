@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.invaderx.firebasetrigger.Auth.UserLogin;
 import com.invaderx.firebasetrigger.Fragments.AdminAllProductsFragment;
 import com.invaderx.firebasetrigger.Fragments.AdminPendingFragment;
@@ -50,6 +51,7 @@ public class AdminActivity extends AppCompatActivity {
         builder.setMessage("Are you sure you want exit?")
                 .setPositiveButton("Yes", (dialog, id) -> {
                     startActivity(new Intent(this, UserLogin.class));
+                    FirebaseAuth.getInstance().signOut();
                     finish();
                 })
                 .setNegativeButton("No", (dialog, id) -> dialog.dismiss());

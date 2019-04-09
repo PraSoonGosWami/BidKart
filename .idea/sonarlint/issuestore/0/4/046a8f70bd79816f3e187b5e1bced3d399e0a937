@@ -1,9 +1,9 @@
 
-\squid:S1155\">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8Ù×â™-
-usquid:S1450$"RRemove the "uid" field and declare it as a local variable in the relevant methods.(Šüÿÿÿÿ8é„Îã™-
-ysquid:S00116#"URename this field "sale_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØªõÑüÿÿÿÿ8ï„Úã™-
+usquid:S1450$"RRemove the "uid" field and declare it as a local variable in the relevant methods.(Šüÿÿÿÿ8€•™Ô-
 }squid:S1450!"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8šŠÕâ™-
-|squid:S00116"XRename this field "on_sale_rView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•„Îûÿÿÿÿ8Ú”Èâ™-
-˜squid:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(›Ìı¬
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
 nsquid:CommentedOutCodeLined"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8Ù×â™-
+ysquid:S00116#"URename this field "sale_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØªõÑüÿÿÿÿ8ï„Úã™-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
+˜squid:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(›Ìı¬
+|squid:S00116"XRename this field "on_sale_rView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•„Îûÿÿÿÿ8Ú”Èâ™-
+\squid:S1155\">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8Ù×â™-

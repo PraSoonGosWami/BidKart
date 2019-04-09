@@ -1,16 +1,16 @@
 
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8Œ‡ìà™-
 V"squid:SwitchLastCaseIsDefaultCheck€""Add a default case to this switch.(øå´¡ÿÿÿÿÿ
 bsquid:S1301N"KReplace this "switch" statement by "if" statements to increase readability.(¿›İ”
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
-usquid:S00116*"VRename this field "add_pro_fab" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢½ö8ªÈÔ¼™-
-xsquid:S1450*"ZRemove the "add_pro_fab" field and declare it as a local variable in the relevant methods.(¢½ö8Ìµü¾™-
+}squid:S1450-"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ö–Ïà™-
 hsquid:CommentedOutCodeLine§"<This block of commented-out lines of code should be removed.(á£ª„ıÿÿÿÿ
-usquid:S3008&"WRename this field "REQUEST_CODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓúÁ8¶Ÿ¤¿™-
-Ksquid:S1602Ã",Remove useless curly braces around statement(Ì‡‘´8Œ‡ìà™-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8Œ‡ìà™-
-vsquid:S1450("_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ĞÈ±
-ssquid:S00116("[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈ±
-hsquid:S1301€"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ
 P"squid:SwitchLastCaseIsDefaultCheckN""Add a default case to this switch.(¿›İ”
 wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.iid.FirebaseInstanceId'.(½ÉÈÊùÿÿÿÿ8ÛÎÜà™-
-}squid:S1450-"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ö–Ïà™-
+Ksquid:S1602Ã",Remove useless curly braces around statement(Ì‡‘´8Œ‡ìà™-
+usquid:S00116*"VRename this field "add_pro_fab" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢½ö8ªÈÔ¼™-
+ssquid:S00116("[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈ±
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
+usquid:S3008&"WRename this field "REQUEST_CODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓúÁ8¶Ÿ¤¿™-
+vsquid:S1450("_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ĞÈ±
+xsquid:S1450*"ZRemove the "add_pro_fab" field and declare it as a local variable in the relevant methods.(¢½ö8Ìµü¾™-
+hsquid:S1301€"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ
