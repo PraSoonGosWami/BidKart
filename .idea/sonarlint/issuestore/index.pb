@@ -189,3 +189,7 @@ z
 Japp/src/main/java/com/invaderx/firebasetrigger/Activity/AdminActivity.java,a/4/a4d0dcccad218d02ae3d9a92e04995751acfb99c
 s
 Capp/src/main/java/com/invaderx/firebasetrigger/Auth/AdminLogin.java,0/6/06e4cb74c6bff7aefefa8bac432e5a3d59296a9d
+]
+-app/src/main/res/drawable/ic_verify_white.xml,f/3/f304943ad43b1424d9321b03f10c0039fd9972bb
+Y
+)app/src/main/res/layout/splash_screen.xml,c/1/c1a3c75a6977fbf96a296679c4d92d3d2fb84dae
