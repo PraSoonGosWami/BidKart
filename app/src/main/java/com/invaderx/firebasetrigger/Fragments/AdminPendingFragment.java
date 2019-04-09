@@ -58,6 +58,7 @@ public class AdminPendingFragment extends Fragment {
 
         getProductList();
 
+        admin_pending_rView.setAdapter(productListAdapter);
 
         return view;
     }
@@ -86,7 +87,7 @@ public class AdminPendingFragment extends Fragment {
                         } else
                             showSnackbar("No products found");
 
-                        admin_pending_rView.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
                             admin_pending_error.setVisibility(View.VISIBLE);
                         } else

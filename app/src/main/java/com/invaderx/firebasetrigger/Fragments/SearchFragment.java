@@ -98,6 +98,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        search_recycler.setAdapter(searchAdapter);
 
         return view;
     }
@@ -132,7 +133,7 @@ public class SearchFragment extends Fragment {
                                 search_error.playAnimation();
                             }
 
-                            search_recycler.setAdapter(searchAdapter);
+                            searchAdapter.notifyDataSetChanged();
                             search_progressBar.setVisibility(View.INVISIBLE);
 
 

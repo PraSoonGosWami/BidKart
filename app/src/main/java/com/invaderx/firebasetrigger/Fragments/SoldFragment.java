@@ -61,6 +61,8 @@ public class SoldFragment extends Fragment {
 
         getProductList(uid);
 
+        sold_rView.setAdapter(productListAdapter);
+
         return view;
     }
 
@@ -87,7 +89,7 @@ public class SoldFragment extends Fragment {
                         } else
                             showSnackbar("It's lonely here!!");
 
-                        sold_rView.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
 
                             sold_error.setVisibility(View.VISIBLE);

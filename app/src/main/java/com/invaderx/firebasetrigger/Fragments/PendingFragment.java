@@ -64,6 +64,8 @@ public class PendingFragment extends Fragment {
 
         getProductList(uid);
 
+        pending_rView.setAdapter(productListAdapter);
+
         return view;
     }
 
@@ -91,7 +93,7 @@ public class PendingFragment extends Fragment {
                         } else
                             showSnackbar("It's loenly here!!");
 
-                        pending_rView.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
 
                             pending_error.setVisibility(View.VISIBLE);

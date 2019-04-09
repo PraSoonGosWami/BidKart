@@ -61,6 +61,8 @@ public class OnSaleFragment extends Fragment {
         uid = user.getUid();
         getProductList(uid);
 
+        on_sale_rView.setAdapter(productListAdapter);
+
         return view;
     }
 
@@ -88,7 +90,7 @@ public class OnSaleFragment extends Fragment {
                         } else
                             showSnackbar("No products found");
 
-                        on_sale_rView.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
                             sale_error.setVisibility(View.VISIBLE);
                         } else

@@ -279,15 +279,15 @@ public class AddProductsActivity extends AppCompatActivity implements BSImagePic
                         break;
                     case 6:
                         sell_pCategory = pCategoryList.get(6);
-                        getSell_pCategoryId = "p007";
+                        getSell_pCategoryId = "p006";
                         break;
                     case 7:
                         sell_pCategory = pCategoryList.get(7);
-                        getSell_pCategoryId = "p000";
+                        getSell_pCategoryId = "p007";
                         break;
                     default:
                         sell_pCategory = pCategoryList.get(0);
-                        getSell_pCategoryId = "p000";
+                        getSell_pCategoryId = "p007";
                         break;
                 }
 
