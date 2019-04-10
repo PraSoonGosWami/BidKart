@@ -55,8 +55,9 @@ public class AdminAllProductsFragment extends Fragment {
         databaseReference = firebaseDatabase.getReference();
         databaseReference.keepSynced(true);
 
-
         getProductList();
+
+        admin_all_produc_rView.setAdapter(productListAdapter);
         return view;
     }
 
@@ -84,7 +85,7 @@ public class AdminAllProductsFragment extends Fragment {
                         } else
                             showSnackbar("No products found");
 
-                        admin_all_produc_rView.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
                             admin_all_error.setVisibility(View.VISIBLE);
                         } else

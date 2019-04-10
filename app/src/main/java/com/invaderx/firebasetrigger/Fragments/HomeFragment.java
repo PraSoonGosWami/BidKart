@@ -84,6 +84,12 @@ public class HomeFragment extends Fragment {
         getTrendingProduct();
         //-----------------------------------------------
 
+        category_recycler_view.setNestedScrollingEnabled(false);
+        category_recycler_view.setAdapter(categoryAdapter);
+        trending_recycler_view.setNestedScrollingEnabled(false);
+        trending_recycler_view.setAdapter(trendingProductAdapter);
+
+
         return view;
     }
 
@@ -104,7 +110,7 @@ public class HomeFragment extends Fragment {
                             Toast.makeText(getContext(), "Something went wrong!\nTry agian in a bit", Toast.LENGTH_SHORT).show();
 
                         cattitle.setVisibility(View.VISIBLE);
-                        category_recycler_view.setAdapter(categoryAdapter);
+                        categoryAdapter.notifyDataSetChanged();
                         category_recycler_view.setVisibility(View.VISIBLE);
                         shimmer_view_category.startShimmerAnimation();
                         shimmer_view_category.setVisibility(View.GONE);
@@ -142,8 +148,8 @@ public class HomeFragment extends Fragment {
 
                 }
 
-                trending_recycler_view.setAdapter(trendingProductAdapter);
                 trending_recycler_view.setVisibility(View.VISIBLE);
+                trendingProductAdapter.notifyDataSetChanged();
                 shimmer_view_trending.stopShimmerAnimation();
                 shimmer_view_trending.setVisibility(View.GONE);
 

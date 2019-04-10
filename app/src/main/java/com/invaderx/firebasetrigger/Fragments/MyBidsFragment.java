@@ -58,6 +58,10 @@ public class MyBidsFragment extends Fragment {
         uid = user.getUid();
 
         getMyBidProduct(uid);
+
+        mybid_recyclerview.setAdapter(productListAdapter);
+
+
         return view;
     }
 
@@ -87,7 +91,7 @@ public class MyBidsFragment extends Fragment {
                         } else
                             showSnackbar("No products found");
 
-                        mybid_recyclerview.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
                             mybid_error.setVisibility(View.VISIBLE);
                         } else

@@ -73,6 +73,9 @@ public class ProductListFragment extends Fragment {
         }
         getProductList(catId);
 
+        product_list_recycler_view.setAdapter(productListAdapter);
+
+
         return view;
     }
 
@@ -102,7 +105,7 @@ public class ProductListFragment extends Fragment {
                             showSnackbar("It's lonely here!!");
 
                         product_list_progress_bar.setVisibility(View.GONE);
-                        product_list_recycler_view.setAdapter(productListAdapter);
+                        productListAdapter.notifyDataSetChanged();
                         if (productList.size() == 0) {
                             no_product_frame.setVisibility(View.VISIBLE);
                             product_error.playAnimation();
