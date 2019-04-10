@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.invaderx.firebasetrigger.Fragments.ProductListFragment;
 import com.invaderx.firebasetrigger.Models.Category;
 import com.invaderx.firebasetrigger.R;
@@ -44,6 +45,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         final Category list = categoryAdapterList.get(i);
         Glide.with(context).
                 load(list.getImgURL())
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .dontTransform()
+                .override(600, 600)
+                .centerCrop()
+                .error(R.drawable.ic_verify)
                 .into(holder.category_image);
         holder.category_title.setText(list.getCategoryName());
 

@@ -199,6 +199,7 @@ public class ProductPageActivity extends AppCompatActivity {
             case android.R.id.home:
                 Intent parentIntent = NavUtils.getParentActivityIntent(this);
                 if (parentIntent == null) {
+                    //startActivity(new Intent(this,MainActivity.class));
                     finish();
                     return true;
                 } else {
@@ -286,7 +287,7 @@ public class ProductPageActivity extends AppCompatActivity {
 
                                 //checks if product is already sold
                                 if (products.getpStatus().equals("sold")) {
-                                    pro_user_bid.setText("You are the seller\nProduct already sold");
+                                    pro_user_bid.setText("You are the seller\nProduct is now sold\nPlease contact admin if payment is not received within 3 days");
                                     timer_card.setVisibility(View.GONE);
                                 }
 

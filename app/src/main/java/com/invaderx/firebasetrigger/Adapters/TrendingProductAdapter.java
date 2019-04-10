@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.invaderx.firebasetrigger.Activity.MainActivity;
 import com.invaderx.firebasetrigger.Activity.ProductPageActivity;
 import com.invaderx.firebasetrigger.Models.Products;
@@ -43,6 +44,9 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
 
         Glide.with(context).
                 load(list.getProductListImgURL())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontTransform()
+                .override(500, 500)
                 .into(holder.trending_product_image);
         holder.trending_product_title.setText(list.getpName());
         holder.itemView.setOnClickListener(v -> {
