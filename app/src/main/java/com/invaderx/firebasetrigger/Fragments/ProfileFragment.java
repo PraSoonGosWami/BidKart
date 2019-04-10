@@ -79,32 +79,24 @@ public class ProfileFragment extends Fragment {
 
     //gets user details
     public void getUserDetails(String uid) {
-        databaseReference.child("UserProfile").orderByChild("uid").equalTo(uid)
+        //setting wallet amount
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(user.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        UserProfile userProfile1 = null;
+                        UserProfile userProfile = null;
                         if (dataSnapshot.exists()) {
-                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                userProfile1 = dataSnapshot1.getValue(UserProfile.class);
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                userProfile = data.getValue(UserProfile.class);
                             }
-
-                            if (userProfile1.getPhone().equals("0"))
-                                phoneTextView.setText("No Phone Number Added");
-                            else
-                                phoneTextView.setText(userProfile1.getPhone());
-                            if (userProfile1.getWallet() == 0)
-                                phoneTextView.setText("No Money");
-                            else
-                                phoneTextView.setText(userProfile1.getWallet());
-                        } else {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Something went wrong", Snackbar.LENGTH_LONG).show();
-                        }
+                            walletTextView.setText("₹" + userProfile.getWallet());
+                            phoneTextView.setText(userProfile.getPhone());
+                        } else
+                            walletTextView.setText("₹0");
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "" + databaseError.getMessage(), Snackbar.LENGTH_LONG).show();
 
                     }
                 });
