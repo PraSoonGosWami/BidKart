@@ -224,7 +224,11 @@ public class ProductPageActivity extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 products = data.getValue(Products.class);
+
                             }
+                            if (products.getpStatus().equals("done"))
+                                finish();
+
                             Glide.with(getApplicationContext()).
                                     load(products.getProductListImgURL())
                                     .into(pro_image);
@@ -261,6 +265,20 @@ public class ProductPageActivity extends AppCompatActivity {
                                     place_bid.setVisibility(View.GONE);
                                     pro_user_bid.setText("Product already sold");
                                     timer_card.setVisibility(View.GONE);
+
+                                    //shows for payement
+                                    if (products.getBidderUID().equals(firebaseUser.getUid())) {
+                                        place_bid.setText("Make Payemnt");
+                                        place_bid.setEnabled(true);
+                                        place_bid.setVisibility(View.VISIBLE);
+                                        pro_user_bid.setText("Congratulations!! You have won the bid ");
+                                        timer_card.setVisibility(View.GONE);
+                                        place_bid.setOnClickListener(v -> {
+                                            Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                                            intent.putExtra("pid", products.getpId());
+                                            startActivity(intent);
+                                        });
+                                    }
                                 }
                                 //checks if product is live
                                 if (products.getpStatus().equals("live")) {

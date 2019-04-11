@@ -1,11 +1,12 @@
 
-dsquid:UselessImportCheck"4Remove this unused import 'android.graphics.Canvas'.(õ«•üÿÿÿÿ8Äœ¡ú-
-nsquid:CommentedOutCodeLineb"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8ñ‹Şù-
-}squid:S00116$"^Rename this field "admin_pending_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ÏæŞ8ııÉù-
-‚squid:S00116"^Rename this field "admin_pending_rView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢†Éÿÿÿÿÿ8ªÍÈù-
-}squid:S1450""_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8¿ìÆù-
+nsquid:CommentedOutCodeLinec"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8ñ‹Şù-
 _squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8¦Á•ù-
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-xsquid:UselessImportCheck"MRemove this unused import 'android.support.v7.widget.helper.ItemTouchHelper'.(±Ñÿ8Äœ¡ú-
-\squid:S1155Z">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8ñ‹Şù-
+}squid:S00116$"^Rename this field "admin_pending_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ÏæŞ8ııÉù-
+}squid:S1450""_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8¿ìÆù-
 \squid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8¦Á•ù-
+‚squid:S00116"^Rename this field "admin_pending_rView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢†Éÿÿÿÿÿ8ªÍÈù-
+dsquid:UselessImportCheck"4Remove this unused import 'android.graphics.Canvas'.(õ«•üÿÿÿÿ8Äœ¡ú-
+\squid:S1155[">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8ñ‹Şù-
+xsquid:UselessImportCheck"MRemove this unused import 'android.support.v7.widget.helper.ItemTouchHelper'.(±Ñÿ8Äœ¡ú-
+…squid:S1450"bRemove the "admin_pending_rView" field and declare it as a local variable in the relevant methods.(¢†Éÿÿÿÿÿ8øÓ¾œ -

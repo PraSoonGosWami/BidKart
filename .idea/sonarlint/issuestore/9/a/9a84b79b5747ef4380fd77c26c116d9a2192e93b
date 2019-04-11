@@ -1,13 +1,13 @@
 
-…squid:S00116!"aRename this field "trending_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
+~squid:S00116("`Rename this field "shimmer_view_trending" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÛºA8ºì¦Ñ™-
 }squid:S1450&"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÄºÕ¾˜-
+¤squid:S1186x"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8şøã’-
+gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8†û¸¾˜-
 Wsquid:S1659!"4Declare "category_recycler_view" on a separate line.(ÃçúÔşÿÿÿÿ8 ºì‘-
-~squid:S00116("`Rename this field "shimmer_view_category" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÛºA8ºì¦Ñ™-
 …squid:S00116!"aRename this field "category_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
 Psquid:S1659("3Declare "shimmer_view_trending" on a separate line.(åÛºA8ºì¦Ñ™-
-~squid:S00116("`Rename this field "shimmer_view_trending" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÛºA8ºì¦Ñ™-
-gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8†û¸¾˜-
- squid:S1186™"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Ş‰8®”•¯’-
-¤squid:S1186r"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8şøã’-
+ squid:S1186Ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Ş‰8®”•¯’-
+~squid:S00116("`Rename this field "shimmer_view_category" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÛºA8ºì¦Ñ™-
+…squid:S00116!"aRename this field "trending_recycler_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃçúÔşÿÿÿÿ8 ºì‘-
 {squid:S00116""WRename this field "TrendingList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®Şíşÿÿÿÿ8 ºì‘-
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ

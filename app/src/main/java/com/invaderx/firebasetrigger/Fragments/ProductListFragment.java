@@ -93,7 +93,7 @@ public class ProductListFragment extends Fragment {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 products = data.getValue(Products.class);
-                                if (products.getpStatus().equals("pending"))
+                                if (products.getpStatus().equals("pending") || products.getpStatus().equals("done"))
                                     continue;
                                 productList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                         products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),

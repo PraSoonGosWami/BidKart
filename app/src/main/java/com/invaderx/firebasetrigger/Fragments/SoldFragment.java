@@ -78,7 +78,7 @@ public class SoldFragment extends Fragment {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 products = data.getValue(Products.class);
-                                if (products.getpStatus().equals("sold")) {
+                                if (products.getpStatus().equals("sold") || products.getpStatus().equals("done")) {
                                     productList.add(new Products(products.getpId(), products.getpName(), products.getpCategory(),
                                             products.getpBid(), products.getBidderUID(), products.getProductListImgURL(), products.getSellerName(),
                                             products.getBasePrice(), products.getSellerUID(), products.getCatId(),

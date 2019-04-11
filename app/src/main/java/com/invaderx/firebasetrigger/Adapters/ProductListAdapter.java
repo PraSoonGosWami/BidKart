@@ -51,7 +51,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int i) {
         final Products list = productListAdapterList.get(i);
-
+        holder.sold_watermark.setVisibility(View.GONE);
         Glide.with(context).
                 load(list.getProductListImgURL())
                 .into(holder.product_list_image);
@@ -59,10 +59,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.product_list_current_bid.setText("Current Bid : ₹" + Collections.max(list.getpBid().values()));
         holder.product_list_cat.setText("in " + list.getpCategory());
 
+
+        if (list.getpStatus().equals("done") || list.getpStatus().equals("sold"))
+            holder.sold_watermark.setVisibility(View.VISIBLE);
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ProductPageActivity.class);
-            intent.putExtra("pid", list.getpId());
-            context.startActivity(intent);
+            if (!list.getpStatus().equals("done")) {
+                Intent intent = new Intent(context, ProductPageActivity.class);
+                intent.putExtra("pid", list.getpId());
+                context.startActivity(intent);
+            }
         });
 
 
@@ -89,7 +94,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView product_list_image;
+        public ImageView product_list_image, sold_watermark;
         public TextView product_list_title, product_list_current_bid, product_list_cat, expDays;
 
 
@@ -100,6 +105,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             product_list_current_bid = itemView.findViewById(R.id.product_list_current_bid);
             product_list_cat = itemView.findViewById(R.id.product_list_cat);
             expDays = itemView.findViewById(R.id.expDay);
+            sold_watermark = itemView.findViewById(R.id.sold_watermark);
 
 
         }

@@ -19,9 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".Activity.AdminActivity"
+            android:name=".Activity.PaymentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/White.ActionBar"></activity>
+        <activity
+            android:name=".Activity.AdminActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/White.ActionBar" />
         <activity
             android:name=".Auth.AdminLogin"
             android:screenOrientation="portrait"
