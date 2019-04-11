@@ -2,22 +2,20 @@ package com.invaderx.firebasetrigger.Activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.custom_appbar);
         getSupportActionBar().setElevation(0);
 
-        View view= getSupportActionBar().getCustomView();
+        View view = getSupportActionBar().getCustomView();
         action_bar_menu = view.findViewById(R.id.action_bar_menu);
         action_bar_appicon = view.findViewById(R.id.action_bar_appicon);
         action_bar_wallet = view.findViewById(R.id.action_bar_notification);
@@ -189,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(Gravity.START))
+        if (drawerLayout.isDrawerOpen(Gravity.START))
             drawerLayout.closeDrawers();
         else if (getSupportFragmentManager().getBackStackEntryCount() <= 0) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
@@ -204,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     //performs logout
     public void logout() {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
         builder.setMessage("Are you sure you want logout?")
                 .setPositiveButton("Yes", (dialog, id) -> {
                     removesUtoken();
@@ -221,21 +219,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //replaces the container with fragments
-    public void swapFragments(Fragment fragment){
+    public void swapFragments(Fragment fragment) {
         android.support.v4.app.FragmentTransaction fragmentTransaction;
-        fragmentTransaction= getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,android.R.animator.fade_out).replace(R.id.container_frame,fragment);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
     }
 
     //gets user display name
-    public void getDisplayName(){
+    public void getDisplayName() {
         View view = navigationView.getHeaderView(0);
-        nav_profile_name=view.findViewById(R.id.nav_profile_name);
+        nav_profile_name = view.findViewById(R.id.nav_profile_name);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
-            Log.v("Username",name);
+            Log.v("Username", name);
             // getImage(user.getUid(),imageView);
 
             nav_profile_name.setText(name);
@@ -252,7 +250,6 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().signOut();
                 });
     }
-
 
 
 }

@@ -193,3 +193,5 @@ Capp/src/main/java/com/invaderx/firebasetrigger/Auth/AdminLogin.java,0/6/06e4cb
 -app/src/main/res/drawable/ic_verify_white.xml,f/3/f304943ad43b1424d9321b03f10c0039fd9972bb
 Y
 )app/src/main/res/layout/splash_screen.xml,c/1/c1a3c75a6977fbf96a296679c4d92d3d2fb84dae
+]
+-app/src/main/res/drawable/ic_wallet_black.xml,1/1/1154b745bb6a68b1f716c0472ab0bea75a6cd291
