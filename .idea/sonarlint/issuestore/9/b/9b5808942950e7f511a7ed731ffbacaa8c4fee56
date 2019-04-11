@@ -1,24 +1,19 @@
 
+ysquid:S1450 "[Remove the "nameTextView" field and declare it as a local variable in the relevant methods.(îï­‘8­ëğ -
+}squid:S1450&"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8çœˆ -
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-Psquid:S1068'"2Remove this unused "walletTextView" private field.(ß™àì8ò‰î -
-Osquid:S1068/",Remove this unused "filePath" private field.(É÷²øÿÿÿÿ8£„ -
-hsquid:UselessImportCheck"8Remove this unused import 'android.util.DisplayMetrics'.(Æ…Ú×ùÿÿÿÿ8¹Ú§ -
-|squid:S1450,"^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8¯† -
-[squid:S1068("8Remove this unused "floatingActionButton" private field.(¨”†úÿÿÿÿ8‰Úİ -
-}squid:S1450*"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8çœˆ -
-Hsquid:S10680"*Remove this unused "wallet" private field.(·üåÕ8Ñ÷„ -
-ysquid:S1450#"[Remove the "profileImage" field and declare it as a local variable in the relevant methods.(·‘ü8•ã -
-}squid:S1450-"_Remove the "storageReference" field and declare it as a local variable in the relevant methods.(Ş‚‡ç8¯† -
-usquid:UselessImportCheck"ERemove this unused import 'android.support.v7.app.AppCompatActivity'.(«Û®ûüÿÿÿÿ8¨Éàš -
-gsquid:S2259`"JA "NullPointerException" could be thrown; "userProfile1" is nullable here.(­¤§~8¤Ä¢Ÿ -
-Nsquid:S1068#"0Remove this unused "profileImage" private field.(·‘ü8ßÚÛ -
-ssquid:UselessImportCheck"CRemove this unused import 'android.support.v4.app.FragmentManager'.(úäçÇüÿÿÿÿ8¨Éàš -
-ysquid:S1450$"[Remove the "nameTextView" field and declare it as a local variable in the relevant methods.(îï­‘8­ëğ -
-vsquid:S1450)"SRemove the "user" field and declare it as a local variable in the relevant methods.(š·àûÿÿÿÿ8¹Ú§ -
-ysquid:S1450%"\Remove the "emailTextView" field and declare it as a local variable in the relevant methods.(Ãå{8ã—ò -
-Ysquid:S1068."6Remove this unused "PICK_IMAGE_REQUEST" private field.(Æ¥½÷øÿÿÿÿ8£„ -
-{squid:S1450'"]Remove the "walletTextView" field and declare it as a local variable in the relevant methods.(ß™àì8Î£õ -
-Rsquid:S1068-"4Remove this unused "storageReference" private field.(Ş‚‡ç8£„ -
-†squid:S1450("cRemove the "floatingActionButton" field and declare it as a local variable in the relevant methods.(¨”†úÿÿÿÿ8ğä -
-ksquid:UselessImportCheck";Remove this unused import 'android.graphics.BitmapFactory'.(âàºÍûÿÿÿÿ8¹Ú§ -
-^squid:UselessImportCheck"4Remove this unused import 'android.graphics.Bitmap'.(¾ì8¹Ú§ -
+[squid:S1068$"8Remove this unused "floatingActionButton" private field.(¨”†úÿÿÿÿ8‰Úİ -
+ysquid:S1450!"\Remove the "emailTextView" field and declare it as a local variable in the relevant methods.(Ãå{8ã—ò -
+†squid:S1450$"cRemove the "floatingActionButton" field and declare it as a local variable in the relevant methods.(¨”†úÿÿÿÿ8ğä -
+|squid:S1450("^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8¯† -
+Ysquid:S1068"6Remove this unused "PICK_IMAGE_REQUEST" private field.(Æ¥½÷øÿÿÿÿ8£„ -
+Osquid:S1068*",Remove this unused "filePath" private field.(É÷²øÿÿÿÿ8£„ -
+Rsquid:S1068)"4Remove this unused "storageReference" private field.(Ş‚‡ç8£„ -
+}squid:S1450)"_Remove the "storageReference" field and declare it as a local variable in the relevant methods.(Ş‚‡ç8¯† -
+Nsquid:S1068"0Remove this unused "profileImage" private field.(·‘ü8ßÚÛ -
+ysquid:S1450"[Remove the "profileImage" field and declare it as a local variable in the relevant methods.(·‘ü8•ã -
+Hsquid:S1068+"*Remove this unused "wallet" private field.(·üåÕ8Ñ÷„ -
+Hsquid:S1172Q"*Remove this unused method parameter "uid".(…şÿÊ8€ØĞ´ -
+lsquid:S2259\"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(”¾³øÿÿÿÿ8€ØĞ´ -
+¤squid:S1186c"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8€ØĞ´ -
+msquid:UselessImportCheck"CRemove this unused import 'android.support.design.widget.Snackbar'.( À®p8€ØĞ´ -

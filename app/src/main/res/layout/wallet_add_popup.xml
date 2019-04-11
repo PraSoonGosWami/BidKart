@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white">
+
+        <View
+            android:id="@+id/v"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:padding="4dp"
+            android:text="Refill Wallet"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/cancelRefill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:padding="4dp"
+            android:scaleX=".8"
+            android:scaleY=".8"
+            android:src="@drawable/close" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/v"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/refillAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:hint="Enter Amount"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:padding="4dp"
+                android:text="Choose a payment mode to refill"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
+
+                <RadioButton
+                    android:id="@+id/radioupi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checked="true"
+                    android:padding="6dp"
+                    android:text="UPI"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radiocard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:padding="6dp"
+                    android:text="Debit/Credit Card"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radiopaytm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:padding="6dp"
+
+                    android:text="Paytm"
+                    android:textSize="18sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/doneFillup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="22dp"
+            android:clickable="true"
+            android:src="@drawable/tick"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:elevation="8dp"
+            app:fabSize="normal" />
+    </RelativeLayout>
+</RelativeLayout>
