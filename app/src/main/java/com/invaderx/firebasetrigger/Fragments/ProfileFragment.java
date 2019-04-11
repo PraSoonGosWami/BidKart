@@ -1,6 +1,8 @@
 package com.invaderx.firebasetrigger.Fragments;
 
+import android.app.ProgressDialog;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,8 +24,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.asksira.bsimagepicker.BSImagePicker;
+import com.asksira.bsimagepicker.Utils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +46,11 @@ import com.google.firebase.storage.StorageReference;
 import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
-public class ProfileFragment extends Fragment {
+import static com.airbnb.lottie.L.TAG;
+
+public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleImageSelectedListener {
     private static final int PICK_IMAGE_REQUEST = 234;
-    private ImageView profileImage;
+    private ImageView profileImage, profileBackgroundImageView;
     private TextView nameTextView;
     private TextView emailTextView;
     private TextView phoneTextView;
@@ -51,6 +65,7 @@ public class ProfileFragment extends Fragment {
     private int wallet;
     private LinearLayout walletLayout;
     private PopupWindow popWindow;
+    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -66,6 +81,7 @@ public class ProfileFragment extends Fragment {
         phoneTextView = view.findViewById(R.id.profile_phoneView);
         walletTextView = view.findViewById(R.id.profile_walletView);
         walletLayout = view.findViewById(R.id.wallet_layout);
+        profileBackgroundImageView = view.findViewById(R.id.profileBackgroundImageView);
         walletLayout.setEnabled(true);
         //--------
 
@@ -77,6 +93,9 @@ public class ProfileFragment extends Fragment {
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
 
+        progressDialog = new ProgressDialog(getContext(), ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+        progressDialog.setMessage("Uploading..");
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
@@ -84,10 +103,24 @@ public class ProfileFragment extends Fragment {
             Log.v("Username", name);
             nameTextView.setText(name);
             emailTextView.setText(email);
+            Glide.with(getContext())
+                    .load(user.getPhotoUrl())
+                    .error(R.drawable.ic_verify)
+                    .centerCrop()
+                    .into(profileImage);
+            Glide.with(getContext())
+                    .load(user.getPhotoUrl())
+                    .centerCrop()
+                    .into(profileBackgroundImageView);
             getUserDetails(user.getUid());
+
         } else {
             nameTextView.setText("No user name");
         }
+        floatingActionButton.setOnClickListener(v -> {
+
+            imagePicker();
+        });
         return view;
     }
 
@@ -177,5 +210,71 @@ public class ProfileFragment extends Fragment {
 
         });
 
+    }
+
+    //add updates profile pic
+
+    public void profilePic(Uri uri) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName("PraSoon GosWami")
+                .setPhotoUri(uri)
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+
+                        }
+                    }
+                });
+    }
+
+
+    //opens image picker dialog
+    public void imagePicker() {
+        BSImagePicker picker = new BSImagePicker.Builder("com.invaderx.firebasetrigger.fileprovider")
+                .setMaximumDisplayingImages(24)
+                .setSpanCount(3)
+                .setGridSpacing(Utils.dp2px(2))
+                .setPeekHeight(Utils.dp2px(360))
+                .setTag("A request ID")
+                .build();
+        picker.show(getChildFragmentManager(), "picker");
+    }
+
+    //returns file path
+    @Override
+    public void onSingleImageSelected(Uri uri, String tag) {
+
+        progressDialog.show();
+        storageReference.child(user.getUid()).child("profilepic")
+                .putFile(uri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageReference.child(user.getUid()).child("profilepic").getDownloadUrl().addOnSuccessListener(uri1 -> {
+                        if (uri1 != null)
+                            profilePic(uri1);
+                        else
+                            Toast.makeText(getContext(), "Technical Issue\tTry again", Toast.LENGTH_SHORT).show();
+
+                    });
+
+                })
+                .addOnFailureListener(exception -> {
+                    progressDialog.dismiss();
+
+                })
+                .addOnProgressListener(taskSnapshot -> {
+                    //calculating progress percentage
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    //displaying percentage in progress dialog
+                    progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+                });
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -176,8 +177,11 @@ public class PaymentActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
+                            if (task.isSuccessful()) {
                                 generateTransaction();
+                                updateWallet();
+                            }
+
                             else
                                 Toast.makeText(PaymentActivity.this, "Try Again later!", Toast.LENGTH_SHORT).show();
                         }
@@ -221,6 +225,17 @@ public class PaymentActivity extends AppCompatActivity {
                     }
                 });
 
+
+    }
+
+    public void updateWallet() {
+        databaseReference.child("UserProfile").child(user.getUid()).child("wallet").setValue(walletAmount - amount)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                });
 
     }
 

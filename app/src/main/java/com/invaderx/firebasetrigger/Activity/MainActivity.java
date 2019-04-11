@@ -2,21 +2,29 @@ package com.invaderx.firebasetrigger.Activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView action_bar_title;
     private DrawerLayout drawerLayout;
     private TextView nav_profile_name;
+    private ImageView nav_profile_pic;
     private NavigationView navigationView;
     private String uToken = "logged out";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private PopupWindow popWindow;
+    private int wallet;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
         action_bar_wallet = view.findViewById(R.id.action_bar_notification);
         action_bar_search = view.findViewById(R.id.action_bar_search);
         action_bar_title = view.findViewById(R.id.action_bar_title);
+
+        action_bar_wallet.setOnClickListener(v -> {
+            addMoneyWallet(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        });
 
 
         //------------------------------------------------------------
@@ -170,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 userProfile = data.getValue(UserProfile.class);
                             }
+                            wallet = userProfile.getWallet();
                             action_bar_wallet.setText("₹" + userProfile.getWallet());
                         } else
                             action_bar_wallet.setText("₹0");
@@ -226,17 +243,21 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    //gets user display name
+    //gets user display name and dp
     public void getDisplayName() {
         View view = navigationView.getHeaderView(0);
         nav_profile_name = view.findViewById(R.id.nav_profile_name);
+        nav_profile_pic = view.findViewById(R.id.nav_profile_pic);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
-            Log.v("Username", name);
-            // getImage(user.getUid(),imageView);
-
             nav_profile_name.setText(name);
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .error(R.drawable.ic_verify)
+                    .centerCrop()
+                    .into(nav_profile_pic);
+
         } else {
             nav_profile_name.setText("No user name");
         }
@@ -249,6 +270,63 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(v -> {
                     FirebaseAuth.getInstance().signOut();
                 });
+    }
+
+    //adds money to wallet
+    public void addMoneyWallet(String uid) {
+
+        EditText refillAmount;
+        ImageView cancelRefill;
+        FloatingActionButton doneFillup;
+
+        View inflatedView = getLayoutInflater().inflate(R.layout.wallet_add_popup, null, false);
+        popWindow = new PopupWindow(inflatedView,
+                WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+        refillAmount = inflatedView.findViewById(R.id.refillAmount);
+        cancelRefill = inflatedView.findViewById(R.id.cancelRefill);
+        doneFillup = inflatedView.findViewById(R.id.doneFillup);
+
+
+        // get device size
+        Display display = getWindowManager().getDefaultDisplay();
+        final Point size = new Point();
+        display.getSize(size);
+
+        //mDeviceHeight = size.y;
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        // set height depends on the device size
+        popWindow = new PopupWindow(inflatedView, width, height - 60, true);
+        popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+
+        popWindow.setAnimationStyle(R.style.PopupAnimation);
+
+        // show the popup at bottom of the screen and set some margin at bottom ie,
+        popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0, 100);
+
+
+        cancelRefill.setOnClickListener(v -> {
+            popWindow.dismiss();
+        });
+
+        doneFillup.setOnClickListener(v -> {
+            if (refillAmount.getText().toString().isEmpty())
+                refillAmount.setError("Enter a valid amount");
+            else {
+                int amount = Integer.parseInt(refillAmount.getText().toString());
+                databaseReference.child("UserProfile").child(uid).child("wallet").setValue(amount + wallet)
+                        .addOnSuccessListener(m -> {
+                            popWindow.dismiss();
+                            Toast.makeText(this, "Money Added Successfully", Toast.LENGTH_SHORT).show();
+                        });
+            }
+
+        });
+
     }
 
 
