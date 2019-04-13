@@ -1,20 +1,20 @@
 
-msquid:S1871"IThis case's code block is the same as the block for the case on line 108.(İ–Ò˜ÿÿÿÿÿ8—»àà™-
-~squid:S1450+"`Remove the "action_bar_search" field and declare it as a local variable in the relevant methods.(±Å¯—8“Í¯ —-
-}squid:S1450."_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ĞÈ±8ĞîœÀ™-
-zsquid:S00116."[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈ±8’ùÓ±-
-‚squid:S1450,"_Remove the "action_bar_title" field and declare it as a local variable in the relevant methods.(öµƒÎøÿÿÿÿ8“Í¯ —-
-Ksquid:S1602û",Remove useless curly braces around statement(Ì‡‘´8´Æêà™-
-squid:S1450)"aRemove the "action_bar_appicon" field and declare it as a local variable in the relevant methods.(íúäû8”Ä¿âš-
-squid:S00116,"[Rename this field "action_bar_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öµƒÎøÿÿÿÿ8šÆ’-
+‚squid:S1450*"_Remove the "action_bar_title" field and declare it as a local variable in the relevant methods.(öµƒÎøÿÿÿÿ8“Í¯ —-
+|squid:S00116'"]Rename this field "action_bar_appicon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íúäû8”Ä¿âš-
+osquid:CommentedOutCodeLineí"<This block of commented-out lines of code should be removed.(á£ª„ıÿÿÿÿ8—»àà™-
+squid:S1450'"aRemove the "action_bar_appicon" field and declare it as a local variable in the relevant methods.(íúäû8”Ä¿âš-
+}squid:S1450,"_Remove the "nav_profile_name" field and declare it as a local variable in the relevant methods.(ĞÈ±8ĞîœÀ™-
+¥squid:S1186³"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8·‰Çáš-
+{squid:S00116("\Rename this field "action_bar_wallet" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê‘’¾8§»Íáš-
+~squid:S1450)"`Remove the "action_bar_search" field and declare it as a local variable in the relevant methods.(±Å¯—8“Í¯ —-
+W"squid:SwitchLastCaseIsDefaultCheckA""Add a default case to this switch.(¿›İ”8—»àà™-
+Ksquid:S1602ù",Remove useless curly braces around statement(Ì‡‘´8´Æêà™-
 ysquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ8ÛÇØû-
-~squid:S00116("ZRename this field "action_bar_menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
-osquid:CommentedOutCodeLineï"<This block of commented-out lines of code should be removed.(á£ª„ıÿÿÿÿ8—»àà™-
-squid:S1450("^Remove the "action_bar_menu" field and declare it as a local variable in the relevant methods.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
-{squid:S00116*"\Rename this field "action_bar_wallet" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê‘’¾8§»Íáš-
-}squid:S14501"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8—»àà™-
-|squid:S00116)"]Rename this field "action_bar_appicon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íúäû8”Ä¿âš-
-W"squid:SwitchLastCaseIsDefaultCheckC""Add a default case to this switch.(¿›İ”8—»àà™-
-{squid:S00116+"\Rename this field "action_bar_search" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Å¯—8Šñ×û-
-hsquid:S2259¯"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(°ºò8±œİáš-
-¥squid:S1186µ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8·‰Çáš-
+hsquid:S2259­"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(°ºò8±œİáš-
+msquid:S1871‹"IThis case's code block is the same as the block for the case on line 106.(İ–Ò˜ÿÿÿÿÿ8—»àà™-
+squid:S1450&"^Remove the "action_bar_menu" field and declare it as a local variable in the relevant methods.(¨Ÿ®©úÿÿÿÿ8Šñ×û-
+}squid:S1450/"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8—»àà™-
+{squid:S00116)"\Rename this field "action_bar_search" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Å¯—8Šñ×û-
+squid:S00116*"[Rename this field "action_bar_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öµƒÎøÿÿÿÿ8šÆ’-
+zsquid:S00116,"[Rename this field "nav_profile_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈ±8’ùÓ±-
+~squid:S00116&"ZRename this field "action_bar_menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Ÿ®©úÿÿÿÿ8Šñ×û-

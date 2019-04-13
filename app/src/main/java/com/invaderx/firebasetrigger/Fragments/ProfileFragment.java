@@ -2,7 +2,6 @@ package com.invaderx.firebasetrigger.Fragments;
 
 import android.app.ProgressDialog;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,10 +26,6 @@ import android.widget.Toast;
 import com.asksira.bsimagepicker.BSImagePicker;
 import com.asksira.bsimagepicker.Utils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,8 +40,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
-
-import static com.airbnb.lottie.L.TAG;
 
 public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleImageSelectedListener {
     private static final int PICK_IMAGE_REQUEST = 234;
@@ -218,7 +211,6 @@ public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleI
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("PraSoon GosWami")
                 .setPhotoUri(uri)
                 .build();
 

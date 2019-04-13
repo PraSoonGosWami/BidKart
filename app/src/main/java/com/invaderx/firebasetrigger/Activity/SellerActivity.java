@@ -2,33 +2,31 @@ package com.invaderx.firebasetrigger.Activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.fabtransitionactivity.SheetLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.invaderx.firebasetrigger.Auth.UserLogin;
 import com.invaderx.firebasetrigger.Fragments.OnSaleFragment;
 import com.invaderx.firebasetrigger.Fragments.PendingFragment;
 import com.invaderx.firebasetrigger.Fragments.SoldFragment;
 import com.invaderx.firebasetrigger.R;
-
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -44,6 +42,9 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
     private String uToken = "logged out";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private String uid = "";
 
 
     @Override
@@ -58,6 +59,9 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
         actionbar.setElevation(0);
         actionbar.setTitle("Seller");
 
+        mAuth = FirebaseAuth.getInstance();
+
+        user = mAuth.getCurrentUser();
         //binding views-------------------------------------------
         drawerLayout = findViewById(R.id.drawer_layout_white);
         navigationView = findViewById(R.id.nav_view_white);
@@ -84,6 +88,28 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
                     return true;
                 case R.id.nav_logout:
                     logout();
+                    return true;
+
+                case R.id.nav_share:
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidkart");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                    return true;
+
+                case R.id.nav_contactUs:
+                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                    if (user != null) {
+                        uid = user.getUid();
+                    }
+                    intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"admin@fablogger.com"});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Edit this to enter your Query Title");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Enter your Query Here(Remove this line).\n\n\n\nDon't Remove this line.\nSent From: BidKart (ver: 1.0)\n UID: " + uid);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
                     return true;
 
             }

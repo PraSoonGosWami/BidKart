@@ -195,3 +195,5 @@ Y
 )app/src/main/res/layout/splash_screen.xml,c/1/c1a3c75a6977fbf96a296679c4d92d3d2fb84dae
 ]
 -app/src/main/res/drawable/ic_wallet_black.xml,1/1/1154b745bb6a68b1f716c0472ab0bea75a6cd291
+\
+,app/src/main/res/layout/wallet_add_popup.xml,1/1/11f6493272883d2af36ec2ded2472424446adb2c

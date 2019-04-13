@@ -3,6 +3,7 @@ package com.invaderx.firebasetrigger.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private PopupWindow popWindow;
     private int wallet;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private String uid = "";
 
 
     @Override
@@ -65,8 +68,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        mAuth = FirebaseAuth.getInstance();
 
-
+        user = mAuth.getCurrentUser();
         //database references-------------------------------
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -86,6 +90,28 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_logout:
                     logout();
+                    return true;
+
+                case R.id.nav_share:
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidkart");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                    return true;
+
+                case R.id.nav_contactUs:
+                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                    if (user != null) {
+                        uid = user.getUid();
+                    }
+                    intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"admin@fablogger.com"});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Edit this to enter your Query Title");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Enter your Query Here(Remove this line).\n\n\n\nDon't Remove this line.\nSent From: BidKart (ver: 1.0)\n UID: " + uid);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
                     return true;
 
             }
