@@ -41,7 +41,7 @@
                     android:text="Paid to"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/t_person"
@@ -49,8 +49,7 @@
                     android:layout_height="wrap_content"
                     android:text="Prasoon Goswami"
                     android:layout_marginTop="2dp"
-                    android:textSize="14sp"
-                    />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/t_product"
@@ -58,9 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="For iphoneX"
                     android:layout_marginTop="2dp"
-                    android:textSize="14sp"
-                    />
-
+                    android:textSize="14sp" />
 
 
                 <TextView
@@ -70,8 +67,7 @@
                     android:text="Tranascation id: 884568dwwd"
                     android:layout_marginTop="4dp"
                     android:textStyle="bold"
-                    android:textSize="11sp"
-                    />
+                    android:textSize="11sp" />
 
 
             </LinearLayout>
@@ -98,7 +94,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     android:layout_gravity="right"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/t_date"
@@ -107,8 +103,7 @@
                     android:layout_gravity="right"
                     android:text="13 Mar 2019"
                     android:layout_marginTop="2dp"
-                    android:textSize="14sp"
-                    />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/t_wallet_type"
@@ -120,7 +115,6 @@
                     android:drawableRight="@drawable/ic_wallet_black"
                     android:drawablePadding="4dp"
                     android:textSize="14sp" />
-
 
 
             </LinearLayout>

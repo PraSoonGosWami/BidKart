@@ -38,13 +38,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void onBindViewHolder(@NonNull final TransactionAdapter.ViewHolder holder, int i) {
         final Transactions list = transactionAdapterList.get(i);
 
-        if(list.getBidderuid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+        if (list.getBidderuid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
             holder.t_type.setText("Paid to");
             holder.t_amount.setTextColor(Color.RED);
             holder.t_wallet_type.setText("Debited from");
         }
 
-        if(list.getSelleruid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+        if (list.getSelleruid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
             holder.t_type.setText("Received from");
             holder.t_amount.setTextColor(Color.parseColor("#54b978"));
             holder.t_wallet_type.setText("Credited to");
@@ -53,10 +53,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         holder.t_person.setText(list.getName());
         holder.t_product.setText(list.getProName());
-        holder.t_amount.setText("₹"+list.getAmount());
-        holder.t_id.setText("Transaction id: "+list.gettID());
+        holder.t_amount.setText("₹" + list.getAmount());
+        holder.t_id.setText("Id: " + list.gettID());
         holder.t_date.setText(list.getDate());
-
 
 
     }

@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     contactUs();
                     return true;
                 case R.id.nav_myProducts:
-                    swapFragments(new TranscationFragment(),"dark");
+                    swapFragments(new TranscationFragment(), "dark");
                     drawerLayout.closeDrawers();
                     action_bar_appicon.setVisibility(View.GONE);
                     action_bar_wallet.setVisibility(View.GONE);
@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void shareApp(){
+    public void shareApp() {
 
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void contactUs(){
+    public void contactUs() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         if (user != null) {
             uid = user.getUid();
@@ -391,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"admin@fablogger.com"});
         intent.putExtra(Intent.EXTRA_SUBJECT, "Edit this to enter your Query Title");
-        intent.putExtra(Intent.EXTRA_TEXT, "Enter your Query Here(Remove this line).\n\n\n\nDon't Remove this line.\nSent From: BidKart (ver: 1.0)\n (UID: " + uid+")");
+        intent.putExtra(Intent.EXTRA_TEXT, "Enter your Query Here(Remove this line).\n\n\n\nDon't Remove this line.\nSent From: BidKart (ver: 1.0)\n (UID: " + uid + ")");
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
             navigationView.setCheckedItem(R.id.nav_home);

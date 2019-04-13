@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +32,7 @@ import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
 import java.security.SecureRandom;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -50,7 +52,7 @@ public class PaymentActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private FirebaseUser user;
-    private int amount = 0, walletAmount = 0;
+    private int amount = 0, userWalletAmount = 0, sellerWalletAmount = 0;
     private String selleruid;
     private String sellerName;
     private ProgressDialog progressDialog;
@@ -98,8 +100,9 @@ public class PaymentActivity extends AppCompatActivity {
             //do payment
             makePayement();
         });
-        getWallet();
         getProduct(proId);
+        getUserWallet();
+
 
 
     }
@@ -143,7 +146,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     //gets user wallet amount
-    public void getWallet() {
+    public void getUserWallet() {
 
         databaseReference.child("UserProfile").orderByChild("uid").equalTo(user.getUid())
                 .addValueEventListener(new ValueEventListener() {
@@ -155,7 +158,7 @@ public class PaymentActivity extends AppCompatActivity {
                                 userProfile = data.getValue(UserProfile.class);
                             }
                             pay_wallet_amount.setText("₹" + userProfile.getWallet());
-                            walletAmount = userProfile.getWallet();
+                            userWalletAmount = userProfile.getWallet();
                         }
 
                     }
@@ -169,8 +172,35 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
+    //gets seller wallet amount
+    public void getSellerWallet() {
+
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(selleruid)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        UserProfile userProfile = null;
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                userProfile = data.getValue(UserProfile.class);
+                            }
+                            sellerWalletAmount = userProfile.getWallet();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+    }
+
+
     public void makePayement() {
-        if (walletAmount < amount)
+        if (userWalletAmount < amount)
             Toast.makeText(this, "Wallet balance low\nAdd funds by tapping the wallet", Toast.LENGTH_SHORT).show();
         else {
             progressDialog.show();
@@ -179,7 +209,6 @@ public class PaymentActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                generateTransaction();
                                 updateWallet();
                             }
 
@@ -196,21 +225,22 @@ public class PaymentActivity extends AppCompatActivity {
         final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
 
-        StringBuilder sb = new StringBuilder(12);
-        for (int i = 0; i < 12; i++)
+        StringBuilder sb = new StringBuilder(4);
+        for (int i = 0; i < 4; i++)
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         String tID = sb.toString();
+        String id = new Timestamp(System.currentTimeMillis()).getTime() + tID;
 
-        Transactions forSeller = new Transactions(selleruid, user.getUid(), user.getDisplayName(),String.valueOf(amount), pName, tID,getDate());
-        Transactions forBuyer = new Transactions(selleruid, user.getUid(), sellerName,String.valueOf(amount), pName, tID,getDate());
+        Transactions forSeller = new Transactions(selleruid, user.getUid(), user.getDisplayName(), String.valueOf(amount), pName, id, getDate());
+        Transactions forBuyer = new Transactions(selleruid, user.getUid(), sellerName, String.valueOf(amount), pName, id, getDate());
 
         //for bidder
-        databaseReference.child("Transactions").child(user.getUid()).child(tID).setValue(forBuyer)
+        databaseReference.child("Transactions").child(user.getUid()).child(id).setValue(forBuyer)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            databaseReference.child("Transactions").child(selleruid).child(tID).setValue(forSeller)
+                            databaseReference.child("Transactions").child(selleruid).child(id).setValue(forSeller)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -231,13 +261,33 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     public void updateWallet() {
-        databaseReference.child("UserProfile").child(user.getUid()).child("wallet").setValue(walletAmount - amount)
+        getSellerWallet();
+
+        databaseReference.child("UserProfile").child(user.getUid()).child("wallet").setValue(userWalletAmount - amount)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
 
+                        if (sellerWalletAmount != 0) {
+                            databaseReference.child("UserProfile").child(selleruid).child("wallet").setValue(sellerWalletAmount + amount)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+
+                                            generateTransaction();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            databaseReference.child("UserProfile").child(user.getUid()).child("wallet").setValue(userWalletAmount + amount);
+
+                                        }
+                                    });
+                        }
                     }
                 });
+
 
     }
 

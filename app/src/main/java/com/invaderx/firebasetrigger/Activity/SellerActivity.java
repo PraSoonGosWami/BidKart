@@ -125,7 +125,7 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
                     }
                     return true;
                 case R.id.nav_myProducts:
-                    swapFragments(new TranscationFragment(),"light");
+                    swapFragments(new TranscationFragment(), "light");
                     actionbar.setTitle("Transactions");
                     drawerLayout.closeDrawers();
                     return true;

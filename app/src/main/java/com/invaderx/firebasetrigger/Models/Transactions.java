@@ -13,7 +13,7 @@ public class Transactions {
 
     }
 
-    public Transactions(String selleruid, String bidderuid, String name, String amount, String proName, String tID,String date) {
+    public Transactions(String selleruid, String bidderuid, String name, String amount, String proName, String tID, String date) {
         this.selleruid = selleruid;
         this.bidderuid = bidderuid;
         this.name = name;

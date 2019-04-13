@@ -38,6 +38,7 @@ public class TranscationFragment extends Fragment {
     private TextView tran_error;
     private String uid;
     private String theme;
+
     public TranscationFragment() {
     }
 
@@ -47,13 +48,11 @@ public class TranscationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_transactions, container, false);
 
 
-
         //getting bundle  theme
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             theme = bundle.getString("theme");
         }
-
 
 
         //---------------Recycler View------------------------------------------
@@ -73,11 +72,11 @@ public class TranscationFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
-        if(theme.equals("dark")){
+        if (theme.equals("dark")) {
             t_layout.setBackgroundColor(Color.parseColor("#2A2D36"));
             tran_error.setTextColor(Color.WHITE);
         }
-        if(theme.equals("light")){
+        if (theme.equals("light")) {
             t_layout.setBackgroundColor(Color.WHITE);
             tran_error.setTextColor(Color.DKGRAY);
         }
@@ -101,8 +100,8 @@ public class TranscationFragment extends Fragment {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 transactions = data.getValue(Transactions.class);
-                                tranList.add(new Transactions(transactions.getSelleruid(),transactions.getBidderuid(),transactions.getName(),
-                                        transactions.getAmount(),transactions.getProName(),transactions.gettID(),transactions.getDate()));
+                                tranList.add(new Transactions(transactions.getSelleruid(), transactions.getBidderuid(), transactions.getName(),
+                                        transactions.getAmount(), transactions.getProName(), transactions.gettID(), transactions.getDate()));
 
                             }
                         } else
