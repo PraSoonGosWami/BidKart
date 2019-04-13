@@ -31,7 +31,10 @@ import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -58,8 +61,6 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         proId = getIntent().getStringExtra("pid");
-
-        Toast.makeText(this, "" + proId, Toast.LENGTH_SHORT).show();
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle("Make Payment");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -200,15 +201,16 @@ public class PaymentActivity extends AppCompatActivity {
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         String tID = sb.toString();
 
-        Transactions transactions = new Transactions(selleruid, user.getUid(), sellerName, user.getDisplayName(), String.valueOf(amount), pName, tID);
+        Transactions forSeller = new Transactions(selleruid, user.getUid(), user.getDisplayName(),String.valueOf(amount), pName, tID,getDate());
+        Transactions forBuyer = new Transactions(selleruid, user.getUid(), sellerName,String.valueOf(amount), pName, tID,getDate());
 
         //for bidder
-        databaseReference.child("Transactions").child(user.getUid()).child(tID).setValue(transactions)
+        databaseReference.child("Transactions").child(user.getUid()).child(tID).setValue(forBuyer)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            databaseReference.child("Transactions").child(selleruid).child(tID).setValue(transactions)
+                            databaseReference.child("Transactions").child(selleruid).child(tID).setValue(forSeller)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -248,5 +250,11 @@ public class PaymentActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String getDate() {
+        Date dt = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+        return formatter.format(dt);
     }
 }

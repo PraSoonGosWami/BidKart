@@ -3,6 +3,7 @@ package com.invaderx.firebasetrigger.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -37,6 +37,7 @@ import com.invaderx.firebasetrigger.Fragments.HomeFragment;
 import com.invaderx.firebasetrigger.Fragments.MyBidsFragment;
 import com.invaderx.firebasetrigger.Fragments.ProfileFragment;
 import com.invaderx.firebasetrigger.Fragments.SearchFragment;
+import com.invaderx.firebasetrigger.Fragments.TranscationFragment;
 import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 import com.roughike.bottombar.BottomBar;
@@ -57,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private PopupWindow popWindow;
     private int wallet;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private String uid = "";
 
 
     @Override
@@ -65,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        mAuth = FirebaseAuth.getInstance();
 
-
+        user = mAuth.getCurrentUser();
         //database references-------------------------------
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_home:
                     menuItem.setChecked(true);
                     drawerLayout.closeDrawers();
+                    swapFragments(new HomeFragment());
                     return true;
                 case R.id.nav_sell:
                     drawerLayout.closeDrawers();
@@ -85,7 +91,27 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.nav_logout:
+                    drawerLayout.closeDrawers();
                     logout();
+                    return true;
+
+                case R.id.nav_share:
+                    drawerLayout.closeDrawers();
+                    shareApp();
+                    return true;
+
+                case R.id.nav_contactUs:
+                    drawerLayout.closeDrawers();
+                    contactUs();
+                    return true;
+                case R.id.nav_myProducts:
+                    swapFragments(new TranscationFragment(),"dark");
+                    drawerLayout.closeDrawers();
+                    action_bar_appicon.setVisibility(View.GONE);
+                    action_bar_wallet.setVisibility(View.GONE);
+                    action_bar_search.setVisibility(View.GONE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    action_bar_title.setText("Transactions");
                     return true;
 
             }
@@ -212,8 +238,14 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Yes", (dialog, id) -> finish())
                     .setNegativeButton("No", (dialog, id) -> dialog.dismiss());
             builder.create().show();
-        } else
+        } else {
             super.onBackPressed();
+            navigationView.setCheckedItem(R.id.nav_home);
+            action_bar_appicon.setVisibility(View.VISIBLE);
+            action_bar_wallet.setVisibility(View.VISIBLE);
+            action_bar_search.setVisibility(View.GONE);
+            action_bar_title.setVisibility(View.GONE);
+        }
     }
 
     //performs logout
@@ -228,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", (dialog, id) -> {
                     dialog.dismiss();
-                    navigationView.setCheckedItem(R.id.nav_sell);
+                    navigationView.setCheckedItem(R.id.nav_home);
                 });
         builder.create().show();
 
@@ -241,6 +273,17 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    //replaces the container with fragments and sends intent
+    public void swapFragments(Fragment fragment, String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("theme", id);
+        fragment.setArguments(bundle);
+        android.support.v4.app.FragmentTransaction fragmentTransaction;
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.container_frame, fragment);
+        fragmentTransaction.addToBackStack("home").commit();
     }
 
     //gets user display name and dp
@@ -327,6 +370,32 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    public void shareApp(){
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidkart");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+        navigationView.setCheckedItem(R.id.nav_home);
+
+    }
+
+    public void contactUs(){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        if (user != null) {
+            uid = user.getUid();
+        }
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"admin@fablogger.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Edit this to enter your Query Title");
+        intent.putExtra(Intent.EXTRA_TEXT, "Enter your Query Here(Remove this line).\n\n\n\nDon't Remove this line.\nSent From: BidKart (ver: 1.0)\n (UID: " + uid+")");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
     }
 
 

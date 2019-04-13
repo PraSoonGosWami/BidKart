@@ -3,24 +3,24 @@ package com.invaderx.firebasetrigger.Models;
 public class Transactions {
     private String selleruid;
     private String bidderuid;
-    private String sellername;
-    private String biddername;
+    private String name;
     private String amount;
     private String proName;
     private String tID;
+    private String date;
 
     public Transactions() {
 
     }
 
-    public Transactions(String selleruid, String bidderuid, String sellername, String biddername, String amount, String proName, String tID) {
+    public Transactions(String selleruid, String bidderuid, String name, String amount, String proName, String tID,String date) {
         this.selleruid = selleruid;
         this.bidderuid = bidderuid;
-        this.sellername = sellername;
-        this.biddername = biddername;
+        this.name = name;
         this.amount = amount;
         this.proName = proName;
         this.tID = tID;
+        this.date = date;
     }
 
     public String getSelleruid() {
@@ -31,13 +31,10 @@ public class Transactions {
         return bidderuid;
     }
 
-    public String getSellername() {
-        return sellername;
+    public String getName() {
+        return name;
     }
 
-    public String getBiddername() {
-        return biddername;
-    }
 
     public String getAmount() {
         return amount;
@@ -49,5 +46,9 @@ public class Transactions {
 
     public String gettID() {
         return tID;
+    }
+
+    public String getDate() {
+        return date;
     }
 }
