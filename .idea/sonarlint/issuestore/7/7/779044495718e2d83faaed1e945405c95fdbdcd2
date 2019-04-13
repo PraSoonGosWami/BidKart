@@ -1,27 +1,30 @@
 
-|squid:UselessImportCheck"LRemove this unused import 'com.google.firebase.database.ValueEventListener'.(‹ŞÜ‹ıÿÿÿÿ8“æ„Ô-
-|squid:S00116\"]Rename this field "product_list_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş¥Œş8ØÔøß‘-
-Hsquid:S1659]"%Declare "expDays" on a separate line.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-5squid:S2176Z"Rename this class.(Â×Öúÿÿÿÿ8‘šÊñ•-
-–"squid:ClassVariableVisibilityCheck]"\Make product_list_cat a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-]squid:UselessImportCheck"-Remove this unused import 'java.util.Locale'.(åğ×±ûÿÿÿÿ8Êû•ò•-
-Qsquid:S1659]".Declare "product_list_cat" on a separate line.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8ÏŸ·â™-
-Ysquid:S1659]"6Declare "product_list_current_bid" on a separate line.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-“"squid:ClassVariableVisibilityCheck\"^Make product_list_image a static final constant or non-public and provide accessors if needed.(Ş¥Œş8ØÔøß‘-
-bsquid:UselessImportCheck"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ8‡½Õ-
-hsquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ8òµâÔ-
-Ÿsquid:S1319%"The type of the "productListAdapterList" object should be an interface such as "List" rather than the implementation "ArrayList".(Š—Õ8‘šÊñ•-
-‡squid:S00116]"cRename this field "product_list_current_bid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ê®«ğ•-
-]squid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8áÂ©ò•-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—˜‘‚
-qsquid:UselessImportCheck"FRemove this unused import 'com.google.firebase.database.DataSnapshot'.(şÇŒ„8“æ„Ô-
-squid:S00116]"]Rename this field "product_list_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.database.DatabaseError'.(ˆÔµıÿÿÿÿ8“æ„Ô-
-"squid:ClassVariableVisibilityCheck]"SMake expDays a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-squid:S00116]"[Rename this field "product_list_cat" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
 Vsquid:UselessImportCheck"+Remove this unused import 'java.util.Date'.(¸…¼ü8‡½Õ-
+{squid:S00116a"]Rename this field "product_list_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È£áE8ØÔøß‘-
+Ÿsquid:S1319%"The type of the "productListAdapterList" object should be an interface such as "List" rather than the implementation "ArrayList".(Š—Õ8‘šÊñ•-
+]squid:UselessImportCheck"-Remove this unused import 'java.util.Locale'.(åğ×±ûÿÿÿÿ8Êû•ò•-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—˜‘‚
+bsquid:UselessImportCheck"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ8‡½Õ-
+qsquid:UselessImportCheck"FRemove this unused import 'com.google.firebase.database.DataSnapshot'.(şÇŒ„8“æ„Ô-
+Isquid:S1659a",Declare "sold_watermark" on a separate line.(È£áE8²›õë -
+Hsquid:S1659b"%Declare "expDays" on a separate line.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+|squid:UselessImportCheck"LRemove this unused import 'com.google.firebase.database.ValueEventListener'.(‹ŞÜ‹ıÿÿÿÿ8“æ„Ô-
+hsquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ8òµâÔ-
+–"squid:ClassVariableVisibilityCheckb"\Make product_list_cat a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+squid:S00116b"]Rename this field "product_list_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+‡squid:S00116b"cRename this field "product_list_current_bid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+Qsquid:S1659b".Declare "product_list_cat" on a separate line.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.database.DatabaseError'.(ˆÔµıÿÿÿÿ8“æ„Ô-
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ÖÛ÷ë -
+"squid:ClassVariableVisibilityChecka"ZMake sold_watermark a static final constant or non-public and provide accessors if needed.(È£áE8²›õë -
+5squid:S2176_"Rename this class.(Â×Öúÿÿÿÿ8‘šÊñ•-
+wsquid:S00116a"YRename this field "sold_watermark" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È£áE8²›õë -
+’"squid:ClassVariableVisibilityChecka"^Make product_list_image a static final constant or non-public and provide accessors if needed.(È£áE8ØÔøß‘-
 esquid:UselessImportCheck":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8Ô­½Õ-
-"squid:ClassVariableVisibilityCheck]"dMake product_list_current_bid a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
-˜"squid:ClassVariableVisibilityCheck]"^Make product_list_title a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+"squid:ClassVariableVisibilityCheckb"dMake product_list_current_bid a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+"squid:ClassVariableVisibilityCheckb"SMake expDays a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+squid:S00116b"[Rename this field "product_list_cat" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+]squid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8áÂ©ò•-
+˜"squid:ClassVariableVisibilityCheckb"^Make product_list_title a static final constant or non-public and provide accessors if needed.(Áƒ˜óıÿÿÿÿ8¡·Şò–-
+]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8ÏŸ·â™-
+Ysquid:S1659b"6Declare "product_list_current_bid" on a separate line.(Áƒ˜óıÿÿÿÿ8¡·Şò–-

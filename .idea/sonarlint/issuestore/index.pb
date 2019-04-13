@@ -195,3 +195,15 @@ Y
 )app/src/main/res/layout/splash_screen.xml,c/1/c1a3c75a6977fbf96a296679c4d92d3d2fb84dae
 ]
 -app/src/main/res/drawable/ic_wallet_black.xml,1/1/1154b745bb6a68b1f716c0472ab0bea75a6cd291
+w
+Gapp/src/main/java/com/invaderx/firebasetrigger/Models/Transactions.java,1/9/1996062b9160f6379a7b0df000d981c8d1c74e11
+Z
+*app/src/main/res/drawable/white_curved.xml,1/b/1b60ff5cfe88cc813a5d18a722587089452e993d
+\
+,app/src/main/res/layout/activity_payment.xml,8/5/85622b9160ca807c7b5442d4dce9241e5fd61a0e
+V
+&app/src/main/res/raw/gateway_anim.json,2/e/2eda2dfabf0a0e3b60f9173b959847d03e85c021
+\
+,app/src/main/res/layout/wallet_add_popup.xml,1/1/11f6493272883d2af36ec2ded2472424446adb2c
+|
+Lapp/src/main/java/com/invaderx/firebasetrigger/Activity/PaymentActivity.java,5/9/5940501a73b30c731e19ddc33bebb174b8940c8c

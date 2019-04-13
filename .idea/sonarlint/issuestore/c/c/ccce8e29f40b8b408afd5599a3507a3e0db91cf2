@@ -1,10 +1,10 @@
 
-|squid:S00116"]Rename this field "mybid_recyclerview" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛÛàĞ8®Ö-
-usquid:S1450$"RRemove the "uid" field and declare it as a local variable in the relevant methods.(Šüÿÿÿÿ8 ñÖ-
 }squid:S1450!"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8 ñÖ-
-nsquid:CommentedOutCodeLineg"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8¼ß—Ö-
+usquid:S1450$"RRemove the "uid" field and declare it as a local variable in the relevant methods.(Šüÿÿÿÿ8 ñÖ-
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-\squid:S1155_">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8¼ß—Ö-
+nsquid:CommentedOutCodeLineg"<This block of commented-out lines of code should be removed.(ÂçÃ¬ÿÿÿÿÿ8¼ß—Ö-
 zsquid:S00116#"VRename this field "mybid_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒóêÆüÿÿÿÿ8º¸‘Ö-
-psquid:S3776E"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Á¹©ƒ8ê‰®Ö-
 squid:S1450"aRemove the "mybid_recyclerview" field and declare it as a local variable in the relevant methods.(ÛÛàĞ8–ê¿œ -
+|squid:S00116"]Rename this field "mybid_recyclerview" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛÛàĞ8®Ö-
+psquid:S3776E"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Á¹©ƒ8ê‰®Ö-
+\squid:S1155_">Use isEmpty() to check whether the collection is empty or not.(˜“ü˜8¼ß—Ö-

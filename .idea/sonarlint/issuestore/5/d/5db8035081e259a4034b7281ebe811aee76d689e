@@ -1,8 +1,8 @@
 
 vsquid:S00116D"YRename this field "category_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çõøøÿÿÿÿ
-œsquid:S1319"~The type of the "categoryAdapterList" object should be an interface such as "List" rather than the implementation "ArrayList".(¼¨Üœ8‹ÿ¸ -
 "squid:ClassVariableVisibilityCheckD"ZMake category_image a static final constant or non-public and provide accessors if needed.(çõøøÿÿÿÿ
 5squid:S2176B"Rename this class.(Â×Öúÿÿÿÿ8‹ÿ¸ -
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—˜‘‚
 ”"squid:ClassVariableVisibilityCheckE"ZMake category_title a static final constant or non-public and provide accessors if needed.(¡õÉíùÿÿÿÿ8‹ÿ¸ -
 }squid:S00116E"YRename this field "category_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡õÉíùÿÿÿÿ8‹ÿ¸ -
+œsquid:S1319"~The type of the "categoryAdapterList" object should be an interface such as "List" rather than the implementation "ArrayList".(¼¨Üœ8‹ÿ¸ -
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—˜‘‚

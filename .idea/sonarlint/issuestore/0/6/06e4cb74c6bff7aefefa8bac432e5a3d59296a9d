@@ -1,10 +1,10 @@
 
+wsquid:S00116"XRename this field "button_signin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Â«Â’8±ƒú÷-
+}squid:S1450"ZRemove the "user_signin" field and declare it as a local variable in the relevant methods.(óÇÂÄşÿÿÿÿ8ä®Äø-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Øß¥­
+Jsquid:S16020",Remove useless curly braces around statement(›ª ¡8±ƒú÷-
+vsquid:S1450"SRemove the "user" field and declare it as a local variable in the relevant methods.(š·àûÿÿÿÿ8ø®ø-
+Dsquid:S1659"&Declare "password" on a separate line.(…é¶ê8±ƒú÷-
+zsquid:S00116"VRename this field "user_signin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óÇÂÄşÿÿÿÿ8ä®Äø-
 zsquid:S1450"\Remove the "button_signin" field and declare it as a local variable in the relevant methods.(Â«Â’8±ƒú÷-
 Ksquid:S1068"(Remove this unused "user" private field.(š·àûÿÿÿÿ8ø®ø-
-wsquid:S00116"XRename this field "button_signin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Â«Â’8±ƒú÷-
-zsquid:S00116"VRename this field "user_signin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óÇÂÄşÿÿÿÿ8ä®Äø-
-Dsquid:S1659"&Declare "password" on a separate line.(…é¶ê8±ƒú÷-
-vsquid:S1450"SRemove the "user" field and declare it as a local variable in the relevant methods.(š·àûÿÿÿÿ8ø®ø-
-}squid:S1450"ZRemove the "user_signin" field and declare it as a local variable in the relevant methods.(óÇÂÄşÿÿÿÿ8ä®Äø-
-Jsquid:S16020",Remove useless curly braces around statement(›ª ¡8±ƒú÷-

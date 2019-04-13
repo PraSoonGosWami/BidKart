@@ -1,19 +1,27 @@
 
-ysquid:S1450 "[Remove the "nameTextView" field and declare it as a local variable in the relevant methods.(îï­‘8­ëğ -
-}squid:S1450&"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8çœˆ -
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¬ªŞÿÿÿÿÿ
-[squid:S1068$"8Remove this unused "floatingActionButton" private field.(¨”†úÿÿÿÿ8‰Úİ -
-ysquid:S1450!"\Remove the "emailTextView" field and declare it as a local variable in the relevant methods.(Ãå{8ã—ò -
-†squid:S1450$"cRemove the "floatingActionButton" field and declare it as a local variable in the relevant methods.(¨”†úÿÿÿÿ8ğä -
-|squid:S1450("^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8¯† -
-Ysquid:S1068"6Remove this unused "PICK_IMAGE_REQUEST" private field.(Æ¥½÷øÿÿÿÿ8£„ -
-Osquid:S1068*",Remove this unused "filePath" private field.(É÷²øÿÿÿÿ8£„ -
-Rsquid:S1068)"4Remove this unused "storageReference" private field.(Ş‚‡ç8£„ -
-}squid:S1450)"_Remove the "storageReference" field and declare it as a local variable in the relevant methods.(Ş‚‡ç8¯† -
-Nsquid:S1068"0Remove this unused "profileImage" private field.(·‘ü8ßÚÛ -
-ysquid:S1450"[Remove the "profileImage" field and declare it as a local variable in the relevant methods.(·‘ü8•ã -
-Hsquid:S1068+"*Remove this unused "wallet" private field.(·üåÕ8Ñ÷„ -
-Hsquid:S1172Q"*Remove this unused method parameter "uid".(…şÿÊ8€ØĞ´ -
-lsquid:S2259\"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(”¾³øÿÿÿÿ8€ØĞ´ -
-¤squid:S1186c"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8€ØĞ´ -
-msquid:UselessImportCheck"CRemove this unused import 'android.support.design.widget.Snackbar'.( À®p8€ØĞ´ -
+Ksquid:S1602ƒ",Remove useless curly braces around statement(‹¦ë¢8¿Ù¯ò -
+Ysquid:S10684"6Remove this unused "PICK_IMAGE_REQUEST" private field.(Æ¥½÷øÿÿÿÿ8£„ -
+Vsquid:S16595"8Declare "profileBackgroundImageView" on a separate line.(–±Œš8®Äœò -
+{squid:S1450C"XRemove the "popWindow" field and declare it as a local variable in the relevant methods.(»ãÌ¦ıÿÿÿÿ8àÉ¢ñ -
+osquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8àÉ¢ñ -
+¥squid:S1186“"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8€ØĞ´ -
+Isquid:S1172€"*Remove this unused method parameter "uid".(…şÿÊ8€ØĞ´ -
+rsquid:UselessImportCheck "GRemove this unused import 'com.bumptech.glide.request.RequestListener'.(ØÈôÉ8Äğğñ -
+zsquid:UselessImportCheck"JRemove this unused import 'com.bumptech.glide.load.engine.GlideException'.(¡â€œıÿÿÿÿ8Äğğñ -
+†squid:S1450:"cRemove the "floatingActionButton" field and declare it as a local variable in the relevant methods.(¨”†úÿÿÿÿ8ğä -
+Ksquid:S1602",Remove useless curly braces around statement(ôİÄ¥8Œ‹ò -
+Lsquid:S1604â"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8İéáñ -
+}squid:S1450<"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8çœˆ -
+ysquid:S14506"[Remove the "nameTextView" field and declare it as a local variable in the relevant methods.(îï­‘8­ëğ -
+osquid:UselessImportCheck"?Remove this unused import 'android.graphics.drawable.Drawable'.(Á‰º„ùÿÿÿÿ8Äğğñ -
+‡squid:S14505"iRemove the "profileBackgroundImageView" field and declare it as a local variable in the relevant methods.(–±Œš8®Äœò -
+bsquid:HiddenFieldCheckÚ"8Rename "user" which hides the field declared at line 59.(—ÓÛ8İéáñ -
+ysquid:S14507"\Remove the "emailTextView" field and declare it as a local variable in the relevant methods.(Ãå{8ã—ò -
+Osquid:S1068@",Remove this unused "filePath" private field.(É÷²øÿÿÿÿ8£„ -
+Jsquid:S1602x",Remove useless curly braces around statement(Ø†ª8…îèñ -
+psquid:UselessImportCheck!"ERemove this unused import 'com.bumptech.glide.request.target.Target'.(‰ì¾Ş8Äğğñ -
+msquid:S2259‹"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(™ö·¡ùÿÿÿÿ8àÉ¢ñ -
+ysquid:S14505"[Remove the "profileImage" field and declare it as a local variable in the relevant methods.(–±Œš8•ã -
+|squid:S1450>"^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8¯† -
+osquid:UselessImportCheck"?Remove this unused import 'com.bumptech.glide.load.DataSource'.(ÂË›²ûÿÿÿÿ8Äğğñ -
