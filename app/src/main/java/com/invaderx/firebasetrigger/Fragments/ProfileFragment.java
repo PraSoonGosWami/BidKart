@@ -2,12 +2,12 @@ package com.invaderx.firebasetrigger.Fragments;
 
 import android.app.ProgressDialog;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -27,10 +27,7 @@ import android.widget.Toast;
 import com.asksira.bsimagepicker.BSImagePicker;
 import com.asksira.bsimagepicker.Utils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,10 +43,13 @@ import com.google.firebase.storage.StorageReference;
 import com.invaderx.firebasetrigger.Models.UserProfile;
 import com.invaderx.firebasetrigger.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+
 import static com.airbnb.lottie.L.TAG;
 
 public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleImageSelectedListener {
-    private static final int PICK_IMAGE_REQUEST = 234;
     private ImageView profileImage, profileBackgroundImageView;
     private TextView nameTextView;
     private TextView emailTextView;
@@ -61,7 +61,6 @@ public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleI
     private DatabaseReference databaseReference;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
-    private Uri filePath;
     private int wallet;
     private LinearLayout walletLayout;
     private PopupWindow popWindow;
@@ -127,7 +126,7 @@ public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleI
     //gets user details
     public void getUserDetails(String uid) {
         //setting wallet amount
-        databaseReference.child("UserProfile").orderByChild("uid").equalTo(user.getUid())
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(uid)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -218,7 +217,6 @@ public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleI
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("PraSoon GosWami")
                 .setPhotoUri(uri)
                 .build();
 
@@ -227,7 +225,16 @@ public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleI
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
+                            Glide.with(getContext())
+                                    .load(user.getPhotoUrl())
+                                    .error(R.drawable.ic_verify)
+                                    .centerCrop()
+                                    .into(profileImage);
+                            Glide.with(getContext())
+                                    .load(user.getPhotoUrl())
+                                    .centerCrop()
+                                    .into(profileBackgroundImageView);
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Successful", Snackbar.LENGTH_SHORT).show();
                             progressDialog.dismiss();
 
 
@@ -252,6 +259,7 @@ public class ProfileFragment extends Fragment implements BSImagePicker.OnSingleI
     //returns file path
     @Override
     public void onSingleImageSelected(Uri uri, String tag) {
+
 
         progressDialog.show();
         storageReference.child(user.getUid()).child("profilepic")

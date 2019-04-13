@@ -23,7 +23,8 @@
                 android:id="@+id/nav_profile_pic_white"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
-                android:src="@drawable/pras" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_verify" />
 
         </android.support.v7.widget.CardView>
 
@@ -31,7 +32,7 @@
             android:id="@+id/nav_profile_name_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PraSoon GosWami"
+            android:text="Welcome"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

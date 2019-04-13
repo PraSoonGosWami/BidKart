@@ -323,23 +323,18 @@
                         android:clickable="true"
                         android:layout_marginBottom="32dp">
 
-                        <android.support.v7.widget.CardView
+                        <ImageView
+                            android:id="@+id/pro_seller_image"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            app:cardCornerRadius="20dp"
+                            android:scaleType="centerCrop"
                             android:layout_marginTop="12dp"
                             android:layout_marginRight="16dp"
                             android:layout_marginLeft="16dp"
                             android:layout_marginBottom="12dp"
-                            app:cardElevation="4dp">
-
-                            <ImageView
-                                android:id="@+id/pro_seller_image"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/pras" />
-                        </android.support.v7.widget.CardView>
+                            android:layout_gravity="center"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_verify" />
 
                         <TextView
                             android:id="@+id/pro_seller"
@@ -348,6 +343,7 @@
                             android:layout_height="wrap_content"
                             android:text="PraSoon GosWami"
                             android:textColor="@android:color/holo_blue_dark"
+                            android:layout_marginBottom="4dp"
                             android:textSize="16sp"
                             android:layout_gravity="center"
                             android:textStyle="bold" />

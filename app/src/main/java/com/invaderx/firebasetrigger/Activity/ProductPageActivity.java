@@ -70,7 +70,7 @@ public class ProductPageActivity extends AppCompatActivity {
     private String proId;
     private AppBarLayout appBarLayout;
     private NestedScrollView nestedScrollView;
-    private ImageView pro_image, pro_seller_image;
+    private ImageView pro_image;
     private TextView pro_title, pro_currentbid, pro_expDay,
             pro_expHrs, pro_expMin, pro_expSec, pro_category,
             pro_condition, pro_bidsNo, pro_base_price, pro_description, pro_seller, pro_user_bid, pro_status;
@@ -127,7 +127,6 @@ public class ProductPageActivity extends AppCompatActivity {
         pro_bidsNo = findViewById(R.id.pro_bidsCount);
         pro_base_price = findViewById(R.id.pro_base_price);
         pro_description = findViewById(R.id.pro_description);
-        pro_seller_image = findViewById(R.id.pro_seller_image);
         pro_seller = findViewById(R.id.pro_seller);
         place_bid = findViewById(R.id.place_bid);
         pro_error_frame = findViewById(R.id.pro_error_frame);
@@ -240,7 +239,7 @@ public class ProductPageActivity extends AppCompatActivity {
                             pro_bidsNo.setText("Total Bids: " + products.getNoOfBids());
                             pro_status.setText("Status: " + products.getpStatus().toUpperCase());
                             pro_description.setText(products.getpDescription());
-                            pro_seller.setText(products.getSellerName());
+                            pro_seller.setText(products.getSellerName() + "\nBidkart Verifed user");
 
                             expiryTime(timer);
 

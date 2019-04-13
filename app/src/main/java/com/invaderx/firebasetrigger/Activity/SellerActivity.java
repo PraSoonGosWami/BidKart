@@ -14,9 +14,11 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.fabtransitionactivity.SheetLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,13 +39,14 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
 
     private static int REQUEST_CODE = 101;
     private DrawerLayout drawerLayout;
-    private TextView nav_profile_name;
+    private TextView nav_profile_name_white;
     private NavigationView navigationView;
     private FloatingActionButton add_pro_fab;
     private SheetLayout sheetLayout;
     private String uToken = "logged out";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private ImageView nav_profile_pic_white;
 
 
     @Override
@@ -85,6 +88,7 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
                 case R.id.nav_logout:
                     logout();
                     return true;
+
 
             }
             return false;
@@ -159,16 +163,19 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
     //gets user display name
     public void getDisplayName() {
         View view = navigationView.getHeaderView(0);
-        nav_profile_name = view.findViewById(R.id.nav_profile_name_white);
+        nav_profile_name_white = view.findViewById(R.id.nav_profile_name_white);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
-            Log.v("Username", name);
-            // getImage(user.getUid(),imageView);
-
-            nav_profile_name.setText(name);
+            nav_profile_pic_white = view.findViewById(R.id.nav_profile_pic_white);
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .error(R.drawable.ic_verify)
+                    .centerCrop()
+                    .into(nav_profile_pic_white);
+            nav_profile_name_white.setText(name);
         } else {
-            nav_profile_name.setText("No user name");
+            nav_profile_name_white.setText("No user name");
         }
     }
 

@@ -13,18 +13,19 @@
         android:background="@color/colorPrimary">
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="240dp"
             android:layout_marginBottom="8dp"
-            app:cardCornerRadius="60dp"
+            app:cardCornerRadius="40dp"
             app:cardElevation="80dp">
 
             <ImageView
                 android:id="@+id/profileImageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_verify"
                 android:scaleType="centerCrop" />
 
 
@@ -42,8 +43,7 @@
                 android:id="@+id/profileBackgroundImageView"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/pras" />
+                app:srcCompat="@drawable/tagline_white" />
 
 
         </com.github.florent37.shapeofview.shapes.DiagonalView>
