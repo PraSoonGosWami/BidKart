@@ -376,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidkart");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidKart");
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
         navigationView.setCheckedItem(R.id.nav_home);

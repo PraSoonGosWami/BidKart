@@ -12,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -105,7 +104,7 @@ public class SellerActivity extends AppCompatActivity implements SheetLayout.OnF
                     menuItem.setChecked(true);
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidkart");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! I have found a cool app download it now from PlayStore\n" + "http://bit.ly/bidKart");
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
                     return true;
