@@ -1,0 +1,25 @@
+
+;squid:S1659F"$Declare "t_date" on a separate line.(–õ±
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—˜‘‚
+>squid:S1659F"'Declare "t_product" on a separate line.(–õ±
+Asquid:S1068"+Remove this unused "context" private field.(êİç
+€"squid:ClassVariableVisibilityCheckF"RMake t_date a static final constant or non-public and provide accessors if needed.(–õ±
+9squid:S1659F""Declare "t_id" on a separate line.(–õ±
+˜squid:S1319"|The type of the "searchAdapterList" object should be an interface such as "List" rather than the implementation "ArrayList".(ûå¦ûÿÿÿÿ
+Bsquid:S1659F"+Declare "t_wallet_type" on a separate line.(–õ±
+‚"squid:ClassVariableVisibilityCheckF"TMake t_person a static final constant or non-public and provide accessors if needed.(–õ±
+isquid:S00116F"QRename this field "t_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+=squid:S1659F"&Declare "t_person" on a separate line.(–õ±
+psquid:S00116F"XRename this field "t_wallet_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+~"squid:ClassVariableVisibilityCheckF"PMake t_id a static final constant or non-public and provide accessors if needed.(–õ±
+.squid:S2176D"Rename this class.(Â×Öúÿÿÿÿ
+‡"squid:ClassVariableVisibilityCheckF"YMake t_wallet_type a static final constant or non-public and provide accessors if needed.(–õ±
+=squid:S1659F"&Declare "t_amount" on a separate line.(–õ±
+isquid:S00116F"QRename this field "t_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+gsquid:S00116F"ORename this field "t_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+ƒ"squid:ClassVariableVisibilityCheckF"UMake t_product a static final constant or non-public and provide accessors if needed.(–õ±
+lsquid:S00116F"TRename this field "t_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+ksquid:S00116F"SRename this field "t_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+ksquid:S00116F"SRename this field "t_person" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–õ±
+€"squid:ClassVariableVisibilityCheckF"RMake t_type a static final constant or non-public and provide accessors if needed.(–õ±
+‚"squid:ClassVariableVisibilityCheckF"TMake t_amount a static final constant or non-public and provide accessors if needed.(–õ±

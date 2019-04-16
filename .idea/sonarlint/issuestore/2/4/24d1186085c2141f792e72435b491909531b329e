@@ -1,30 +1,30 @@
 
-xsquid:S14504"ZRemove the "upload_pImg" field and declare it as a local variable in the relevant methods.(µÌŸ²8šç™-
-Jsquid:S1602l",Remove useless curly braces around statement(Á‡´8‘¼íÚš-
-nsquid:S1301z"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8ğº˜å™-
-esquid:UselessImportCheck.":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8™è©Õ-
-Psquid:S1659:"-Declare "sell_pCondition" on a separate line.(Ë­¥Ëüÿÿÿÿ8ŞßÎç™-
-~squid:S14502"[Remove the "done_pro_fab" field and declare it as a local variable in the relevant methods.(îãÿıÿÿÿÿ8şäğÜš-
-{squid:S001162"WRename this field "done_pro_fab" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îãÿıÿÿÿÿ8·³Í¿™-
-wsquid:S001163"XRename this field "sell_pDetails" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8ç«‘ç™-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
 |squid:S1450;"^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8ÉèÔÛš-
-}squid:S00116:"YRename this field "sell_pCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë­¥Ëüÿÿÿÿ8ŞßÎç™-
-usquid:S001163"VRename this field "sell_pPrice" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8ëòç™-
-Gsquid:S16593")Declare "sell_pPrice" on a separate line.(‹ÑĞ˜8ëòç™-
-~squid:S00116:"ZRename this field "sell_pCondition" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë­¥Ëüÿÿÿÿ8ŞßÎç™-
-zsquid:S001166"VRename this field "sell_pImage" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş…§ˆÿÿÿÿÿ8Åµç™-
-‚squid:S00116:"^Rename this field "getSell_pCategoryId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë­¥Ëüÿÿÿÿ8ÀüÚİš-
-}squid:S1450="_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÉèÔÛš-
-usquid:S001164"VRename this field "upload_pImg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÌŸ²8€®Œç™-
-Isquid:S16593"+Declare "sell_pDetails" on a separate line.(‹ÑĞ˜8ç«‘ç™-
-Rsquid:S16597"/Declare "condition_spinner" on a separate line.(×»“”úÿÿÿÿ8ÍÃ“ç™-
-\"squid:SwitchLastCaseIsDefaultCheckz""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8ğº˜å™-
-Tsquid:S1659:"1Declare "getSell_pCategoryId" on a separate line.(Ë­¥Ëüÿÿÿÿ8ÀüÚİš-
-wsquid:S001163"XRename this field "sell_pExpTime" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8§ò”ç™-
-zsquid:S001167"VRename this field "cat_spinner" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×»“”úÿÿÿÿ8çº’ç™-
-Jsquid:S1602r",Remove useless curly braces around statement(ø¬®æ8¨† è™-
-Isquid:S16593"+Declare "sell_pExpTime" on a separate line.(‹ÑĞ˜8§ò”ç™-
-tsquid:S001163"URename this field "sell_pName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8Ê¥ç™-
+~squid:S14502"[Remove the "done_pro_fab" field and declare it as a local variable in the relevant methods.(îãÿıÿÿÿÿ8şäğÜš-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
 Jsquid:S1659?"'Declare "uploadUri" on a separate line.(ò¬³şÿÿÿÿ8å–Üš-
+\"squid:SwitchLastCaseIsDefaultCheckz""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8ğº˜å™-
+Rsquid:S16597"/Declare "condition_spinner" on a separate line.(×»“”úÿÿÿÿ8ÍÃ“ç™-
+zsquid:S001167"VRename this field "cat_spinner" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×»“”úÿÿÿÿ8çº’ç™-
 €squid:S001167"\Rename this field "condition_spinner" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×»“”úÿÿÿÿ8ÍÃ“ç™-
+Isquid:S16593"+Declare "sell_pExpTime" on a separate line.(‹ÑĞ˜8§ò”ç™-
+~squid:S00116:"ZRename this field "sell_pCondition" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë­¥Ëüÿÿÿÿ8ŞßÎç™-
+Isquid:S16593"+Declare "sell_pDetails" on a separate line.(‹ÑĞ˜8ç«‘ç™-
+wsquid:S001163"XRename this field "sell_pExpTime" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8§ò”ç™-
+Tsquid:S1659:"1Declare "getSell_pCategoryId" on a separate line.(Ë­¥Ëüÿÿÿÿ8ÀüÚİš-
+tsquid:S001163"URename this field "sell_pName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8Ê¥ç™-
+}squid:S1450="_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÉèÔÛš-
+wsquid:S001163"XRename this field "sell_pDetails" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8ç«‘ç™-
+Gsquid:S16593")Declare "sell_pPrice" on a separate line.(‹ÑĞ˜8ëòç™-
+{squid:S001162"WRename this field "done_pro_fab" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îãÿıÿÿÿÿ8·³Í¿™-
+‚squid:S00116:"^Rename this field "getSell_pCategoryId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë­¥Ëüÿÿÿÿ8ÀüÚİš-
+Jsquid:S1602l",Remove useless curly braces around statement(Á‡´8‘¼íÚš-
+Jsquid:S1602r",Remove useless curly braces around statement(ø¬®æ8¨† è™-
+}squid:S00116:"YRename this field "sell_pCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë­¥Ëüÿÿÿÿ8ŞßÎç™-
+nsquid:S1301z"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8ğº˜å™-
+Psquid:S1659:"-Declare "sell_pCondition" on a separate line.(Ë­¥Ëüÿÿÿÿ8ŞßÎç™-
+esquid:UselessImportCheck.":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8™è©Õ-
+xsquid:S14504"ZRemove the "upload_pImg" field and declare it as a local variable in the relevant methods.(µÌŸ²8šç™-
+zsquid:S001166"VRename this field "sell_pImage" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş…§ˆÿÿÿÿÿ8Åµç™-
+usquid:S001163"VRename this field "sell_pPrice" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÑĞ˜8ëòç™-
+usquid:S001164"VRename this field "upload_pImg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÌŸ²8€®Œç™-

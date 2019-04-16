@@ -1,20 +1,26 @@
 
-Jsquid:S1602`",Remove useless curly braces around statement(ßüØÉ8©š¨ğ -
+Lsquid:S1604ï"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8Áàğ -
+Lsquid:S1604‘"(Make this anonymous inner class a lambda(Ïë£ùÿÿÿÿ8©ÍÌÆ¡-
+Lsquid:S1604‹"(Make this anonymous inner class a lambda(Ïë£ùÿÿÿÿ8ÍËŒó -
+Lsquid:S1604˜"(Make this anonymous inner class a lambda(Ÿ ¹ÿÿÿÿÿ8”ûÍÆ¡-
+vsquid:S00116/"WRename this field "pay_pro_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦Õª8•Çï -
+{squid:S00116."\Rename this field "pay_wallet_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰™¢ô8€ÿœï -
+Lsquid:S1604Ğ"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8øêçğ -
+Zsquid:UselessImportCheck%"/Remove this unused import 'java.util.Calendar'.(ÿÛö´8òÜáÆ¡-
+dsquid:S2259y"FA "NullPointerException" could be thrown; "products" is nullable here.(åÉÀ³8ñ«ûï -
+hsquid:S2259 "IA "NullPointerException" could be thrown; "userProfile" is nullable here.(Îµó8÷àï -
+ysquid:S001163"URename this field "pay_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıûÇ÷üÿÿÿÿ8“°¦ï -
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( ”ÛÌ
-{squid:S00116+"WRename this field "pay_pro_cost" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áˆåïşÿÿÿÿ8×ÏŸï -
-Lsquid:S1604é"(Make this anonymous inner class a lambda(Ïë£ùÿÿÿÿ8ÍËŒó -
-{squid:S00116)"\Rename this field "pay_wallet_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰™¢ô8€ÿœï -
-hsquid:S2259œ"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(Îµó8÷àï -
-Lsquid:S1604Ô"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8øêçğ -
-usquid:S1450("RRemove the "wal" field and declare it as a local variable in the relevant methods.(³òä†ÿÿÿÿÿ8Ê‚³ï -
-Msquid:S16592"*Declare "walletAmount" on a separate line.( Š‡ûÿÿÿÿÿ8ìµ¥ğ -
-dsquid:S2259u"FA "NullPointerException" could be thrown; "products" is nullable here.(åÉÀ³8ñ«ûï -
-psquid:S00116'"QRename this field "pay_ui" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÕ—ç8¶½¯ï -
- squid:S1186ë"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ê¬‘ß8ÍËŒó -
-Lsquid:S1604±"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8ò®ğ -
-zsquid:S00116,"VRename this field "pay_pro_img" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Å‡¹ÿÿÿÿÿ8­ì ï -
-~squid:S00116-"ZRename this field "pay_progressbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë«øÂøÿÿÿÿ8ºãÆï -
-Lsquid:S1604Ï"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8Áàğ -
-ysquid:S00116."URename this field "pay_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıûÇ÷üÿÿÿÿ8“°¦ï -
-vsquid:S00116*"WRename this field "pay_pro_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦Õª8•Çï -
-}squid:S1450/"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8Ù«¹ï -
+ksquid:S1192—"LDefine a constant instead of duplicating this literal "UserProfile" 5 times.(ËÊ¦8«Ô·Æ¡-
+ksquid:S1192Š"GDefine a constant instead of duplicating this literal "wallet" 3 times.(ˆÊÍ³øÿÿÿÿ8¥ÍÑÆ¡-
+psquid:S00116,"QRename this field "pay_ui" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÕ—ç8¶½¯ï -
+zsquid:S001161"VRename this field "pay_pro_img" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Å‡¹ÿÿÿÿÿ8­ì ï -
+~squid:S001162"ZRename this field "pay_progressbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë«øÂøÿÿÿÿ8ºãÆï -
+}squid:S14504"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8Ù«¹ï -
+Qsquid:S16597".Declare "userWalletAmount" on a separate line.(ºış øÿÿÿÿ8³´Æ¡-
+Ssquid:S16597"0Declare "sellerWalletAmount" on a separate line.(ºış øÿÿÿÿ8¾–µÆ¡-
+hsquid:S2259»"IA "NullPointerException" could be thrown; "userProfile" is nullable here.(õûÛ¡8ç€ºÆ¡-
+Jsquid:S1602c",Remove useless curly braces around statement(ßüØÉ8©š¨ğ -
+Lsquid:S1604ô"(Make this anonymous inner class a lambda(„¬é¿øÿÿÿÿ8ò®ğ -
+usquid:S1450-"RRemove the "wal" field and declare it as a local variable in the relevant methods.(³òä†ÿÿÿÿÿ8Ê‚³ï -
+{squid:S001160"WRename this field "pay_pro_cost" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áˆåïşÿÿÿÿ8×ÏŸï -
